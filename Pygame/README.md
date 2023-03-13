@@ -5,5 +5,5 @@ demo-1POO.py
 Es el codigo que yo (DIO... digo osvaldo) realizo tratando de aplicar principios de POO, agregando como extra la capacidad del personaje de moverse usando las flechas del teclado
 
 Problemas visibles:
-1.- el personaje puede abandonar la ventana visible por el espectador
-2.- En mi computadora corre como si fuera el minecraft con shaders, extra lento
+1.- el personaje puede abandonar la ventana visible por el espectador (RESUELTO 13/03/2023)
+2.- En mi computadora corre como si fuera el minecraft con shaders, extra lento 

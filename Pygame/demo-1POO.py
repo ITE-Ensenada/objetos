@@ -2,7 +2,7 @@ import pygame, sys
 from pygame.locals import *
 
 class Set_display():
-    SCREEN = pygame.display.set_mode((1200, 800), 0, 32)    #El tamaño de la ventana
+    SCREEN = pygame.display.set_mode((1200, 800))    #El tamaño de la ventana
     window_name = pygame.display.set_caption('Animation')   #Da el nombre de la ventana
     WHITE = (255, 255, 255)                                 #Define el color para el fondo de la pantalla en una variable
     FPS = 10                                                #Frames per second setting
@@ -46,19 +46,19 @@ while True: #Ciclo del juego
     #Evalua la direccion del objeto player y ocasiona cambie de direccion
     if player.direction == 'right':
         player.move_right()
-        if player.personajeX == 800:
+        if player.personajeX >= 796:
             player.direction = 'down'
     elif player.direction == 'down':
         player.move_down()
-        if player.personajeY == 500:
+        if player.personajeY >= 564:
             player.direction = 'left'
     elif player.direction == 'left':
         player.move_left()
-        if player.personajeX == 20:
+        if player.personajeX <= 20:
             player.direction = 'up'
     elif player.direction == 'up':
         player.move_up()
-        if player.personajeY == 20:
+        if player.personajeY <= 20:
             player.direction = 'right'
     
     #screen.SCREEN.blit(player.personajeImg, (player.personajeX, player.personajeY))    #En caso de no usarse la linea de codigo 65 se puede usar esta

@@ -1,5 +1,5 @@
 demo-1.py
-Es el codigo del profesor, se comentaron algunas funciones y lineas de codigo
+Es el codigo del profesor, se comento, y se estructuro diferente el ejercicio, sumado a que se empezo a realizar algunas clases y funciones, sin embargo no estan implementados en el codigo, por lo tanto corre de la misma manera que el codigo originals
 
 demo-1POO.py 
 Es el codigo que yo (DIO... digo osvaldo) realizo tratando de aplicar principios de POO, agregando como extra la capacidad del personaje de moverse usando las flechas del teclado

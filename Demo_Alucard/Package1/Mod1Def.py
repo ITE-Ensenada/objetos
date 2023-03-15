@@ -1,7 +1,7 @@
 import pygame, sys
 from pygame.locals import *
 
-def direccion(player):
+def registroEventos(player):
     for event in pygame.event.get():
         print(event)
 
@@ -29,6 +29,3 @@ def direccion(player):
             pygame.quit()
             sys.exit()
 
-def Exit_game():
-    for event in pygame.event():
-        pass

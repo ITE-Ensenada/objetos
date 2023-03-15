@@ -1,7 +1,7 @@
 import pygame, sys
 from pygame.locals import *
 
-def registroEventos(player):
+def registroEventos(player): #Evalua y registra un evento
     for event in pygame.event.get():
         print(event)
 
@@ -29,3 +29,21 @@ def registroEventos(player):
             pygame.quit()
             sys.exit()
 
+def do_action(player): #Realiza una evaluacion para determinar que hara el objeto dado
+    
+    if player.direction == 'right':
+        player.move_right()
+        if player.personajeX >= 796:
+            player.direction = 'down'
+    elif player.direction == 'down':
+        player.move_down()
+        if player.personajeY >= 564:
+            player.direction = 'left'
+    elif player.direction == 'left':
+        player.move_left()
+        if player.personajeX <= 20:
+            player.direction = 'up'
+    elif player.direction == 'up':
+        player.move_up()
+        if player.personajeY <= 20:
+            player.direction = 'right'

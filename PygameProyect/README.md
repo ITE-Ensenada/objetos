@@ -1,0 +1,3 @@
+# Raycasting 2D game
+Intento de proyecto de un juego a base de raycastring.  
+Dios no me abandono, yo me aleje de el...

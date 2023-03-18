@@ -38,6 +38,16 @@ class pieza:
         self.caminar = 3
         self.retroceder = 3
         self.ataque = 3
-    
+
+class jugador:
+    tipo = "jugador1"
+    def __init__(self, nombre, edad):
+        self.nombre = nombre
+        self.edad = edad
+
+    tipo = "jugador2"
+    def __init__(self, nombre, edad):
+        self.nombre = nombre
+        self.edad = edad
 
 

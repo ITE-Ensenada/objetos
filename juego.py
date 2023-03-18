@@ -1,6 +1,5 @@
 import pygame
 import sys
-import movimiento
 from pygame.locals import *
 pygame.init()
 FPS = 10 # frames per second setting

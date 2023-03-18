@@ -1,0 +1,27 @@
+class Personaje:
+    personaje1 = "principal"
+
+    def __init__(self, name, lvl, atack, speed, hp):
+        self.nombre = name
+        self.nivel = 1
+        self.ataque = 10
+        self.velocidad = 5
+        self.vida = hp
+
+class Arma:
+    arma = "pistola de Rayos"
+
+    def __init__(self, damage, range, ammo, time):
+        self.danio = damage
+        self.rango = 10
+        self.municion = 15
+        self.recarga = time
+
+
+class Enemigo:
+    malo = "malomaloso"
+
+    def __init__(self, damage, life, punch): 
+        self.danio = 10
+        self.vida = 50
+        self.golpeo = 20

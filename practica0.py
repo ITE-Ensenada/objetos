@@ -1,2 +1,0 @@
-import objetos
-print("hola")

@@ -18,7 +18,7 @@ WHITE = (179, 113, 209)
 
 personajeImg = pygame.image.load('harrystyles.png')
 personajeImg = pygame.transform.scale(personajeImg, (300, 190))
-pygame.display.set_caption("Key Press")
+pygame.display.set_caption("harry valley")
 personajeX = 10
 personajeY = 10
 

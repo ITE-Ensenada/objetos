@@ -1,0 +1,97 @@
+import pygame, sys
+from pygame.locals import *
+from monito import *
+
+#datos jugador
+
+input("Ingresa tu nombre: ")
+edad = int(input("Ingresa tu edad: "))
+if edad < 18:
+    print("No puedes jugar, debes ser mayor de edad")
+    exit()
+
+#Importa las clases
+jugador = Personaje("Salvador", "1", "10", "5", "100")
+print(jugador)
+pistola = Arma("20", "10", "15", "2.5")
+print(pistola)
+enemigo = Enemigo("10", "50", "20")
+print(enemigo)
+
+pygame.init()
+
+FPS = 60  # frames per second setting
+
+fpsClock = pygame.time.Clock()
+
+# Ajustes de la ventana
+
+tamanio = (1024, 1024)
+SCREEN = pygame.display.set_mode(tamanio)
+
+pygame.mouse.set_visible(0)
+pygame.display.set_caption("Juego")
+
+WHITE = (179, 113, 209)
+fondo = pygame.image.load("fondo.png").convert()
+personajeImg = pygame.image.load("nave.png")
+personajeImg = pygame.transform.scale(personajeImg, (100, 100))
+
+personajeX = 5
+
+personajeY = 10
+
+velocidad = 0
+
+# Aqui es para direccionar
+while True: 
+    
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            sys.exit()
+
+     #Evento teclado
+    if personajeY <= 858:
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_DOWN:
+                velocidad = 5
+            if event.key == pygame.K_UP:
+                velocidad = -5
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_UP:
+                velocidad = 0
+            if event.key == pygame.K_DOWN:
+                velocidad = 0
+
+    else:
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_DOWN:
+                velocidad = 0
+            if event.key == pygame.K_UP:
+                velocidad = -5
+
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_UP:
+                velocidad = 0
+            if event.key == pygame.K_DOWN:
+                velocidad = 0
+    if personajeY <= 0:
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_DOWN:
+                velocidad = 5
+            if event.key == pygame.K_UP:
+                velocidad = 0
+
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_UP:
+                velocidad = 0
+            if event.key == pygame.K_DOWN:
+                velocidad = 0
+
+    SCREEN.blit(fondo, [0, 0])
+    SCREEN.blit(personajeImg, (personajeX, personajeY))
+    personajeY += velocidad
+
+    pygame.draw.rect(SCREEN, WHITE, (personajeY, personajeY, 0, 0))
+    pygame.display.flip()
+    fpsClock.tick(60)

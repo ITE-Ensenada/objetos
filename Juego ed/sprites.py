@@ -6,7 +6,7 @@ import os
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 pygame.init()
 
-
+SCREEN = pygame.display.set_mode((640,360), 0, 32)
 class Player(pygame.sprite.Sprite):
     def __init__ (self,game,x,y):
         
@@ -14,7 +14,9 @@ class Player(pygame.sprite.Sprite):
         self._layer = PLAYER_LAYER
         self.groups = self.game.all_sprites
         pygame.sprite.Sprite.__init__(self,self.groups)
-        
+        personajeImg = pygame.image.load('sd.png')
+        personajeImg = pygame.transform.scale(personajeImg, (128, 128))
+        SCREEN.blit(personajeImg, (x, y))
         self.x=x * TILESIZE
         self.y=y * TILESIZE
         self.width = TILESIZE
@@ -24,7 +26,7 @@ class Player(pygame.sprite.Sprite):
         self.y_change = 0
 
         self.image = pygame.Surface([self.width,self.height])
-        self.image.fill(BLACK)
+        self.image = personajeImg
         
         self.facing = 'down'
 

@@ -1,0 +1,25 @@
+Descripcion de juego:
+Protagonista: dragon en estapa de niñes.
+
+El jugador tendra que ayudar a la protagonista a encontrar a su madre que fue capturada por los
+heroes del pueblo, para esto tendra que bajar de su cueva en la montaña para llegar al pueblo 
+por lo que tendra que pelear con diferentes criaturas en el camino, en su mision podra recolectar 
+comida para elevar su vida.
+
+Objetivo: rescatar a la madre.
+niveles: 5.
+nivel 1: salida de la cueva.
+nivel 2: bajada de la montaña.
+nivel 3: termino de la montaña y camino a entrada del bosque.
+nivel 4: bosque y entrada al pueblo.
+nivel 5: pueblo y rescate de la madre.
+movimientos: movimientos basicos (caminar, saltar..), 3 ataques diferentes con espada, 1 movimiento
+especial con magia.
+arama: espada.
+graficos: 2d con estilo pixel art.
+sonidos: la musica de fondo mientras el jugador explora o pelea con enemigos pequeños sera
+algo tranquilo e infantil (algo estilo Undertale Home) y cambiara con jefes finales de cada nivel.
+tendra sonido cuando el jugador golpee algo o mueva su espada.
+
+
+

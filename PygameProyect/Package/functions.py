@@ -1,22 +1,48 @@
 from sys import exit
 import pygame
+import math
 
-def event_loop(event):
+# FIN DEL JUEGO
+def end_game(event):
+
+    # FIN DEL JUEGO
     if event.type == pygame.QUIT:
             pygame.quit()
             exit()
         
+    # EVENTOS CON TECLAS
     if event.type == pygame.KEYDOWN:
         if event.key == pygame.K_ESCAPE:
             pygame.quit()
             exit()
 
 
-def draw_map2D(event, screen,screen_alto, screen_ancho, mapa):
-    square = ( (screen_ancho) * (1/2) )/ 8
-    start_X =(screen_ancho / 4)
-    
+# DIBUJO DEL MAPA EN 2D
+def draw_map2D(event, screen, square, screen_ancho, mapa, jugador):
+    # INICIO DE DIBUJO EN EL EJE X
+    start_X = (screen_ancho / 4)
+    pygame.draw.rect( screen, ( 0, 0, 0 ), ( 0, 0, screen_ancho, screen_ancho / 2 ) )
+    # DIBUJA EL MAPA 2D
     for col in range( len( mapa ) ):
         for row in range( len( mapa ) ):
-            if mapa[col][row] != 0:
-                pygame.draw.rect(screen, (255, 255, 255), ( start_X + (square * (row)) , (square * (col)), square, square))
+            
+            pygame.draw.rect( screen, ( 255, 255, 255 ) if mapa[col][row] == 1 else ( 100, 100 , 100 ),
+                            ( start_X + ( square * row ), ( square * col + 1 ), square - 1, square - 1))
+            
+    # DIBUJA EL JUGADOR
+    pygame.draw.circle(screen, ( 255, 0, 0 ), ( int( jugador.posX ), int( jugador.posY ) ), 8)
+
+    # DIBUJA LA DIRECCION DEL JUGADOR
+    pygame.draw.line(screen, ( 0, 255, 0 ), ( jugador.posX, jugador.posY ), ( jugador.posX - math.sin( jugador.angle ) * 30, 
+                                                                              jugador.posY + math.cos( jugador.angle ) * 30 ) , 3 )
+    
+    # DIBUJAR EL FOV
+    pygame.draw.line(screen, ( 0, 255, 0 ), (jugador.posX , jugador.posY ), ( jugador.posX - math.sin( jugador.angle - jugador.halfFOV) * 30, 
+                                                                              jugador.posY + math.cos( jugador.angle - jugador.halfFOV ) * 30 ) , 3 ) 
+    
+    pygame.draw.line(screen, ( 0, 255, 0 ), (jugador.posX , jugador.posY ), ( jugador.posX - math.sin( jugador.angle + jugador.halfFOV) * 30, 
+                                                                              jugador.posY + math.cos( jugador.angle + jugador.halfFOV ) * 30 ) , 3 ) 
+
+# ALGORITMO DE RAY CASTING 
+def ray_cast():
+    pass

@@ -1,0 +1,5 @@
+This game is supposed to be a rougelike type with few mechanics and content.
+
+The goal will be to clear the small dungeon, which may or may not change with every run.
+
+In theory, this game will have at least two different weapons, some enemies and a couple of items that should made the run easier.

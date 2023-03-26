@@ -20,6 +20,13 @@ personajeImg = pygame.transform.scale(personajeImg, (57, 90))
 
 personajeX = 10
 personajeY = 10
+Vel_x = 0
+Vel_y = 0
+
+salto = False
+cami_Iz = False
+cami_Der = False
+quieto = True
 
 juego = True
 while juego: # the main game loop
@@ -35,14 +42,48 @@ while juego: # the main game loop
 				if event.key == pygame.K_ESCAPE:
 					juego = False
 				if event.key == pygame.K_UP:
-					personajeY -= 5
+					salto = True
+					cami_Der = False
+					cami_Iz = False
+					Vel_y = -5
 				if event.key == pygame.K_DOWN:
-					personajeY += 5
+					salto = True
+					cami_Der = False
+					cami_Iz = False
+					Vel_y = 5
 				if event.key == pygame.K_LEFT:
-					personajeX -= 5
+					cami_Iz = True
+					salto = False
+					cami_Der = False
+					Vel_x = -5
 				if event.key == pygame.K_RIGHT:
-					personajeX += 5
+					cami_Der = True
+					salto = False
+					cami_Iz = False
+					Vel_x = 5
 
+				if salto == True:
+					personajeImg = movimientos.Salto				
+				if cami_Iz == True:
+					personajeImg = movimientos.Izquierda					
+				if cami_Der == True:					
+					personajeImg = movimientos.Derecha
+
+			if event.type == pygame.KEYUP:
+				if event.key == pygame.K_RIGHT:
+					Vel_x = 0
+				if event.key == pygame.K_LEFT:
+					Vel_x = 0
+				if event.key == pygame.K_DOWN:
+					Vel_y = 0
+				if event.key == pygame.K_UP:
+					Vel_y = 0    
+
+			
+		personajeX += Vel_x
+		personajeY += Vel_y
+
+				
 		SCREEN.blit(personajeImg, (personajeX, personajeY))
 
 		pygame.display.update()

@@ -1,20 +1,36 @@
 import pygame, sys
 from pygame.locals import *
+from personaje.rect import *
+class Kameha (pygame.sprite.Sprite):	
+	def __init__ (self):
+		super().__init__()
+		self.image=pygame.image.load('imagenes/Kamehameha+.png').convert_alpha()
+		self.tamano=pygame.transform.scale(self.image, (10, 40))
+		self.dano=32
+		self.color='blue'
+		self.rapidez=26
+		self.rect=self.tamano.get_rect()
+		self.rect.x=muve_goku.rect.x+70
+		self.rect.y=muve_goku.rect.y
 
-class Skills:
-	def __init__(self, img, nome, dano, color, rapidez):
-		self.img = img
-		self.skill=nome
-		self.dano=dano
-		self.color=color
-		self.rapidez=rapidez
+	def update(self):
+		self.rect.x+=self.rapidez
 
-kame = Skills(pygame.image.load('imagenes/Kamehameha+.png'), 'Kamehameha', 130, 'blue', 1)
-destello = Skills(pygame.image.load('imagenes/destello.png'),'Destello final', 140, 'Yellow', 52)
+class Destello (pygame.sprite.Sprite):	
+	def __init__ (self):
+		super().__init__()
+		self.image=pygame.image.load('imagenes/destello.png')
+		self.tamano=pygame.transform.scale(self.image, (30, 40))
+		self.dano=35
+		self.color='Yellow'
+		self.rapidez=38
+		self.rect=self.tamano.get_rect()
+		self.rect.x=muve_vegeta.rect.x-85
+		self.rect.y=muve_vegeta.rect.y
+	def update(self):
+		self.rect.x-=self.rapidez
+
 
 def tamano(im):
-	tam=pygame.transform.scale(im, (100, 200))
+	tam=pygame.transform.scale(im, (100, 1000))
 	return tam
-
-kame.img=tamano(kame.img)
-destello.img=tamano(destello.img)

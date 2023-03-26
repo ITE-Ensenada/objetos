@@ -1,4 +1,4 @@
-import pygame, sys
+import pygame, sys, time
 from pygame.locals import *
 from personaje.Personaje import *
 from personaje.Skills import *
@@ -20,14 +20,17 @@ SCREEN = pygame.display.set_mode((WINDOW_WIDTH ,WINDOW_HEIGHT))
 
 pygame.display.set_caption('Animation')
 
-RED = (255,0,0)
+fondo = pygame.image.load('imagenes/fondo.jpg')
+fondo = pygame.transform.scale(fondo, (1200, 800))
+kamelista = pygame.sprite.Group()
+deslista = pygame.sprite.Group()
+ponch = False
 
 while True: # the main game loop
 
-	SCREEN.fill(RED)
+	SCREEN.blit(fondo, (0,0))
 	SCREEN.blit(goku.img, (muve_goku.rect))
 	SCREEN.blit(vegeta.img, (muve_vegeta.rect))
-	#SCREEN.blit(destello.img, (destelloF.rect))
 
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
@@ -43,14 +46,13 @@ while True: # the main game loop
 				muve_goku.rect.x+=goku.velocidad
 			if event.key==K_a:
 				muve_goku.rect.x-=goku.velocidad
-			'''if event.key==K_r:
-				SCREEN.blit(kame.img, (kameha.rect))
-				goku.img=pygame.image.load('imagenes/goku ataque.png')
-				goku.img=tamano(goku.img)
-				while True:
-					kameha.rect.x+=kame.rapidez
-					SCREEN.blit(kame.img, (kameha.rect))'''
-
+			if event.key==K_r:
+				goku.img = pygame.image.load('imagenes/goku ataque.png')
+				goku.img=size(goku.img)
+				kameha=Kameha()
+				kameha.image=size(kameha.image)
+				kamelista.add(kameha)
+				ponch = True
 
 			if event.key==K_UP:
 				muve_vegeta.rect.y-=vegeta.velocidad
@@ -60,9 +62,39 @@ while True: # the main game loop
 				muve_vegeta.rect.x+=vegeta.velocidad
 			if event.key==K_LEFT:
 				muve_vegeta.rect.x-=vegeta.velocidad
+			if event.key==K_l:
+				vegeta.img=pygame.image.load('imagenes/Vegeta ataque.png')
+				vegeta.img=size(vegeta.img)
+				destello=Destello()
+				destello.image=size(destello.image)
+				deslista.add(destello)
+				ponch = True
 
 
-	
-	
+	kamelista.update()
+	deslista.update()
+	kamelista.draw(SCREEN)
+	deslista.draw(SCREEN)
+	if ponch:
+		for f in kamelista:
+			if f.rect.colliderect(muve_vegeta.rect):
+				vegeta.vida-=kameha.dano
+				print (f"vegeta{vegeta.vida}")
+				goku.img = pygame.image.load('imagenes/goku.png')
+				goku.img = size(goku.img)
+				vegeta.img = pygame.image.load('imagenes/vegueta lastimado.png')
+				vegeta.img = size(vegeta.img)
+				ponch = False
+
+		for r in deslista:
+			if r.rect.colliderect(muve_goku.rect):
+				goku.vida-=destello.dano
+				print (goku.vida)
+				vegeta.img=pygame.image.load('imagenes/Vegeta.png')
+				vegeta.img=size(vegeta.img)
+				goku.img = pygame.image.load('imagenes/goku lastimado.png')
+				goku.img=size(goku.img)
+				ponch = False
+				
 	pygame.display.update()
 	fpsClock.tick(FPS)

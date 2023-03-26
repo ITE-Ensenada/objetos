@@ -1,5 +1,6 @@
 import pygame
 import sys
+import movimientos
 from pygame.locals import *
 pygame.init()
 FPS = 10 # frames per second setting
@@ -8,20 +9,20 @@ fpsClock = pygame.time.Clock()
 
 # set up the window
 
-SCREEN = pygame.display.set_mode((1200, 800), 0, 32)
+SCREEN = pygame.display.set_mode((800, 800), 0, 32)
 
 pygame.display.set_caption('Animation')
 
 WHITE = (0, 78, 75)
 
-personajeImg = pygame.image.load('dragon.png')
-personajeImg = pygame.transform.scale(personajeImg, (100, 100))
+personajeImg = movimientos.Quieto
+personajeImg = pygame.transform.scale(personajeImg, (57, 90))
 
 personajeX = 10
-
 personajeY = 10
 
-while True: # the main game loop
+juego = True
+while juego: # the main game loop
 
 		SCREEN.fill(WHITE)
 		for event in pygame.event.get():
@@ -31,6 +32,8 @@ while True: # the main game loop
 				# checking if keydown event happened or not
 			if event.type == pygame.KEYDOWN:
 				# verificar cual fue el evento
+				if event.key == pygame.K_ESCAPE:
+					juego = False
 				if event.key == pygame.K_UP:
 					personajeY -= 5
 				if event.key == pygame.K_DOWN:

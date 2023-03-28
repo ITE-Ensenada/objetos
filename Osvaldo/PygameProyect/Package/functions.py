@@ -5,23 +5,20 @@ import math
 # FIN DEL JUEGO
 def end_game(event):
 
-    # FIN DEL JUEGO
-    if event.type == pygame.QUIT:
-            pygame.quit()
-            exit()
-        
-    # EVENTOS CON TECLAS
-    if event.type == pygame.KEYDOWN:
-        if event.key == pygame.K_ESCAPE:
-            pygame.quit()
-            exit()
+    pygame.quit()
+    exit()
+
 
 
 # DIBUJO DEL MAPA EN 2D
 def draw_map2D(event, screen, square, screen_ancho, mapa, jugador):
+    
     # INICIO DE DIBUJO EN EL EJE X
     start_X = (screen_ancho / 4)
+    
+    # ACTUALIZACION DEL BACKGROUND
     pygame.draw.rect( screen, ( 0, 0, 0 ), ( 0, 0, screen_ancho, screen_ancho / 2 ) )
+    
     # DIBUJA EL MAPA 2D
     for col in range( len( mapa ) ):
         for row in range( len( mapa ) ):

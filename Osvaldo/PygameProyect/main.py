@@ -86,11 +86,19 @@ while True:
         
         # ---
         draw_map2D(event, screen, square, screen_Ancho, mapa, jugador)
-        
+
+        #Detecta teclas
         if keys[pygame.K_LEFT]:
             jugador.angle = -0.1
         if keys[pygame.K_RIGHT]:
             jugador.angle = 0.1
+        
+        # FIN DEL JUEGO
+        if keys[pygame.QUIT]:
+            end_game()
+        if keys[pygame.K_ESCAPE]:
+            end_game()
+
         
 
 

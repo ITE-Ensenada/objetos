@@ -1,12 +1,31 @@
-class Dog:
-	especie = "perros"
+
+class Personaje:
+	especie = "humanoide"
 	def __init__(self,name,age):
 		self.nombre = name
 		self.edad = age
-	def ladra(self):
-		print("gua gua")
+		self.fuerza = 10
+		self.nivel = 0
+		self.caminar = 3
+		self.ataque = 2
 
-perrito = Dog("Laika", 12)
-print(perrito)
-print(perrito.nombre)
-perrito.ladra()
+	def __str__(self):
+		return f"{self.nombre} HOLA {self.especie}"
+
+	def camina(self):
+		print("camina " + str(self.caminar))
+
+	def ataca(self):
+		return self.ataque
+
+if __name__ == '__main__':  
+	nombre = input('Ingresa tu nombre tio: ')
+	edad = input('Dame tu edad : ')
+	jugador1 = Personaje(nombre, edad)
+	print(jugador1)
+	commando = ""
+	while (commando!="exit"):
+		commando = input('-->')
+		if commando == "camina":
+			jugador1.camina()
+		print(commando)

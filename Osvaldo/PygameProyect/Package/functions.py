@@ -68,7 +68,7 @@ def ray_cast(screen, jugador):
                                                          square - 1,
                                                          square - 1) )
                 
-                #pygame.draw.line(screen, ( 255, 255, 0 ), (jugador.posX , jugador.posY ), ( target_x, target_y ) )
+                pygame.draw.line(screen, ( 255, 255, 0 ), (jugador.posX , jugador.posY ), ( target_x, target_y ) )
                 break
 
         start_angle += step_angle

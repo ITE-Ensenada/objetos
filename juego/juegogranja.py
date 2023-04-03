@@ -1,55 +1,49 @@
-class Personaje:
-	especie = "humanoide"
-	def __init__(self,name,age,traj,alm,habil,ar,cab):
-		self.nombre = name
-		self.edad = age
-		self.traje = traj
-		self.mochila = alm
-		self.herramientas= ar
-		self.corazones = 7
-		self.habilidades = habil
-		self.cabello= cab
-		self.dinero= 10
-		self.resistencia = 5
-		self.nivel = 0
-		self.camina = 3
-		self.ataque = 2
-		
-class mochila:
-	def __init__(self, colores):
-		self.tamano = 7
-		self.color = colores
-
-class herramientas: 
-	def __init__(self,tipo):
-		self.tipo = tipo
-		self.poder = 0
-		self.cansancio = 0 
-
-class traje:
-	def __init__(self,c,protec):
-		self.color = c
-		self.proteccion  = protec
+import pygame, sys
+from pygame.locals import *
+from juegoclases import *
+pygame.init()
 
 
-	 
+FPS = 10 # frames per second setting
 
-def __str__(self):
-	return f"{self.nombre} HOLA {self.especie}"
+fpsClock = pygame.time.Clock()
 
-def camina(self):
-	print("camina " + str(self.caminar))
+# set up the window
 
-def ataca(self):
-	return self.ataque
-
-if __name__ == '__main__':  
-	nombre = input('Ingresa tu nombre tio: ')
-	edad = input('Dame tu edad : ')
-	cabello = input('de que color es tu cabello')
-	habilidades = input('Que habilidad deseas tener?')
-	jugador1 = Personaje(nombre, edad, cabello,habilidades, traje, mochila, herramientas,)
-
-	print(jugador1)
+SCREEN = pygame.display.set_mode((740, 467), 0, 32)
 
 
+WHITE = (179, 113, 209)
+
+personajeImg = pygame.image.load('harrystyles.png')
+personajeImg = pygame.transform.scale(personajeImg, (300, 190))
+pygame.display.set_caption("harry valley")
+personajeX = 10
+personajeY = 10
+
+direction = 'right'
+fondo = pygame.image.load("granja.png")
+while True: # the main game loop
+
+	SCREEN.blit(fondo, [0,0])
+	keys = pygame.key.get_pressed()
+	if keys[pygame.K_LEFT]:
+		personajeX -= 10
+	if keys[pygame.K_RIGHT]:
+		personajeX += 10
+	if keys[pygame.K_UP]:
+		personajeY -= 10
+	if keys[pygame.K_DOWN]:
+		personajeY += 10
+	
+
+    
+	SCREEN.blit(personajeImg, (personajeX, personajeY))
+	
+	for event in pygame.event.get():
+		if event.type == QUIT:
+			pygame.quit()
+			sys.exit()
+
+	pygame.display.update()
+	fpsClock.tick(FPS)

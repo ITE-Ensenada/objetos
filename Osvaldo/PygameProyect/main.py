@@ -14,11 +14,14 @@ while True:
     # VARIABLE DE TECLAS
     keys = pygame.key.get_pressed()
 
+    # BACKGROUND UPDATE
+    pygame.draw.rect(screen, ( 100, 100, 100 ), ( 0, 0, screen_Ancho, screen_Alto))
+
     # DIBUJO DEL MAPA 2D
-    draw_map2D(screen, jugador)
+    # draw_map2D(screen, jugador)
     
     # ALGORITMO RAYCASTING
-    ray_cast(screen, jugador)
+    ray_cast2D(screen, jugador)
 
     # EVENTOS DEL TECLADO
     if keys[pygame.K_LEFT]:
@@ -31,12 +34,15 @@ while True:
     if keys[pygame.K_DOWN]:
         jugador.posX = math.sin(jugador.angle) * 2
         jugador.posY = -math.cos(jugador.angle) * 2
+    if keys[pygame.K_ESCAPE]: end_game()
     
-    # FIN DEL JUEGO
-    if keys[pygame.QUIT] or keys[pygame.K_ESCAPE]: end_game()
+    # EVENTOS EN CICLO FOR
+    for event in pygame.event.get():
+        # FIN DEL JUEGO
+        if event.type == pygame.QUIT: end_game()
     
     # ACTUALIZA LA PANTALLA
     pygame.display.flip()
 
     # CONTOLA LOS FPS
-    clock.tick(60)
+    clock.tick(120)

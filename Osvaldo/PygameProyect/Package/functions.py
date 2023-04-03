@@ -40,8 +40,9 @@ def draw_map2D(screen, jugador):
     # pygame.draw.line(screen, ( 0, 255, 0 ), (jugador.posX , jugador.posY ), ( jugador.posX - math.sin( jugador.angle + jugador.halfFOV) * 30, 
     #                                                                           jugador.posY + math.cos( jugador.angle + jugador.halfFOV ) * 30 ) , 3 ) 
 
+
 # ALGORITMO DE RAY CASTING 
-def ray_cast(screen, jugador):
+def ray_cast2D(screen, jugador):
     # DEFINIR EL AVANCE DE CADA RAYO
     step_angle = jugador.fov / casted_rays
 
@@ -63,12 +64,22 @@ def ray_cast(screen, jugador):
             col = int( ( target_x - start_X ) / square )
 
             if mapa[row][col] == 1:
-                pygame.draw.rect(screen, ( 0, 255, 0 ), (start_X + col * square,
-                                                         row * square + 1,
-                                                         square - 1,
-                                                         square - 1) )
+                # DIBUJA LA PARED QUE SE TOCA
+                # pygame.draw.rect(screen, ( 0, 255, 0 ), (start_X + col * square,
+                #                                          row * square + 1,
+                #                                          square - 1,
+                #                                          square - 1) )
                 
-                pygame.draw.line(screen, ( 255, 255, 0 ), (jugador.posX , jugador.posY ), ( target_x, target_y ) )
+                # DIBUJA EL RAYCASTING
+                # pygame.draw.line(screen, ( 255, 255, 0 ), (jugador.posX , jugador.posY ), ( target_x, target_y ) )
+                
+                # CALCULA EL ALTO DE LA PARED 3D
+                wall_alto = 21000 / (profundidad + 0.0001)
+                
+                # DIBUJAR PROYECCION 3D
+                pygame.draw.rect(screen, WHITE, (ray * scale,
+                                                (screen_Alto / 2) - (wall_alto / 2),
+                                                 scale , wall_alto) )
                 break
 
         start_angle += step_angle

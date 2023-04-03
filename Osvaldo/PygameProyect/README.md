@@ -1,3 +1,5 @@
 # Raycasting 2D game
-Intento de proyecto de un juego a base de raycastring.  
-Dios no me abandono, yo me aleje de el...
+Motor primitivo de raycasting ( NO ES EL JUEGO )
+
+## Caracteristicas
+En base a un mapa binario, otorgado por una matriz, despliega una serie de rectangulos que simulan una ilusion 3D

@@ -1,6 +1,6 @@
 import pygame, sys
 from pygame.locals import *
-import juegogranja
+from juegogranja import *
 pygame.init()
 
 
@@ -12,7 +12,6 @@ fpsClock = pygame.time.Clock()
 
 SCREEN = pygame.display.set_mode((740, 467), 0, 32)
 
-pygame.display.set_caption('Animation')
 
 WHITE = (179, 113, 209)
 
@@ -29,13 +28,13 @@ while True: # the main game loop
 	SCREEN.blit(fondo, [0,0])
 	keys = pygame.key.get_pressed()
 	if keys[pygame.K_LEFT]:
-		personajeX -= 5
+		personajeX -= 10
 	if keys[pygame.K_RIGHT]:
-		personajeX += 5
+		personajeX += 10
 	if keys[pygame.K_UP]:
-		personajeY -= 5
+		personajeY -= 10
 	if keys[pygame.K_DOWN]:
-		personajeY += 5
+		personajeY += 10
 	
 
     

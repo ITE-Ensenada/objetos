@@ -1,0 +1,13 @@
+RAYCASTING ALGORITMO
+
+SE NECESITA UNA CLASE PRINCIPAL DONDE SE TENGA TODO LO BASICO DEL JUEGO
+Class Game
+    Necesidades de la clase 'Game'
+        1.- Metodo constructor donde se inicialice pygame, se cree una pantalla
+        2.- Metodo run: Ejecuta el juego (Tiene el bucle principal)
+        3.- Metodo update: Actualiza los sucesos de la pantalla
+
+SE NECESITA UNA CLASE MAPA DONDE SE TENGAN METODOS PARA EL MAPA Y ATRIBUTO CONTENDRA LOS PARAMETROS DEL OBJETO PERTENECIENTE A LA CLASE 'Game'
+Class Map
+    Necesidades de la clase 'Map'
+        1.- desplegar el mapa en 2D

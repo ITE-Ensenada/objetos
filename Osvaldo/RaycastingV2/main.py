@@ -1,37 +1,58 @@
+import pygame as pg
+from sys import exit
 from package import *
-import pygame, sys
 
-class Game():
+class Game:
     def __init__(self):
-        pygame.init()
-        self.screen = pygame.display.set_mode(resolucion)
-        self.clock = pygame.time.Clock()
-        self.newGame()
-    
-    def newGame(self):
-        self.map = Mapa(self)
+        # INICIAR PYGAME
+        pg.init()
         
-    def updateScreen(self):
-        pygame.display.update()
-        self.clock.tick(FPS)
-    
-    def drawScreen(self):
-        self.screen.fill('black')
-        self.map.draw()
-    
-    def check_events(self):
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT or ( event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE ):
-                pygame.quit()
-                sys.exit()
+        # CREAR UN ATRIBUTO PANTALLA
+        self.screen = pg.display.set_mode(resolucion)
+        
+        # ATRIBUTO, OBJETO CLOCK PARA EL MANEJO DE LOS FPS
+        self.clock = pg.time.Clock()
+        
+        # --
+        self.map = Map(self)
+        
+        # --
+        self.player = Player(self)
         
     def run(self):
         while True:
-            self.check_events()
-            self.drawScreen()
-            self.updateScreen()
+            # FINALIZA EL PROGRAMA
+            self.end_program()
+            
+            # DIBUJA EL MAPA EN 2D
+            self.draw()
+            
+            # ACTUALIZA LA PANTALLA
+            self.update()
     
+    def update(self):
+        # ACTUALIZA LA PANTALLA
+        pg.display.update()
+        
+        # RESTRINGUE LA VELOCIDAD A LOS FPS DADOS
+        self.clock.tick(FPS)
     
+    def end_program(self):
+        # FINALIZA EL PROGRAMA
+        for event in pg.event.get():
+            print(event)
+            if event.type == pg.QUIT or ( event.type == pg.KEYDOWN  and event.key == pg.K_ESCAPE ):
+                pg.quit()
+                exit()
+
+    def draw(self):
+        self.screen.fill('black')
+        self.player.draw2Dmap()
+        self.map.draw2Dmap()
+        
+        
+# MAIN
 if __name__ == '__main__':
     game = Game()
     game.run()
+    

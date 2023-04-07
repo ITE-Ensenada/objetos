@@ -1,21 +1,26 @@
-from package.level import * 
-from pygame import draw
+import pygame as pg
+from package.level import *
+from package.settings import *
 
-
-class Mapa:
+class Map:
     def __init__(self, game):
+        # OBTIENE LOS ATRIBUTOS Y METODOS DEL OBJETO 'game'
         self.game = game
-        self.level = level0
-        self.world_map = {}
-        self.get_map2D()
         
-    def get_map2D(self):
-        for j, row in enumerate(self.level):
-            for i, value in enumerate(row):
-                # DE SER UNA TUPLA EL MAPA SE TRANSFORMA EN UN DICCIONARIO
-                if value:
-                    self.world_map[(i, j)] = value
-
-    def draw(self):
-        for pos in self.world_map:
-            draw.rect(self.game.screen, 'white', (pos[0] * 100, pos[1] * 100, 100, 100 ), 2) 
+        # SE CREA EL ATRIBUTO MAPA
+        self.map = level0
+        
+        self.square = tile_square_size
+    
+    def draw2Dmap(self):
+        for row in range(len(self.map)):
+            for col in range(len(self.map)):
+                if self.map[row][col] == 1:
+                    pg.draw.rect( self.game.screen, 'white', 
+                                ( self.square * col , 
+                                  self.square * row, 
+                                  self.square, 
+                                  self.square), 3)
+                
+    
+        

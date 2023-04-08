@@ -13,6 +13,9 @@ class Game:
         # ATRIBUTO, OBJETO CLOCK PARA EL MANEJO DE LOS FPS
         self.clock = pg.time.Clock()
         
+        # DELTA TIME
+        self.delta_time = 1
+        
         # --
         self.map = Map(self)
         
@@ -26,6 +29,7 @@ class Game:
             
             # DIBUJA EL MAPA EN 2D
             self.draw()
+            self.player.movement()
             
             # ACTUALIZA LA PANTALLA
             self.update()
@@ -35,12 +39,15 @@ class Game:
         pg.display.update()
         
         # RESTRINGUE LA VELOCIDAD A LOS FPS DADOS
-        self.clock.tick(FPS)
+        self.delta_time = self.clock.tick(FPS)
+        
+        # OBSERVA FPS
+        pg.display.set_caption(f'{self.clock.get_fps() :.1f}')
     
     def end_program(self):
         # FINALIZA EL PROGRAMA
         for event in pg.event.get():
-            print(event)
+            # print(event)
             if event.type == pg.QUIT or ( event.type == pg.KEYDOWN  and event.key == pg.K_ESCAPE ):
                 pg.quit()
                 exit()

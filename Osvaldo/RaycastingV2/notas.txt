@@ -10,4 +10,10 @@ Class Game
 SE NECESITA UNA CLASE MAPA DONDE SE TENGAN METODOS PARA EL MAPA Y ATRIBUTO CONTENDRA LOS PARAMETROS DEL OBJETO PERTENECIENTE A LA CLASE 'Game'
 Class Map
     Necesidades de la clase 'Map'
-        1.- desplegar el mapa en 2D
+        1.- Desplegar el mapa en 2D
+        2.- Que el mapa despliegue al jugador y su direccion
+
+SE NECESITA UNA CLASE PLAYER:
+    Debe tener:
+        1.- Movimiento del jugador
+        2.- Direccion del jugador

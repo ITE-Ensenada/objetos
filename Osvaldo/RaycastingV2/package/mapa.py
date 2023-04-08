@@ -20,7 +20,7 @@ class Map:
                                 ( self.square * col , 
                                   self.square * row, 
                                   self.square, 
-                                  self.square), 3)
+                                  self.square), 1)
                 
     
         

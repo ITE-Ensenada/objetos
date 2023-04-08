@@ -8,7 +8,7 @@ class Game:
         pg.init()
         
         # CREAR UN ATRIBUTO PANTALLA
-        self.screen = pg.display.set_mode(resolucion)
+        self.screen = pg.display.set_mode(RESOLUCION)
         
         # ATRIBUTO, OBJETO CLOCK PARA EL MANEJO DE LOS FPS
         self.clock = pg.time.Clock()
@@ -17,10 +17,10 @@ class Game:
         self.delta_time = 1
         
         # --
-        self.map = Map(self)
+        self.mapa = Map(self)
         
         # --
-        self.player = Player(self)
+        self.player = Player(self,self.mapa)
         
     def run(self):
         while True:
@@ -55,7 +55,7 @@ class Game:
     def draw(self):
         self.screen.fill('black')
         self.player.draw2Dmap()
-        self.map.draw2Dmap()
+        self.mapa.draw2Dmap()
         
         
 # MAIN

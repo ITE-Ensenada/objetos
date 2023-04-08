@@ -1,4 +1,4 @@
-# Raycasting 2D game
+# Raycasting Engine V1
 Motor primitivo de raycasting ( NO ES EL JUEGO )
 
 ## Caracteristicas

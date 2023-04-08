@@ -20,7 +20,7 @@ class Game:
         self.mapa = Map(self)
         
         # --
-        self.player = Player(self,self.mapa)
+        self.player = Player(self)
         
     def run(self):
         while True:
@@ -29,12 +29,14 @@ class Game:
             
             # DIBUJA EL MAPA EN 2D
             self.draw()
-            self.player.movement()
             
             # ACTUALIZA LA PANTALLA
             self.update()
     
     def update(self):
+        # ACTUALIZA AL JUGADOR 
+        self.player.update()
+        
         # ACTUALIZA LA PANTALLA
         pg.display.update()
         

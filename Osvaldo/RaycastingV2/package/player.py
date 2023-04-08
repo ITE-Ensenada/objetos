@@ -3,9 +3,8 @@ from package.settings import *
 from math import pi,cos,sin
 
 class Player:   
-    def __init__(self, game, map):
+    def __init__(self, game):
         self.game = game
-        self.mapa = map
         self.x, self. y = PLAYER_POSITION
         self.angle = PLAYER_ANGLE
         
@@ -27,43 +26,32 @@ class Player:
         keys = pg.key.get_pressed()
         
         # MOVEMENT
-        if self.mapa.map[int(self.y)][int(self.x)] == 0:
-            if keys[pg.K_w]:
-                dx += speed_cos
-                dy += speed_sin
-            if keys[pg.K_s]:
-                dx += -speed_cos
-                dy += -speed_sin
-            if keys[pg.K_a]:
-                dx += speed_sin
-                dy += -speed_cos
-            if keys[pg.K_d]:
-                dx += -speed_sin
-                dy += speed_cos
+        # if self.game.mapa.map[int(self.y)][int(self.x)] == 0:
+        if keys[pg.K_w]:
+            dx += speed_cos
+            dy += speed_sin
+        if keys[pg.K_s]:
+            dx += -speed_cos
+            dy += -speed_sin
+        if keys[pg.K_a]:
+            dx += speed_sin
+            dy += -speed_cos
+        if keys[pg.K_d]:
+            dx += -speed_sin
+            dy += speed_cos
                 
-        elif self.mapa.map[int(self.y)][int(self.x)] == 1:
-            if keys[pg.K_w]:
-                dx -= speed_cos
-                dy -= speed_sin
-            if keys[pg.K_s]:
-                dx -= -speed_cos
-                dy -= -speed_sin
-            if keys[pg.K_a]:
-                dx -= speed_sin
-                dy -= -speed_cos
-            if keys[pg.K_d]:
-                dx -= -speed_sin
-                dy -= speed_cos
         
         # ACTUALIZACION DEL MOVIMIENTO
-        self.x += dx
-        self.y += dy
+        # self.x += dx
+        # self.y += dy
         
-        self.check_collition()
+        self.check_collision(dx, dy)
 
-    def check_collition(self):
-        if self.mapa.map[int(self.y)][int(self.x)] == 1:
-            print('MURO')
+    def check_collision(self, dx, dy):
+        if self.game.mapa.map[int(self.y + dy)][int(self.x)] != 1:
+            self.y += dy
+        if self.game.mapa.map[int(self.y)][int(self.x + dx)] != 1:
+            self.x += dx
     
     def mouse_control(self):
         pg.mouse.set_visible(False)
@@ -73,7 +61,11 @@ class Player:
         self.mx_rel = pg.mouse.get_rel()[0]
         self.mx_rel = max(-MOUSE_REL_LIMIT, min(MOUSE_REL_LIMIT, self.mx_rel))
         self.angle += self.mx_rel * MOUSE_SENSIBILITY * self.game.delta_time
-        
+    
+    def update(self):
+        self.movement()
+        self.mouse_control()
+    
     @property
     def pos(self):
         return self.x, self.y

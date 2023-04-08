@@ -3,12 +3,11 @@ from package.settings import *
 from math import pi,cos,sin
 
 class Player:   
-    def __init__(self, game):
+    def __init__(self, game, map):
         self.game = game
-        self.x, self. y = PlayerPos
-        self.angle = PlayerAngle
-        self.speed = PlayerSpeed
-        self.speedRotation = PlayerSpeedRotation
+        self.mapa = map
+        self.x, self. y = PLAYER_POSITION
+        self.angle = PLAYER_ANGLE
         
     def draw2Dmap(self):
         pg.draw.circle(self.game.screen, 'red', (self.x * tile_square_size, 
@@ -19,45 +18,61 @@ class Player:
                                                 (self.y * tile_square_size + sin(self.angle) * 100)), 2)
         
     def movement(self):
-        keys = pg.key.get_pressed()
         # DELTA X, Y, SON EL INCREMENTO DESDE LA POSICION INICIAL DEL JUGADOR
         dx, dy = 0, 0
-        speed = PlayerSpeed * self.game.delta_time
-        speed_cos = speed * cos(self.angle)
-        speed_sin = speed * sin(self.angle)
+        self.speed = PLAYER_SPEED * self.game.delta_time
+        speed_cos = self.speed * cos(self.angle)
+        speed_sin = self.speed * sin(self.angle)
         
-        self.mouse_controll()
+        keys = pg.key.get_pressed()
         
         # MOVEMENT
-        if keys[pg.K_w]:
-            dx += speed_cos
-            dy += speed_sin
-        if keys[pg.K_s]:
-            dx += -speed_cos
-            dy += -speed_sin
-        if keys[pg.K_a]:
-            dx += speed_sin
-            dy += -speed_cos
-        if keys[pg.K_d]:
-            dx += -speed_sin
-            dy += speed_cos
+        if self.mapa.map[int(self.y)][int(self.x)] == 0:
+            if keys[pg.K_w]:
+                dx += speed_cos
+                dy += speed_sin
+            if keys[pg.K_s]:
+                dx += -speed_cos
+                dy += -speed_sin
+            if keys[pg.K_a]:
+                dx += speed_sin
+                dy += -speed_cos
+            if keys[pg.K_d]:
+                dx += -speed_sin
+                dy += speed_cos
+                
+        elif self.mapa.map[int(self.y)][int(self.x)] == 1:
+            if keys[pg.K_w]:
+                dx -= speed_cos
+                dy -= speed_sin
+            if keys[pg.K_s]:
+                dx -= -speed_cos
+                dy -= -speed_sin
+            if keys[pg.K_a]:
+                dx -= speed_sin
+                dy -= -speed_cos
+            if keys[pg.K_d]:
+                dx -= -speed_sin
+                dy -= speed_cos
         
-        # ROTACION CON TECLAS
-        if keys[pg.K_LEFT]:
-            self.angle += -(PlayerSpeedRotation * self.game.delta_time)
-        if keys[pg.K_RIGHT]:
-            self.angle += (PlayerSpeedRotation * self.game.delta_time)
-
+        # ACTUALIZACION DEL MOVIMIENTO
         self.x += dx
         self.y += dy
         
-    def mouse_controll(self):
+        self.check_collition()
+
+    def check_collition(self):
+        if self.mapa.map[int(self.y)][int(self.x)] == 1:
+            print('MURO')
+    
+    def mouse_control(self):
+        pg.mouse.set_visible(False)
         mx, my = pg.mouse.get_pos()
         if mx < LEFT_MOUSE_LIMIT or mx > RIGHT_MOUSE_LIMIT:
-            pg.mouse.set_pos( ((ancho / 2), (alto / 2)) )
-        self.mx_rel = pg.mouse.get_rel()
-        print(self.mx_rel)
-        
+            pg.mouse.set_pos( ((ANCHO / 2), (ALTO / 2)) )
+        self.mx_rel = pg.mouse.get_rel()[0]
+        self.mx_rel = max(-MOUSE_REL_LIMIT, min(MOUSE_REL_LIMIT, self.mx_rel))
+        self.angle += self.mx_rel * MOUSE_SENSIBILITY * self.game.delta_time
         
     @property
     def pos(self):

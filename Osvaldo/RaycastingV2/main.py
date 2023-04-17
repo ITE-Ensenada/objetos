@@ -22,6 +22,10 @@ class Game:
         # --
         self.player = Player(self)
         
+        # --
+        self.camara = Camera(self)
+        
+        
     def run(self):
         while True:
             # FINALIZA EL PROGRAMA
@@ -36,6 +40,9 @@ class Game:
     def update(self):
         # ACTUALIZA AL JUGADOR 
         self.player.update()
+        
+        # ACTUALIZACION DE LA CAMARA
+        self.camara.update()
         
         # ACTUALIZA LA PANTALLA
         pg.display.update()

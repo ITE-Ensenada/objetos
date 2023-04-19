@@ -3,6 +3,24 @@ from pygame.locals import *
 
 pygame.init()
 
+textoBaseDePreguntas = '''
+Capital de colombia\tBogota\tCartagena\tCali\tBarranquilla
+\n
+Capital de venezuela\tCaracas\tMaracaibo\tBarquisimeto\tBolivar
+\n
+A que simbolo pertenece el hierro\tFe\tHe\tNa\tK
+'''
+base_de_preguntas = []
+renglones = textoBaseDePreguntas.split("\n")
+cantidadDePreguntas = len(renglones)
+
+for i in range(cantidadDePreguntas):
+    if(renglones[i]==""):
+        continue
+    base_de_preguntas.append(renglones[i].split("\t"))
+
+print(base_de_preguntas)  
+
 FPS = 10 # frames per second setting
 
 fpsClock = pygame.time.Clock()
@@ -15,7 +33,7 @@ pygame.display.set_caption('Animation')
 
 WHITE = (179, 113, 209)
 
-personajeImg = pygame.image.load('alucard.png')
+personajeImg = pygame.image.load('')
 personajeImg = pygame.transform.scale(personajeImg, (100, 200))
 
 personajeX = 10

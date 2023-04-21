@@ -64,30 +64,30 @@ def ray_cast(screen, jugador):
             col = int( ( target_x - start_X ) / square )
 
             if mapa[row][col] == 1:
-                # DIBUJA LA PARED QUE SE TOCA
-                # pygame.draw.rect(screen, ( 0, 255, 0 ), (start_X + col * square,
-                #                                          row * square + 1,
-                #                                          square - 1,
-                #                                          square - 1) )
-                
-                # DIBUJA EL RAYCASTING
-                # pygame.draw.line(screen, ( 255, 255, 0 ), (jugador.posX , jugador.posY ), ( target_x, target_y ) )
+                #DIBUJA LA PARED QUE SE TOCA
+                pygame.draw.rect(screen, ( 0, 255, 0 ), (start_X + col * square,
+                                                         row * square + 1,
+                                                         square - 1,
+                                                         square - 1) )
+        
+                #DIBUJA EL RAYCASTING
+                pygame.draw.line(screen, ( 255, 255, 0 ), (jugador.posX , jugador.posY ), ( target_x, target_y ) )
             
                 # COLOR DE LAS SOMBRAS  
-                color = 255 / (1 + profundidad**2 * 0.0001)
-                
-                # QUITAR EFECTO OJO DE PEZ
-                profundidad *= math.cos(jugador.angle - start_angle)
-                
-                # CALCULA EL ALTO DE LA PARED 3D
-                wall_alto = 21000 / (profundidad + 0.0001)
-                
-                if wall_alto > screen_Alto: wall_alto = screen_Alto
-                
-                # DIBUJAR PROYECCION 3D
-                pygame.draw.rect(screen, (color, color, color), (ray * scale,
-                                                (screen_Alto / 2) - (wall_alto / 2),
-                                                 scale , wall_alto) )
+                #color = 255 / (1 + profundidad**2 * 0.0001)
+                #
+                ## QUITAR EFECTO OJO DE PEZ
+                #profundidad *= math.cos(jugador.angle - start_angle)
+                #
+                ## CALCULA EL ALTO DE LA PARED 3D
+                #wall_alto = 21000 / (profundidad + 0.0001)
+                #
+                #if wall_alto > screen_Alto: wall_alto = screen_Alto
+                #
+                ## DIBUJAR PROYECCION 3D
+                #pygame.draw.rect(screen, (color, color, color), (ray * scale,
+                #                                (screen_Alto / 2) - (wall_alto / 2),
+                #                                 scale , wall_alto) )
                 break
 
         start_angle += step_angle

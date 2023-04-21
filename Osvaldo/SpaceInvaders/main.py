@@ -19,15 +19,31 @@ class Game:
         # --
         self.player = Player(self)
         
+        # --
+        self.asteroid_generator = AsteroidGenerator(self)
+        #self.asteroid = Asteroid(self)
+        
+        # --
+        self.render_background = RenderBackground(self)
+        
 
     def update(self):
         self.screen.fill('black')
         
+        self.render_background.update()
+        
         self.player.update()
         
+        self.asteroid_generator.update()
+        #self.asteroid.update()
+                
         pg.display.update()
         
         self.delta_time = self.clock.tick(FPS)
+
+        # --
+        # print(self.delta_time)
+    
     
     def run(self):
         while(True):
@@ -42,6 +58,8 @@ class Game:
         if self.event.type == pg.QUIT or (self.event.type == pg.KEYDOWN and self.event.key == pg.K_ESCAPE):
             pg.quit()
             exit()
+        if self.event.type == pg.KEYUP and (self.event.key == pg.K_a or self.event.key == pg.K_d or self.event.key == pg.K_w or self.event.key == pg.K_s):
+            self.player.reset_sprite()
     
 
 game = Game()

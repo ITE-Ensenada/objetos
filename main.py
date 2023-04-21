@@ -1,102 +1,101 @@
 import pygame, sys
 from pygame.locals import *
 from Personaje import *
+from Weapon import *
 
 # ***************************************
 
 			# Objects
 
 p1 = Character("John Wick", "50", "1", "5", "2", "20", "10", "7", "1.80", "Blanco")
-p1.showCharacter()			
-
+p1.showCharacter()
+glock34 = Pistol("\nPistola", "27", "Unico", "120m", "Fibra de carbono")
+glock34.ShowWeapon()
 
 # ***************************************
 
 pygame.init()
 
-FPS = 60 # frames per second setting
+FPS = 60  # frames per second setting
 
 fpsClock = pygame.time.Clock()
 
-# set up the window
+# Ajustes de la ventana
 
-SCREEN = pygame.display.set_mode((1366, 800), 0, 32)
+size = (1023, 616)
+SCREEN = pygame.display.set_mode(size)
 
-pygame.display.set_caption('Animation')
+pygame.mouse.set_visible(0)
+pygame.display.set_caption("Juego")
 
-WHITE = (0, 113, 209)
+WHITE = (179, 113, 209)
+fondo = pygame.image.load("City.png").convert()
 
-personajeImg = pygame.image.load('JohnWick.png')
-personajeImg = pygame.transform.scale(personajeImg, (300, 300))
+# ****** Personaje *******
 
-personajeX = 10
+personajeImg = pygame.image.load("John.png")
+personajeImg = pygame.transform.scale(personajeImg, (200, 150))
 
-personajeY = 10
+personajeX = 1
 
-direction = 'right'
+personajeY = 400
 
-while True: # the main game loop
+# ***********************
 
-	SCREEN.fill(WHITE)
+# Obstaculo
 
-	if direction == 'right':
-		personajeX += 5
-		if personajeX == 800:
-			direction = 'down'
-	elif direction == 'down':
-		personajeY += 5
-		if personajeY == 500:
-			direction = 'left'
-	elif direction == 'left':
-		personajeX -= 5
-		if personajeX == 10:
-			direction = 'up'
-	elif direction == 'up':
-		personajeY -= 5
-		if personajeY == 10:
-			direction = 'right'
-	SCREEN.blit(personajeImg, (personajeX, personajeY))
-	
-	for event in pygame.event.get():
-		if event.type == QUIT:
-			pygame.quit()
-			sys.exit()
+speed = 0
 
-	pygame.display.update()
-	fpsClock.tick(FPS)
+# Codigo para las direcciones
+while True: 
+    
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            sys.exit()
 
-personajeX = 10
+     #Evento teclado
+    if personajeX <= 858 and personajeY == 400:
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_RIGHT:
+                speed = 5
+            if event.key == pygame.K_LEFT:
+                speed = -5
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_LEFT:
+                speed = 0
+            if event.key == pygame.K_RIGHT:
+                speed = 0
 
-personajeY = 10
 
-direction = 'right'
+    else:
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_RIGHT:
+                speed = 0
+            if event.key == pygame.K_LEFT:
+                speed = -5
 
-while True: # the main game loop
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_LEFT:
+                speed = 0
+            if event.key == pygame.K_RIGHT:
+                speed = 0
+    if personajeY <= 0:
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_RIGHT:
+                speed = 5
+            if event.key == pygame.K_LEFT:
+                speed = 0
 
-	SCREEN.fill(WHITE)
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_LEFT:
+                speed = 0
+            if event.key == pygame.K_RIGHT:
+                speed = 0
 
-	if direction == 'right':
-		personajeX += 5
-		if personajeX == 800:
-			direction = 'down'
-	elif direction == 'down':
-		personajeY += 5
-		if personajeY == 500:
-			direction = 'left'
-	elif direction == 'left':
-		personajeX -= 5
-		if personajeX == 10:
-			direction = 'up'
-	elif direction == 'up':
-		personajeY -= 5
-		if personajeY == 10:
-			direction = 'right'
-	SCREEN.blit(personajeImg, (personajeX, personajeY))
-	
-	for event in pygame.event.get():
-		if event.type == QUIT:
-			pygame.quit()
-			sys.exit()
+    SCREEN.blit(fondo, [0, 0])
+    SCREEN.blit(personajeImg, (personajeX, personajeY))
+    personajeX += speed
 
-	pygame.display.update()
-	fpsClock.tick(FPS)
+    pygame.draw.rect(SCREEN, WHITE, (personajeY, personajeY, 0, 0))
+    pygame.display.flip()
+    fpsClock.tick(60)

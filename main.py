@@ -7,10 +7,11 @@ from Weapon import *
 
 			# Objects
 
-p1 = Character("John Wick", "50", "1", "5", "2", "20", "10", "7", "1.80", "Blanco")
+p1 = Character("John Wick", "50", "1", "5", "2", "10", "7", "1.80", "Blanco")
 p1.showCharacter()
 glock34 = Pistol("\nPistola", "27", "Unico", "120m", "Fibra de carbono")
 glock34.ShowWeapon()
+p1.checkHealth()
 
 # ***************************************
 
@@ -33,8 +34,12 @@ fondo = pygame.image.load("City.png").convert()
 
 # ****** Personaje *******
 
-personajeImg = pygame.image.load("John.png")
+# Movement
+
+
+personajeImg = pygame.image.load("JohnR.png")
 personajeImg = pygame.transform.scale(personajeImg, (200, 150))
+
 
 personajeX = 1
 

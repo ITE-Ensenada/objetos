@@ -4,6 +4,10 @@ class Weapon:
 		self.damage = damage
 		self.firemode = firemode
 		self.fireDistance = fireDistance
+		self.material = material
+
+	def ShowWeapon(self):
+		print(self.weaponType, self.damage, self.firemode, self.fireDistance, self.material)
 
 class Melee(Weapon):
 	def __init__(self, weaponType, damage, firemode, fireDistance, material, width, height):
@@ -27,4 +31,5 @@ class Boxers(Melee):
 # *****************************************************************
 
 class Pistol(Weapon):
-	
+	def Shoot(self):
+		print("Pew pew")

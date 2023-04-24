@@ -8,8 +8,6 @@ __pycache__/
 
 # Distribution / packaging
 .Python
-RaycastingV1/
-RaycastingV2/
 DOOM-style-Game/
 build/
 develop-eggs/

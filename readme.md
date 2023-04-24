@@ -2,6 +2,10 @@
 
 ## descripcion
 
+### links
+
+[guia markdwon](https://www.markdownguide.org/extended-syntax/)
+
 
 ## alcance 
 

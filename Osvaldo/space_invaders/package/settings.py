@@ -1,13 +1,15 @@
-import pygame as pg
+''' Descripcion: Este archivo contiene las variables globales del juego '''
+
+from pygame import FULLSCREEN, SCALED
 
 # SCREEN SETTINGS
 RESOLUTION = ANCHO, ALTO = 1920 / 2 , 1080 / 2 # 960 x 540
-FLAGS = pg.FULLSCREEN | pg.SCALED
+FLAGS = FULLSCREEN | SCALED
 FPS = 60
 
-# PLAYERE SETTING 
-X = (ANCHO / 2 - 50) # 430
-Y = (ALTO - 96) # 444
+# PLAYER SETTING
+X = ANCHO / 2 - 50 # 430
+Y = ALTO - 96 # 444
 PLAYER_SPEED = 0.25
 LIFE = 3
 

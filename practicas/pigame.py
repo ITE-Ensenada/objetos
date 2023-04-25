@@ -5,8 +5,8 @@ from modulos.Clases import *
 #pokemon frente x763 y33
 def presentador(funcion):
     def decorador(pokejugador,pokerival):
-        print("Te has topado con un",pokejugador.nombre,"salvaje")
-        print("Ve",pokerival.nombre)
+        print("Te has topado con un",pokerival.nombre,"salvaje")
+        print("Ve",pokejugador.nombre)
         a = funcion(pokejugador,pokerival)
         print("Finalizo el combate")
         return a
@@ -19,20 +19,20 @@ def batalla(pokejugador,pokerival):
         if pokejugador.velocidad >= pokerival.velocidad:
             pokejugador.pelea(pokejugador.movimientos[movimientojugador],pokejugador,pokerival)
             if pokerival.vida <= 0:
-                print("te lo vergueaste")
+                print("Has vencido")
                 break
             pokerival.pelea(pokerival.movimientos[random.randrange(0,3)],pokerival,pokejugador)
             if pokejugador <= 0:
-                print("te lo vergueo")
+                print("Fuiste derrotado")
                 break
         else:
             pokerival.pelea(pokerival.movimientos[random.randrange(0,3)],pokerival,pokejugador)
             if pokejugador.vida <= 0:
-                print("te lo vergueo")
+                print("Fuiste derrotado")
                 break
             pokejugador.pelea(pokejugador.movimientos[movimientojugador],pokejugador,pokerival)
             if pokerival.vida <= 0:
-                print("te lo vergueaste")
+                print("Has vencido")
                 break
 
 pokejugador = Snorlax()

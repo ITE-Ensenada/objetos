@@ -1,5 +1,5 @@
 import random, math
-
+#          0        1      2       3          4           5        6       7      8       9       10       11        12       13        14        15       16       17
 tipos = ["Acero","Agua","Bicho","Dragon","Electrico","Fantasma","Fuego","Hada","Hielo","Lucha","Normal","Planta","Psiquico","Roca","Siniestro","Tierra","Veneno","Volador"]
 
 #vertical↓ = tipo del atacante, horizontal→ = tipo del receptor
@@ -25,7 +25,7 @@ tabla = [[0.5,0.5,1,1,0.5,1,0.5,2,2,1,1,1,1,2,1,1,1,1],
 movimientosdisponibles = [["Terremoto",15,100,"Fisico"],
 						["Cascada",1,80,"Fisico"],
 						["Puño Hielo",8,75,"Fisico"],
-						["Demolicion",15,75,"Fisico"],
+						["Demolicion",9,75,"Fisico"],
 						["Patada Ignea",6,85,"Fisico"],
 						["Lanzallamas",6,90,"Especial"],
 						["Avanlancha",13,75,"Fisico"],
@@ -57,6 +57,7 @@ class Pokemon:
 
 	def pelea(self,movimientoausar,agresor,victima):
 		print(self.nombre, "a usado", movimientosdisponibles[movimientoausar][0])
+		dano=0
 		multiplicador = tabla[movimientosdisponibles[movimientoausar][1]][victima.tipo1]
 		if victima.tipo2 != 18:
 			multiplicador = multiplicador*tabla[movimientosdisponibles[movimientoausar][1]][victima.tipo2]
@@ -73,7 +74,7 @@ class Pokemon:
 			dano = dano*2
 			print("Golpe critico")
 		victima.vida = victima.vida-math.floor(dano)
-		print(victima.vida)
+		print(victima.nombre+":",victima.vida)
 
 class Swampert(Pokemon):
 	def __init__(self):
@@ -131,3 +132,5 @@ class Snorlax(Pokemon):
 		self.atespecial = 85
 		self.dfespecial = 130
 		self.movimientos = [0,6,11,12]
+
+

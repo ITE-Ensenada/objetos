@@ -1,8 +1,43 @@
-import sys, pygame, random
+import sys, random, pygame
 from pygame.locals import *
 from modulos.Clases import *
+#pokemon espalda x178 y183
+#pokemon frente x763 y33
+def presentador(funcion):
+    def decorador(pokejugador,pokerival):
+        print("Te has topado con un",pokejugador.nombre,"salvaje")
+        print("Ve",pokerival.nombre)
+        a = funcion(pokejugador,pokerival)
+        print("Finalizo el combate")
+        return a
+    return decorador
+@presentador
+def batalla(pokejugador,pokerival):
+    while(0==0):
 
-pygame.init()
+        movimientojugador = random.randrange(0,3)
+        if pokejugador.velocidad >= pokerival.velocidad:
+            pokejugador.pelea(pokejugador.movimientos[movimientojugador],pokejugador,pokerival)
+            if pokerival.vida <= 0:
+                print("te lo vergueaste")
+                break
+            pokerival.pelea(pokerival.movimientos[random.randrange(0,3)],pokerival,pokejugador)
+            if pokejugador <= 0:
+                print("te lo vergueo")
+                break
+        else:
+            pokerival.pelea(pokerival.movimientos[random.randrange(0,3)],pokerival,pokejugador)
+            if pokejugador.vida <= 0:
+                print("te lo vergueo")
+                break
+            pokejugador.pelea(pokejugador.movimientos[movimientojugador],pokejugador,pokerival)
+            if pokerival.vida <= 0:
+                print("te lo vergueaste")
+                break
+
+pokejugador = Snorlax()
+pokerival = Decidueye()
+batalla(pokejugador,pokerival)
 
 FPS = 10 # frames per second setting
 
@@ -12,15 +47,16 @@ fpsClock = pygame.time.Clock()
 
 SCREEN = pygame.display.set_mode((1200, 600), 0, 32)
 
-pygame.display.set_caption('PUCHAMOOOOOOON')
+pygame.display.set_caption('Pokemon')
 
 fondo = pygame.image.load('recursos/fondo.jpg')
 
-personajeImg = pygame.image.load('recursos/prota.png')
-personajeImg = pygame.transform.scale(personajeImg, (50, 50))
+imagenjugador = pygame.image.load('recursos/'+pokejugador.nombre+'E.png')
+imagenjugador = pygame.transform.scale(imagenjugador, (240, 240))
+imagenrival = pygame.image.load('recursos/'+pokerival.nombre+'F.png')
+imagenrival = pygame.transform.scale(imagenrival, (240, 240))
 
-personajeX = 10
-
+personajeX = 650
 personajeY = 10
 
 while True: # the main game loop
@@ -35,18 +71,23 @@ while True: # the main game loop
         if event.type == pygame.KEYDOWN:
             if event.key ==pygame.K_w:
                 if personajeY > 0:
-                    personajeY -= 5
+                    personajeY -= 1
+                    print(personajeX,personajeY)
             if event.key ==pygame.K_s:
-                if personajeY < 350:
-                    personajeY += 5
+                if personajeY < 600:
+                    personajeY += 1
+                    print(personajeX,personajeY)
             if event.key ==pygame.K_d:
-                if personajeX < 550:
-                    personajeX += 5
+                if personajeX < 1200:
+                    personajeX += 1
+                    print(personajeX,personajeY)
             if event.key ==pygame.K_a:
                 if personajeX > 0:
-                    personajeX -= 5
+                    personajeX -= 1
+                    print(personajeX,personajeY)
 					
-    SCREEN.blit(personajeImg, (personajeX, personajeY))
+    SCREEN.blit(imagenjugador, (178, 183))
+    SCREEN.blit(imagenrival, (763, 33))
 
     pygame.display.update()
     fpsClock.tick(FPS)

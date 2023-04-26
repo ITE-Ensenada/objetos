@@ -1,0 +1,9 @@
+Mi juego consiste en el clasico juego de ajedrez, donde el objetivo es 
+poder jugar en linea, jugador 1 contra jugador 2.
+Se pretende establecer sonido cada que una pieza cambie de lugar, al
+igual que una ayuda que te indique cuales son las casillas a las que
+puedes avanzar. Lo mejor seria que se pudiera seleccionar una pieza 
+con el cursor e indicar  donde se puede mover y a cada casilla asignarle 
+un tecla, ya que no hay suficientes teclas para tantos movimientos de cada pieza.
+Se quiere agregar una computadora con diferentes niveles para de esta manera poder 
+jugar en modo individual.  

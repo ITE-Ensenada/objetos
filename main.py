@@ -1,6 +1,5 @@
+import os
 import pygame
-import os 
-from pygame.locals import *
 from sprite import *
 from attributes import *
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
@@ -12,112 +11,108 @@ pygame.init()
 W, H = 640, 360
 PANTALLA = pygame.display.set_mode((W, H))
 pygame.display.set_caption('Mama2')
-icono=pygame.image.load('icon.png')
-pygame.display.set_icon(icono)
+ICONO=pygame.image.load('icon.png')
+pygame.display.set_icon(ICONO)
 
 #Fondo del juego
-fondo = pygame.image.load('imagenes/bg/onett.png')
+FONDO = pygame.image.load('imagenes/bg/onett.png')
 
 #Música de fondo
 pygame.mixer.music.load('sonido/onett.wav')
 pygame.mixer.music.play(-1)
 
-quieto = pygame.image.load('anim/stand/sd.png')
+QUIETO = pygame.image.load('anim/stand/sd.png')
 
-x=0
-px = 200
-py = 200
-ancho = 40
-velocidad = 5
+X=0
+PX = 200
+PY = 200
+ANCHO = 40
+VELOCIDAD = 5
 
 #Control de FPS
-reloj = pygame.time.Clock()
+RELOJ = pygame.time.Clock()
 
 #Variables dirección
-izquierda = False
-derecha = False
-arriba = False
-abajo = False
+IZQUIERDA = False
+DERECHA = False
+ARRIBA = False
+ABAJO = False
 
 #Pasos
-cuentaPasos = 0
+CUENTAPASOS = 0
 
 #Movimiento
-def recargaPantalla():
+def recarga_pantalla():
     #Variables globales
-    global cuentaPasos
-    global x
-    PANTALLA.blit(fondo,[0,0])
+    global CUENTAPASOS
+    global X
+    PANTALLA.blit(FONDO,[0,0])
     #Contador de pasos
-    if cuentaPasos + 1 >= 3:
-        cuentaPasos = 0
+    if CUENTAPASOS + 1 >= 3:
+        CUENTAPASOS = 0
     #Movimiento a la izquierda
-    
-    if izquierda:
-        PANTALLA.blit(wl[cuentaPasos // 1], (int(px), int(py)))
-        cuentaPasos += 1
+    if IZQUIERDA:
+        PANTALLA.blit(Wl[CUENTAPASOS // 1], (int(PX), int(PY)))
+        CUENTAPASOS += 1
         # Movimiento a la derecha
-    elif derecha:
-        PANTALLA.blit(wr[cuentaPasos // 1], (int(px), int(py)))
-        cuentaPasos += 1
-    elif abajo:
-        PANTALLA.blit(wd[cuentaPasos // 1], (int(px), int(py)))
-        cuentaPasos += 1
-    elif arriba:
-        PANTALLA.blit(wu[cuentaPasos // 1], (int(px), int(py)))
-        cuentaPasos += 1
+    elif DERECHA:
+        PANTALLA.blit(Wr[CUENTAPASOS // 1], (int(PX), int(PY)))
+        CUENTAPASOS += 1
+    elif ABAJO:
+        PANTALLA.blit(Wd[CUENTAPASOS // 1], (int(PX), int(PY)))
+        CUENTAPASOS += 1
+    elif ARRIBA:
+        PANTALLA.blit(Wu[CUENTAPASOS // 1], (int(PX), int(PY)))
+        CUENTAPASOS += 1
 
     else:
-        PANTALLA.blit(quieto,(int(px), int(py)))
+        PANTALLA.blit(QUIETO,(int(PX), int(PY)))
 
-ejecuta = True
+EJECUTA = True
 
 #Bucle de acciones y controles
-while ejecuta:
+while EJECUTA:
     #FPS
-    reloj.tick(15)
+    RELOJ.tick(15)
 
     #Bucle del juego
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            ejecuta = False
+            EJECUTA = False
 
     #Opción tecla pulsada
-    keys = pygame.key.get_pressed()
+    Keys = pygame.key.get_pressed()
 
     #Tecla A - Moviemiento a la izquierda
-    if keys[pygame.K_a] and px > -900:
-        px -= velocidad
-        izquierda = True
-        
-
-    #Tecla D - Moviemiento a la derecha
-    elif keys[pygame.K_d] and px < 900 - velocidad - ancho:
-        px += velocidad
-        izquierda = False
-        derecha = True
+    if Keys[pygame.K_a] and PX > -900:
+        PX -= VELOCIDAD
+        IZQUIERDA = True
+        #Tecla D - Moviemiento a la derecha
+    elif Keys[pygame.K_d] and PX < 900 - VELOCIDAD - ANCHO:
+        PX += VELOCIDAD
+        IZQUIERDA = False
+        DERECHA = True
 
     #Personaje quieto
     else:
-        izquierda = False
-        derecha = False
-        cuentaPasos = 0
+        IZQUIERDA = False
+        DERECHA = False
+        CUENTAPASOS = 0
 
     #Tecla W - Moviemiento hacia arriba
-    if keys[pygame.K_w] and py > 100:
-        py -= velocidad
-        arriba=True
-        abajo=False
+    if Keys[pygame.K_w] and PY > 100:
+        PY -= VELOCIDAD
+        ARRIBA=True
+        ABAJO=False
     #Tecla S - Moviemiento hacia abajo
-    if keys[pygame.K_s] and py < 300:
-        py += velocidad
-        abajo=True
-        arriba=False
+    if Keys[pygame.K_s] and PY < 300:
+        PY += VELOCIDAD
+        ABAJO=True
+        ARRIBA=False
     
      # Actualización de la ventana
     pygame.display.update()
     #Llamada a la función de actualización de la ventana
-    recargaPantalla()
-
-#Salir del juego
+    recarga_pantalla()
+    #Salir del juego
 pygame.quit()

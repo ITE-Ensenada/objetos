@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # Earthbound pygame 
 
 ## Introducción

@@ -2,6 +2,7 @@
 import pygame 
 import random
 import time
+import sys
 
 #pygame start
 pygame.init()
@@ -80,12 +81,13 @@ apple = Apple()
 score = 0
 game_over = False
         
-run = True
-while run == True:
+#run = True
+while True: #run == True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
-            run = False
+            sys.exit()
+            #run = False
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP:
                 snake.change_direction('UP')

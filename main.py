@@ -1,11 +1,12 @@
 import pygame
-import sys
 import os 
+from pygame.locals import *
+from sprite import *
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
-#Iniciación de Pygame
+#Inicialización
 pygame.init()
 
-#Pantalla - ventana
+#Pantalla
 W, H = 640, 360
 PANTALLA = pygame.display.set_mode((W, H))
 pygame.display.set_caption('Mama2')
@@ -19,21 +20,9 @@ fondo = pygame.image.load('imagenes/bg/onett.png')
 pygame.mixer.music.load('sonido/onett.wav')
 pygame.mixer.music.play(-1)
 
-
-#Personaje
 quieto = pygame.image.load('anim/stand/sd.png')
 
-wr = [pygame.image.load('anim/walkr/wr1.png'),
-    pygame.image.load('anim/walkr/wr2.png')]
 
-wl = [pygame.image.load('anim/walkl/wl1.png'),
-    pygame.image.load('anim/walkl/wl2.png')]
-
-wu = [pygame.image.load('anim/walku/wu1.png'),
-    pygame.image.load('anim/walku/wu2.png')]
-
-wd = [pygame.image.load('anim/walkd/wd1.png'),
-    pygame.image.load('anim/walkd/wd2.png')]
 
 
 x=0
@@ -134,5 +123,5 @@ while ejecuta:
     #Llamada a la función de actualización de la ventana
     recargaPantalla()
 
-#Salida del juego
+#Salir del juego
 pygame.quit()

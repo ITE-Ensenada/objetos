@@ -7,6 +7,6 @@ Creé este juego en pygame como práctica para la clase de programación, es una
 ## Instalación
 Abre el archivo main ubicado en "earthbound poo/main.py"\
 Ejecutalo\
-Listo.\
+Listo.
 =======
 # objetos

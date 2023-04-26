@@ -36,7 +36,7 @@ class Game:
 
         self.render_background = RenderBackground(self) # Crear renderizador de fondo
 
-        self.collision = Collision(self)
+        self.collision = Collision(self) # Crear colisiones
 
 
     def update(self):
@@ -75,10 +75,12 @@ class Game:
 
         pygame.quit()
         sys.exit()
-    
+
 
     def game_over(self):
         '''Actualizar eventos de salida'''
+        if self.player.life == 0: # Si el jugador se queda sin vida
+            self.close_game() # Cerrar juego
 
         if (self.event.type == QUIT
             or (self.event.type == KEYDOWN

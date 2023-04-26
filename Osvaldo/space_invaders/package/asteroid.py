@@ -18,10 +18,7 @@ class Asteroid(pg.sprite.Sprite):
 
         self.pos_y = -138 # Posicion en y
 
-        # Sprite 1 del asteroide
-        self.sprite0 = self.create_sprites()
-
-        self.current_sprite = self.sprite0 # Sprite actual
+        self.sprite = self.create_sprites() # Sprite del asteroide
 
         self.rect = self.collition_rect() # Rectangulo para deteccion de colisiones
 
@@ -29,7 +26,7 @@ class Asteroid(pg.sprite.Sprite):
     def collition_rect(self):
         '''Metodo que se encarga de crear el rectangulo de colisiones'''
 
-        rect = self.current_sprite.get_rect() # Rectangulo para deteccion de colisiones
+        rect = self.sprite.get_rect() # Rectangulo para deteccion de colisiones
 
         rect.x = self.pos_x # Actualizar la posicion en x del rectangulo de colisiones
         rect.y = self.pos_y # Actualizar la posicion en y del rectangulo de colisiones
@@ -40,10 +37,10 @@ class Asteroid(pg.sprite.Sprite):
     def create_sprites(self):
         '''Metodo que se encarga de crear los sprites del asteroide'''
 
-        sprite0 = pg.image.load('Assets/Asteroid/Asteroid0.png').convert_alpha()
-        sprite0 = pg.transform.scale(sprite0, (90, 138)) # Scale del sprite
-           
-        return sprite0 # Retornar sprites
+        sprite = pg.image.load('Assets/Asteroid/Asteroid0.png').convert_alpha()
+        sprite = pg.transform.scale(sprite, (90, 138)) # Scale del sprite
+
+        return sprite # Retornar sprites
 
 
     def movement(self):
@@ -57,7 +54,7 @@ class Asteroid(pg.sprite.Sprite):
     def draw(self):
         '''Dibujar el asteroide'''
 
-        self.game.screen.blit(self.current_sprite, (self.pos_x, self.pos_y)) # Dibujar el asteroide
+        self.game.screen.blit(self.sprite, (self.pos_x, self.pos_y)) # Dibujar el asteroide
 
         pg.draw.rect(self.game.screen, 'red', self.rect, 2) # Dibujar el rectangulo de colisiones
 

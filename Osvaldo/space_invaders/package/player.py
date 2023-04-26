@@ -14,13 +14,13 @@ class Player(pg.sprite.Sprite):
 
         self.pos_x, self.pos_y = X, Y # Posicion del jugador
 
-        self.sprite0, self.sprite1 = self.create_sprites() # Sprites del jugador
+        self.sprites = self.create_sprites() # Sprites del jugador
 
-        self.current_sprite = self.sprite0 # Sprite actual
+        self.current_sprite = self.sprites[0] # Sprite actual
 
         self.rect = self.collition_rect() # Rectangulo para deteccion de colisiones
 
-        self.life = PLAYER_LIFE # Vidas del jugador
+        self._life = PLAYER_LIFE # Vidas del jugador
 
     def collition_rect(self):
         '''Metodo que se encarga de crear el rectangulo de colisiones'''
@@ -32,28 +32,26 @@ class Player(pg.sprite.Sprite):
 
         return rect
 
+
     def lost_life(self):
         '''Metodo que se encarga de restar una vida al jugador'''
 
-        self.life -= 1 # Restar una vida al jugador
-
-        if self.life == 0:
-
-            self.game.close_game() # Cerrar el juego
+        self._life -= 1 # Restar una vida al jugador
 
 
     def create_sprites(self):
         '''Metodo que se encarga de crear los sprites del jugador'''
 
-        # Sprite0 del jugador
-        sprite0 = pg.image.load('Assets/Player/Nave0.png').convert_alpha()
-        sprite0 = pg.transform.scale(sprite0, (48, 48)) # Scale del sprite
+        sprites = [
+            pg.image.load('Assets/Player/Nave0.png').convert_alpha(),
+            pg.image.load('Assets/Player/Nave1.png').convert_alpha()
+        ]
 
-        # Sprite1 del jugador
-        sprite1 = pg.image.load('Assets/Player/Nave1.png').convert_alpha()
-        sprite1 = pg.transform.scale(sprite1, (48, 48)) # Scale del sprite
+        for index,sprite in enumerate(sprites):
+            sprites[index] = pg.transform.scale(sprite, (48, 48)) # Scale del sprite
 
-        return sprite0, sprite1 # Retornar sprites
+        return sprites # Retornar sprites
+
 
     def movement(self):
         '''Metodo que se encarga de mover al jugador'''
@@ -126,21 +124,22 @@ class Player(pg.sprite.Sprite):
 
         pg.draw.rect(self.game.screen, 'red', self.rect, 2) # Dibujar rectangulo de colisiones
 
+
     def change_sprite(self):
         '''Metodo que se encarga de cambiar el sprite del jugador'''
 
-        if self.current_sprite == self.sprite0:
-            self.current_sprite = self.sprite1
+        if self.current_sprite == self.sprites[0]:
+            self.current_sprite = self.sprites[1]
 
 
     def reset_sprite(self):
         '''Metodo que se encarga de resetear el sprite del jugador'''
 
-        self.current_sprite = self.sprite0
+        self.current_sprite = self.sprites[0]
 
 
     @property
-    def get_pos(self):
-        '''Metodo que se encarga de obtener la posicion del jugador'''
+    def life(self):
+        '''getter de la vida del jugador'''
 
-        return self.pos_x, self.pos_y
+        return self._life

@@ -22,21 +22,25 @@ class RenderBackground():
 
 
     def create_sprites_player_life(self):
+        '''Metodo que se encarga de crear los sprites de la vida del jugador'''
+
         sprites = [
             (pygame.image.load('Assets/Life0.png').convert_alpha()),
             (pygame.image.load('Assets/Life1.png').convert_alpha()),
             (pygame.image.load('Assets/Life2.png').convert_alpha()),
             (pygame.image.load('Assets/Life3.png').convert_alpha())
         ]
-        for index in range(len(sprites)):
-            sprites[index] = pygame.transform.scale(sprites[index], (150, 48))
+
+        for index, sprite in enumerate(sprites):
+            sprites[index] = pygame.transform.scale(sprite, (104, 27.2))
 
         return sprites
 
     def draw_life_player(self):
         '''Dibujar vidas del jugador'''
 
-        self.game.screen.blit(self.player_life[self.game.player.life - 1], (0, 0)) # Dibujar vida del jugador
+        # Dibuja la vida del jugador
+        self.game.screen.blit(self.player_life[self.game.player.life - 1], (0, 0))
 
     def draw_background(self):
         '''Dibujar fondo'''''

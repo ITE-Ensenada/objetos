@@ -8,7 +8,7 @@ class Collision:
 
     def __init__(self, game):
         self.game = game
-    
+
     def asteroid_player_collision(self):
         '''Metodo que se encarga de manejar la colision entre el jugador y los asteroides'''
 
@@ -21,7 +21,9 @@ class Collision:
 
 
     def bullet_asteroid_collision(self):
-        pass
+        '''Metodo que se encarga de manejar la colision entre las balas y los asteroides'''
+
+        print('Esto no hace nada... Aun...')
 
 
     def update(self):

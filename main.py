@@ -2,7 +2,9 @@ import pygame
 import os 
 from pygame.locals import *
 from sprite import *
+from attributes import *
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
 #Inicialización
 pygame.init()
 
@@ -22,9 +24,6 @@ pygame.mixer.music.play(-1)
 
 quieto = pygame.image.load('anim/stand/sd.png')
 
-
-
-
 x=0
 px = 200
 py = 200
@@ -33,8 +32,6 @@ velocidad = 5
 
 #Control de FPS
 reloj = pygame.time.Clock()
-
-
 
 #Variables dirección
 izquierda = False
@@ -117,8 +114,7 @@ while ejecuta:
         abajo=True
         arriba=False
     
-
-    # Actualización de la ventana
+     # Actualización de la ventana
     pygame.display.update()
     #Llamada a la función de actualización de la ventana
     recargaPantalla()

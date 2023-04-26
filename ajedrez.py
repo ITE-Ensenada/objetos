@@ -1,77 +1,75 @@
-import pygame, sys
-from pygame.locals import *
+# pylint: disable=C0103
+# pylint: disable=W0105
+"""juego del ajedrez"""
+import sys
+import pygame
+from pygame.locals import __all__
 pygame.init()
-
-SCREEN = pygame.display.set_mode((720, 720), 20, 32)
+pantallax = 720
+pantallay = 720
+SCREEN = pygame.display.set_mode((pantallax,pantallay))
 pygame.display.set_caption('Ajedrez')
 fondo = pygame.image.load('tablero1.png')
 fondo = pygame.transform.scale(fondo, (720, 720))
 
 
-personaje1 = pygame.image.load('torre.png')
-personaje1 = pygame.transform.scale(personaje1, (90, 90))
-personaje2 = pygame.image.load('caballo.png')
-personaje2 = pygame.transform.scale(personaje2, (90, 90))
-personaje3 = pygame.image.load('alfil.png')
-personaje3 = pygame.transform.scale(personaje3, (90, 90))
-personaje4 = pygame.image.load('rey.png')
-personaje4 = pygame.transform.scale(personaje4, (90, 90))
-personaje5 = pygame.image.load('reyna.png')
-personaje5 = pygame.transform.scale(personaje5, (90, 90))
-personaje6 = pygame.image.load('alfil.png')
-personaje6 = pygame.transform.scale(personaje6, (90, 90))
-personaje7 = pygame.image.load('caballo.png')
-personaje7 = pygame.transform.scale(personaje7, (90, 90))
-personaje8 = pygame.image.load('torre.png')
-personaje8 = pygame.transform.scale(personaje8, (90, 90))
+Pieza_1 = pygame.image.load('torre.png')
+Pieza_1 = pygame.transform.scale(Pieza_1, (90, 90))
+Pieza_2 = pygame.image.load('caballo.png')
+Pieza_2 = pygame.transform.scale(Pieza_2, (90, 90))
+Pieza_3 = pygame.image.load('alfil.png')
+Pieza_3 = pygame.transform.scale(Pieza_3, (90, 90))
+Pieza_4 = pygame.image.load('rey.png')
+Pieza_4 = pygame.transform.scale(Pieza_4, (90, 90))
+Pieza_5 = pygame.image.load('reyna.png')
+Pieza_5 = pygame.transform.scale(Pieza_5, (90, 90))
+Pieza_6 = pygame.image.load('alfil.png')
+Pieza_6 = pygame.transform.scale(Pieza_6, (90, 90))
+Pieza_7 = pygame.image.load('caballo.png')
+Pieza_7 = pygame.transform.scale(Pieza_7, (90, 90))
+Pieza_8 = pygame.image.load('torre.png')
+Pieza_8 = pygame.transform.scale(Pieza_8, (90, 90))
 
-personajeX1 = 0
-personajeY1 = 0
-personajeX2 = 90
-personajeY2 = 0
-personajeX3 = 180
-personajeY3 = 0
-personajeX4 = 270
-personajeY4 = 0
-personajeX5 = 360
-personajeY5 = 0
-personajeX6 = 450
-personajeY6 = 0
-personajeX7 = 540
-personajeY7 = 0
-personajeX8 = 630
-personajeY8 = 0
+Pieza_X1 = 0
+Pieza_Y1 = 0
+Pieza_X2 = 90
+Pieza_Y2 = 0
+Pieza_X3 = 180
+Pieza_Y3 = 0
+Pieza_X4 = 270
+Pieza_Y4 = 0
+Pieza_X5 = 360
+Pieza_Y5 = 0
+Pieza_X6 = 450
+Pieza_Y6 = 0
+Pieza_X7 = 540
+Pieza_Y7 = 0
+Pieza_X8 = 630
+Pieza_Y8 = 0
+
 while True: # the main game loop
-	SCREEN.fill((255, 255, 255))
-	SCREEN.blit(fondo, (0, 0))
-	SCREEN.blit(personaje1, (personajeX1, personajeY1))
-	"""
-	SCREEN.blit(personaje2, (personajeX2, personajeY2))
-	SCREEN.blit(personaje3, (personajeX3, personajeY3))
-	SCREEN.blit(personaje4, (personajeX4, personajeY4))
-	SCREEN.blit(personaje5, (personajeX5, personajeY5))
-	SCREEN.blit(personaje6, (personajeX6, personajeY6))
-	SCREEN.blit(personaje7, (personajeX7, personajeY7))
-	SCREEN.blit(personaje8, (personajeX8, personajeY8))
-	"""
-for event in pygame.event.get():
-    if event.type == QUIT:
-        pygame.quit()
-        sys.exit()
-    if event.type == pygame.KEYDOWN:  
-    #TorreIzq
-   		if event.key == K_DOWN:
-			personajeY1 = personajeY1+90
-		if event.key == K_UP:
-			personajeY1 = personajeY1-90
-		if event.key == K_RIGHT:
-			personajeX1 = personajeX1+90
-		if event.key == K_LEFT:
-			personajeX1 = personajeX1-90
-pygame.display.update()
-"""
+    SCREEN.fill((255, 255, 255))
+    SCREEN.blit(fondo, (0, 0))
+    SCREEN.blit(Pieza_1, (Pieza_X1, Pieza_Y1))
 
-#Caballo izq
+    for event in pygame.event.get():
+
+        if event.type == QUIT:
+            pygame.quit()
+            sys.exit()
+        if event.type == pygame.KEYDOWN:
+            #TorreIzq
+            if event.key == K_DOWN:
+                Pieza_Y1 = Pieza_Y1+90
+            if event.key == K_UP:
+                Pieza_Y1 = Pieza_Y1-90
+            if event.key == K_RIGHT:
+                Pieza_X1 = Pieza_X1+90
+            if event.key == K_LEFT:
+                Pieza_X1 = Pieza_X1-90
+pygame.display.update()
+
+'''Caballo izq
 if event.key==K_0:
 personajeY2 = personajeY2+180
 personajeX2 = personajeX2+90
@@ -116,7 +114,7 @@ if event.key==K_d:
 personajeX6 = personajeX6+90
 if event.key==K_a:
 personajeX6 = personajeX6-90
-#Caballo Der
+Caballo Der
 if event.key==K_4:
 personajeY7 = personajeY7+180
 personajeX7 = personajeX7+90
@@ -136,5 +134,4 @@ personajeY8 = personajeY8+90
 if event.key==K_d:
 personajeX8 = personajeX8+90
 if event.key==K_a:
-personajeX8 = personajeX8-90
-"""
+personajeX8 = personajeX8-90'''

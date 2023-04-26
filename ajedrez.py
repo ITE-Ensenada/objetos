@@ -69,12 +69,10 @@ Pieza_X7 = 540
 Pieza_Y7 = 0
 Pieza_X8 = 630
 Pieza_Y8 = 0
->>>>>>> 82c43fb918533e9ef88ff0dc7bcf5a73a7fb78bf
 while True: # the main game loop
     SCREEN.fill((255, 255, 255))
     SCREEN.blit(fondo, (0, 0))
     SCREEN.blit(Pieza_1, (Pieza_X1, Pieza_Y1))
-<<<<<<< HEAD
 
     for event in pygame.event.get():
 
@@ -82,7 +80,6 @@ while True: # the main game loop
             pygame.quit()
             sys.exit()
         if event.type == pygame.KEYDOWN:
-=======
     for event in pygame.event.get():
         if event.type == QUIT:
             pygame.quit()

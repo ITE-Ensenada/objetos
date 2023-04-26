@@ -1,22 +1,35 @@
-import pygame, sys
+#pylint: disable = C0103
+#pylint: disable = E1101
+#pylint: disable = W0401
+#pylint: disable = W0614
+
+import sys
+import pygame
 from pygame.locals import *
 from monito import *
 
-#datos jugador
+# datos jugador
+def pregunta(func):
+    def nom_edad():
+        nombre = input("Ingresa tu nombre: ")
+        edad = int(input("Ingresa tu edad: "))
+        func(nombre, edad)
 
-input("Ingresa tu nombre: ")
-edad = int(input("Ingresa tu edad: "))
-if edad < 18:
-    print("No puedes jugar, debes ser mayor de edad")
-    exit()
+    return nom_edad
 
-#Importa las clases
+@pregunta
+def Verificador(nombre, edad):
+    if edad >= 18:
+        print(f"Puedes jugar {nombre}!, eres mayor")
+    else:
+        print(f"No puedes jugar {nombre}!, ya que tu edad es: {edad}")
+        exit()
+
+Verificador()
+
+# Importa las clases
 jugador = Personaje("Salvador", "1", "10", "5", "100")
 print(jugador)
-pistola = Arma("20", "10", "15", "2.5")
-print(pistola)
-enemigo = Enemigo("10", "50", "20")
-print(enemigo)
 
 pygame.init()
 
@@ -44,13 +57,12 @@ personajeY = 10
 velocidad = 0
 
 # Aqui es para direccionar
-while True: 
-    
+event = 0
+while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()
-
-     #Evento teclado
+    # Evento teclado
     if personajeY <= 858:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_DOWN:
@@ -87,11 +99,10 @@ while True:
                 velocidad = 0
             if event.key == pygame.K_DOWN:
                 velocidad = 0
-
+    
     SCREEN.blit(fondo, [0, 0])
     SCREEN.blit(personajeImg, (personajeX, personajeY))
     personajeY += velocidad
-
     pygame.draw.rect(SCREEN, WHITE, (personajeY, personajeY, 0, 0))
     pygame.display.flip()
     fpsClock.tick(60)

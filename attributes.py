@@ -14,7 +14,7 @@ class Jugador(pygame.sprite.Sprite):
         screen = pygame.display.get_surface()
         self.area = screen.get_rect()
         self.vector = vector
-        
+        #clase enemigo
 class Crow(pygame.sprite.Sprite):
 
     def __init__(self, vector):
@@ -23,7 +23,7 @@ class Crow(pygame.sprite.Sprite):
         screen = pygame.display.get_surface()
         self.area = screen.get_rect()
         self.vector = vector
-        
+        #clase del npc
 class Porky(pygame.sprite.Sprite):
 
     def __init__(self, vector):
@@ -33,5 +33,20 @@ class Porky(pygame.sprite.Sprite):
         self.area = screen.get_rect()
         self.vector = vector
         
-        
-        
+class Ness:
+    def __init__(self, vida, nivel):
+        self.vida = 100
+        self.nivel = 1
+
+    # Magia
+    def Magia(self):
+        # Método vacío
+        pass
+
+    # Moverse
+    def moverse(self):
+        # Método vacío
+        pass
+
+
+

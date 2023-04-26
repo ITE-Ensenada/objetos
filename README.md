@@ -10,5 +10,3 @@ Ejecutalo
 Listo.
 =======
 # objetos
-Repositorio para practicar POO y GIT
->>>>>>> b1e689bb44fee70407d3c51380178eaf42807e89

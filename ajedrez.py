@@ -4,7 +4,6 @@
 import sys
 import pygame
 from pygame.locals import __all__
-"""juego del ajedrez"""
 import pygame
 import sys
 from pygame.locals import *
@@ -74,19 +73,11 @@ while True: # the main game loop
     SCREEN.blit(fondo, (0, 0))
     SCREEN.blit(Pieza_1, (Pieza_X1, Pieza_Y1))
 
-    for event in pygame.event.get():
-
-        if event.type == QUIT:
-            pygame.quit()
-            sys.exit()
-        if event.type == pygame.KEYDOWN:
-    for event in pygame.event.get():
-        if event.type == QUIT:
-            pygame.quit()
-            sys.exit()
+for event in pygame.event.get():
+    if event.type == QUIT:
+        pygame.quit()
+        sys.exit()
         if event.type == pygame.KEYDOWN:  
-
-            #TorreIzq
             if event.key == K_DOWN:
                 Pieza_Y1 = Pieza_Y1+90
             if event.key == K_UP:

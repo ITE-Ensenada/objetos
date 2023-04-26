@@ -16,7 +16,7 @@ class RenderBackground():
 
         # Scale del fondo
         self.background = pygame.transform.scale(self.background, (ANCHO, ALTO))
-
+    
     def draw_background(self):
         '''Dibujar fondo'''''
 

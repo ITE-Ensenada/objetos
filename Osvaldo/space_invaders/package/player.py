@@ -1,7 +1,7 @@
 '''Descripcion: Este archivo contiene la clase Game, la cual se encarga de manejar el juego'''
 
 import pygame as pg
-from package.settings import PLAYER_SPEED, X, Y, ANCHO, ALTO
+from package.settings import PLAYER_SPEED, PLAYER_LIFE, X, Y, ANCHO, ALTO
 
 class Player(pg.sprite.Sprite):
     '''Clase que representa al jugador'''
@@ -18,10 +18,32 @@ class Player(pg.sprite.Sprite):
 
         self.current_sprite = self.sprite0 # Sprite actual
 
-        self.rect = self.current_sprite.get_rect() # Rectangulo para deteccion de colisiones
+        self.rect = self.collition_rect() # Rectangulo para deteccion de colisiones
+
+        self.life = PLAYER_LIFE # Vidas del jugador
+
+    def collition_rect(self):
+        '''Metodo que se encarga de crear el rectangulo de colisiones'''
+
+        rect = self.current_sprite.get_rect() # Rectangulo para deteccion de colisiones
+
+        rect.x = self.pos_x # Actualizar la posicion en x del rectangulo de colisiones
+        rect.y = self.pos_y # Actualizar la posicion en y del rectangulo de colisiones
+
+        return rect
+
+    def lost_life(self):
+        '''Metodo que se encarga de restar una vida al jugador'''
+
+        self.life -= 1 # Restar una vida al jugador
+
+        if self.life == 0:
+
+            self.game.close_game() # Cerrar el juego
+
 
     def create_sprites(self):
-        ''' Metodo que se encarga de crear los sprites del jugador'''
+        '''Metodo que se encarga de crear los sprites del jugador'''
 
         # Sprite0 del jugador
         sprite0 = pg.image.load('Assets/Player/Nave0.png').convert_alpha()
@@ -76,13 +98,13 @@ class Player(pg.sprite.Sprite):
 
         if -5 < new_x < ANCHO - 40:
 
-            self.rect.x += new_x # Actualizar posicion en x del rectangulo de colisiones
+            self.rect.x = new_x # Actualizar posicion en x del rectangulo de colisiones
 
             self.pos_x = new_x # Actualizar posicion en x
 
         if 0 < new_y < ALTO - 40:
 
-            self.rect.y += new_y # Actualizar posicion en y del rectangulo de colisiones
+            self.rect.y = new_y # Actualizar posicion en y del rectangulo de colisiones
 
             self.pos_y = new_y # Actualizar posicion en y
 
@@ -90,9 +112,9 @@ class Player(pg.sprite.Sprite):
     def update(self):
         '''Metodo que se encarga de actualizar al jugador'''
 
-        self.movement() # Mover jugador
-
         self.draw_player() # Dibujar jugador
+
+        self.movement() # Mover jugador
 
 
     def draw_player(self):
@@ -100,8 +122,9 @@ class Player(pg.sprite.Sprite):
 
         self.game.screen.blit(self.current_sprite, (self.pos_x, self.pos_y)) # Dibujar jugador
 
-        self.rect = self.current_sprite.get_rect() # Actualizar rectangulo de colisiones
+        self.rect = self.collition_rect() # Actualizar rectangulo de colisiones
 
+        pg.draw.rect(self.game.screen, 'red', self.rect, 2) # Dibujar rectangulo de colisiones
 
     def change_sprite(self):
         '''Metodo que se encarga de cambiar el sprite del jugador'''

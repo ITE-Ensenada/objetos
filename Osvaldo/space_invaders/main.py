@@ -15,6 +15,7 @@ from package.settings import RESOLUTION, FLAGS, FPS # Importar variables de conf
 from package.asteroid_generator import AsteroidGenerator # Importar generador de asteroides
 from package.render_background import RenderBackground # Importar renderizador de fondo
 from package.player import Player # Importar jugador
+from package.collision import Collision # Importar colisiones
 
 class Game:
     '''Clase principal del juego'''
@@ -35,6 +36,8 @@ class Game:
 
         self.render_background = RenderBackground(self) # Crear renderizador de fondo
 
+        self.collision = Collision(self)
+
 
     def update(self):
         '''Actualizar juego'''
@@ -46,6 +49,8 @@ class Game:
         self.player.update() # Actualizar jugador
 
         self.asteroid_generator.update() # Actualizar generador de asteroides
+
+        self.collision.update() # Actualizar colisiones
 
         pygame.display.update() # Actualizar pantalla
 
@@ -63,6 +68,14 @@ class Game:
 
         for self.event in pygame.event.get(): # Recorrer todos los eventos
             self.game_over() # Actualizar eventos de salida
+            self.reset_player_sprite() # Resetear sprite del jugador
+
+    def close_game(self):
+        '''Cerrar juego'''
+
+        pygame.quit()
+        sys.exit()
+    
 
     def game_over(self):
         '''Actualizar eventos de salida'''
@@ -71,13 +84,18 @@ class Game:
             or (self.event.type == KEYDOWN
                 and self.event.key == K_ESCAPE)): # Salir del juego
 
-            pygame.quit() # Salir de pygame
-            sys.exit() # Salir del programa
+            self.close_game() # Cerrar juego
+
+    def reset_player_sprite(self):
+        '''Resetear sprite del jugador'''
 
         if (self.event.type == KEYUP
             and (self.event.key in (K_a, K_d, K_w, K_s))): # Resetear sprite del jugador
 
             self.player.reset_sprite() # Resetear sprite del jugador
+
+
+
 
 if __name__ == '__main__':
     game = Game() # Crear juego

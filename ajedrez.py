@@ -1,16 +1,13 @@
-<<<<<<< HEAD
 # pylint: disable=C0103
 # pylint: disable=W0105
 """juego del ajedrez"""
 import sys
 import pygame
 from pygame.locals import __all__
-=======
 """juego del ajedrez"""
 import pygame
 import sys
 from pygame.locals import *
->>>>>>> 82c43fb918533e9ef88ff0dc7bcf5a73a7fb78bf
 pygame.init()
 pantallax = 720
 pantallay = 720
@@ -36,7 +33,6 @@ Pieza_7 = pygame.image.load('caballo.png')
 Pieza_7 = pygame.transform.scale(Pieza_7, (90, 90))
 Pieza_8 = pygame.image.load('torre.png')
 Pieza_8 = pygame.transform.scale(Pieza_8, (90, 90))
-<<<<<<< HEAD
 
 Pieza_X1 = 0
 Pieza_Y1 = 0
@@ -55,7 +51,7 @@ Pieza_Y7 = 0
 Pieza_X8 = 630
 Pieza_Y8 = 0
 
-=======
+
 
 Pieza__X1 = 0
 Pieza_Y1 = 0
@@ -92,7 +88,7 @@ while True: # the main game loop
             pygame.quit()
             sys.exit()
         if event.type == pygame.KEYDOWN:  
->>>>>>> 82c43fb918533e9ef88ff0dc7bcf5a73a7fb78bf
+
             #TorreIzq
             if event.key == K_DOWN:
                 Pieza_Y1 = Pieza_Y1+90
@@ -104,7 +100,7 @@ while True: # the main game loop
                 Pieza_X1 = Pieza_X1-90
 pygame.display.update()
 
-<<<<<<< HEAD
+
 '''Caballo izq
 if event.key==K_0:
 personajeY2 = personajeY2+180
@@ -171,5 +167,3 @@ if event.key==K_d:
 personajeX8 = personajeX8+90
 if event.key==K_a:
 personajeX8 = personajeX8-90'''
-=======
->>>>>>> 82c43fb918533e9ef88ff0dc7bcf5a73a7fb78bf

@@ -16,13 +16,36 @@ class RenderBackground():
 
         # Scale del fondo
         self.background = pygame.transform.scale(self.background, (ANCHO, ALTO))
-    
+
+        # Sprite de la vida del jugador
+        self.player_life = self.create_sprites_player_life()
+
+
+    def create_sprites_player_life(self):
+        sprites = [
+            (pygame.image.load('Assets/Life0.png').convert_alpha()),
+            (pygame.image.load('Assets/Life1.png').convert_alpha()),
+            (pygame.image.load('Assets/Life2.png').convert_alpha()),
+            (pygame.image.load('Assets/Life3.png').convert_alpha())
+        ]
+        for index in range(len(sprites)):
+            sprites[index] = pygame.transform.scale(sprites[index], (150, 48))
+
+        return sprites
+
+    def draw_life_player(self):
+        '''Dibujar vidas del jugador'''
+
+        self.game.screen.blit(self.player_life[self.game.player.life - 1], (0, 0)) # Dibujar vida del jugador
+
     def draw_background(self):
         '''Dibujar fondo'''''
 
         self.game.screen.blit(self.background, (0, 0))
 
+
     def update(self):
         '''Actualizar renderizador de fondo'''
 
         self.draw_background()
+        self.draw_life_player()

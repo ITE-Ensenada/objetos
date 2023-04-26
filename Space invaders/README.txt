@@ -26,3 +26,5 @@ M=Disparo principal
 *Los asteroides se destruiran al ser impactados por una bala*
 
 *La barra de color verde es la vida de tu nave, cuando la barra este totalmente roja significa que tu nave ha sido destruida*
+
+*Para iniciar el juego iniciar el archivo SpaceFighters*

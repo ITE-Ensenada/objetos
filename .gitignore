@@ -1,0 +1,5 @@
+venv/
+borrame/
+gallery/
+.vscode/
+py_cache

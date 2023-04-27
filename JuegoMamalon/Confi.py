@@ -1,4 +1,6 @@
-Mapa = [
+'''Descripcion: Este archivo contiene las variables globales del juego'''
+
+MAPA = [
 '                                              XXXXX',
 '                                              X X X',
 '                                            X XXXXX',
@@ -14,6 +16,6 @@ Mapa = [
 #P para colocar jugador
 #X sirve para colocar los obstaculos
 
-tile_size = 64
-Ancho_Pantalla = 1200
-Alto_Pantalla = len(Mapa) * tile_size
+TILE_SIZE = 64
+ANCHO_PANTALLA = 1200
+ALTO_PANTALLA= len(MAPA) * TILE_SIZE

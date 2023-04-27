@@ -1,9 +1,13 @@
+'''Descripción: Este archivo contiene la clase Level'''
+
 import pygame
-from Sprites import Tile
-from Confi import tile_size, Ancho_Pantalla
-from Jugador import Player
+from sprites import Tile
+from confi import TILE_SIZE, ANCHO_PANTALLA
+from jugador import Player
 
 class Level:
+    '''Clase para crear el nivel'''
+
     def __init__(self,level_data,surface):
 
         #level setup
@@ -12,30 +16,34 @@ class Level:
         self.world_shift = 0
 
     def setup_level(self,layout):
+        '''Metodo para crear el nivel'''
+
         self.tiles = pygame.sprite.Group()
         self.player = pygame.sprite.GroupSingle()
 
         for row_index, row in enumerate(layout):
             for col_index, cell in enumerate(row):
-                x = col_index * tile_size
-                y = row_index * tile_size
+                pos_x = col_index * TILE_SIZE
+                pos_y = row_index * TILE_SIZE
 
                 if cell == 'X':
-                    tile = Tile((x,y),tile_size)
+                    tile = Tile((pos_x,pos_y),TILE_SIZE)
                     self.tiles.add(tile)
                 if cell == 'P':
-                    player_sprite = Player((x,y))
+                    player_sprite = Player((pos_x,pos_y))
                     self.player.add(player_sprite)
 
     def scroll_x(self):
+        '''Metodo para mover el nivel horizontalmente'''
+
         player = self.player.sprite
         player_x = player.rect.centerx
         direction_x = player.direction.x
 
-        if player_x < Ancho_Pantalla/4 and direction_x < 0:
+        if player_x < ANCHO_PANTALLA/4 and direction_x < 0:
             self.world_shift = 8
             player.speed = 0
-        elif player_x > Ancho_Pantalla -(Ancho_Pantalla/4) and direction_x > 0:
+        elif player_x > ANCHO_PANTALLA -(ANCHO_PANTALLA/4) and direction_x > 0:
             self.world_shift = -8
             player.speed = 0
         else:
@@ -43,6 +51,8 @@ class Level:
             player.speed = 8
 
     def horizontal_movement_collision(self):
+        '''Metodo para detectar colisiones horizontales'''
+
         player = self.player.sprite
         player.rect.x += player.direction.x * player.speed
 
@@ -54,6 +64,8 @@ class Level:
                     player.rect.right = sprite.rect.left
 
     def vertical_movement_collision(self):
+        '''Metodo para detectar colisiones verticales'''
+
         player = self.player.sprite
         player.apply_gravity()
 
@@ -67,6 +79,7 @@ class Level:
                     player.direction.y = 0
 
     def run(self):
+        '''Metodo para correr el nivel'''
 
         #level tiles
         self.tiles.update(self.world_shift)

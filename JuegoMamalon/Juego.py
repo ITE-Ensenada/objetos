@@ -1,14 +1,15 @@
-"""Codigo principal de mi juego"""
+'''Codigo principal de mi juego'''
+
 import sys
 import pygame
 
-from Confi import *
-from Nivel import Level
+from confi import ALTO_PANTALLA, ANCHO_PANTALLA, MAPA
+from nivel import Level
 
 pygame.init()
-screen = pygame.display.set_mode((Ancho_Pantalla,Alto_Pantalla))
+screen = pygame.display.set_mode((ANCHO_PANTALLA,ALTO_PANTALLA))
 clock = pygame.time.Clock()
-level = Level(Mapa,screen)
+level = Level(MAPA,screen)
 
 while True:
     for event in pygame.event.get():

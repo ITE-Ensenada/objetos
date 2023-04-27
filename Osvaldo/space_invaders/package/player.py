@@ -13,8 +13,9 @@ class Player(Esqueleto):
             game,
             X,
             Y,
-            self.create_sprites(),
             PLAYER_LIFE)
+
+        self.sprites = self.create_sprites() # Sprites del jugador
 
         self.current_sprite = self.sprites[0] # Sprite actual
 

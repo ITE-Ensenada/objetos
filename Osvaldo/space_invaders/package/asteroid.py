@@ -15,8 +15,9 @@ class Asteroid(Esqueleto):
             game,
             random.randint(0, ANCHO - 90),
             -138,
-            self.create_sprites(),
             ASTEROID_LIFE)
+
+        self.sprites = self.create_sprites() # Sprites del asteroide
 
         self.rect = self.collition_rect() # Rectangulo para deteccion de colisiones
 

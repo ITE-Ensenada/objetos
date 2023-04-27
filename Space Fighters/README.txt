@@ -28,3 +28,5 @@ M=Disparo principal
 *La barra de color verde es la vida de tu nave, cuando la barra este totalmente roja significa que tu nave ha sido destruida*
 
 *Para ejecutar el juego abrir el archivo space_fighters.py*
+
+*Para ejecutar el juego se ocupa instalar pygame y python*

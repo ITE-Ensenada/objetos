@@ -11,7 +11,7 @@ from pygame.locals import ( # Importar constantes de pygame
     K_w,
     K_s,
     QUIT)
-from package.settings import RESOLUTION, FLAGS, FPS # Importar variables de configuración
+from package.settings import FPS # Importar variables de configuración
 from package import ( # Importar clases del juego
     Player,
     AsteroidGenerator,
@@ -41,7 +41,7 @@ class Game(Screen):
         '''Actualizar juego'''
 
         self.screen.fill('black') # Limpiar pantalla
-        
+
         self.draw_background() # Dibujar fondo
 
         self.render_life.update() # Actualizar fondo
@@ -57,7 +57,7 @@ class Game(Screen):
         self.delta_time = self.clock.tick(FPS) # Actualizar tiempo
 
     def run(self):
-        '''Bucle principal del juego'''
+        '''Bucle principal delA juego'''
 
         while True: # Bucle principal
             self.events() # Actualizar eventos

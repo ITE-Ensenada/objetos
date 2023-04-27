@@ -5,3 +5,5 @@ Puedes recolectar billetes, monedas y tesoros, recolectalos todos!
 Instrucciones:
 Mediante el movimiento de mouse, mueve el cursor el cual está conectado a Hasbulla y arrástralo hacia los billetes, monedas y tesoros.
 Obtén todo antes de que el tiempo se termine.
+
+NOTA: Para poder ejecutar el juego, es necesario descargar python con la version mas nueva y debe instalar pygame.

@@ -23,4 +23,3 @@ El jugador puede controlar la nave espacial utilizando las siguientes teclas del
     A: mover la nave hacia la izquierda
     S: mover la nave hacia abajo
     D: mover la nave hacia la derecha
-    Barra espaciadora: disparar

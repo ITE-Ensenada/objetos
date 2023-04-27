@@ -12,10 +12,11 @@ from pygame.locals import ( # Importar constantes de pygame
     K_s,
     QUIT)
 from package.settings import RESOLUTION, FLAGS, FPS # Importar variables de configuración
-from package.asteroid_generator import AsteroidGenerator # Importar generador de asteroides
-from package.render_background import RenderBackground # Importar renderizador de fondo
-from package.player import Player # Importar jugador
-from package.collision import Collision # Importar colisiones
+from package import ( # Importar clases del juego
+    Player,
+    AsteroidGenerator,
+    RenderBackground,
+    Collision)
 
 class Game:
     '''Clase principal del juego'''

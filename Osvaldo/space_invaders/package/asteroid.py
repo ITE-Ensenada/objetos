@@ -4,7 +4,7 @@
 import random
 import pygame as pg
 from package.settings import ANCHO, ASTEROID_SPEED, ASTEROID_LIFE
-from package.subpackage.clase_base import Esqueleto
+from package.subpackage.esqueleto import Esqueleto
 
 class Asteroid(Esqueleto):
     ''' Clase que representa un asteroide'''

@@ -2,7 +2,7 @@
 
 import pygame as pg
 from package.settings import PLAYER_SPEED, PLAYER_LIFE, X, Y, ANCHO, ALTO
-from package.subpackage.clase_base import Esqueleto
+from package.subpackage.esqueleto import Esqueleto
 
 class Player(Esqueleto):
     '''Clase que representa al jugador'''

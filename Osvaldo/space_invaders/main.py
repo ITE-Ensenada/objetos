@@ -15,27 +15,24 @@ from package.settings import RESOLUTION, FLAGS, FPS # Importar variables de conf
 from package import ( # Importar clases del juego
     Player,
     AsteroidGenerator,
-    RenderBackground,
-    Collision)
+    RenderLife,
+    Collision,
+    Screen)
 
-class Game:
+class Game(Screen):
     '''Clase principal del juego'''
     def __init__(self):
         pygame.init() # Inicializar pygame
 
+        super().__init__() # Inicializar clase padre
+
         self.event = None # Variable para controlar eventos
-
-        self.screen = pygame.display.set_mode(RESOLUTION, FLAGS) # Crear ventana
-
-        self.clock = pygame.time.Clock() # Crear reloj
-
-        self.delta_time = 1 # Variable para controlar el tiempo
 
         self.player = Player(self) # Crear jugador
 
         self.asteroid_generator = AsteroidGenerator(self) # Crear generador de asteroides
 
-        self.render_background = RenderBackground(self) # Crear renderizador de fondo
+        self.render_life = RenderLife(self) # Crear renderizador de fondo
 
         self.collision = Collision(self) # Crear colisiones
 
@@ -44,8 +41,10 @@ class Game:
         '''Actualizar juego'''
 
         self.screen.fill('black') # Limpiar pantalla
+        
+        self.draw_background() # Dibujar fondo
 
-        self.render_background.update() # Actualizar fondo
+        self.render_life.update() # Actualizar fondo
 
         self.player.update() # Actualizar jugador
 

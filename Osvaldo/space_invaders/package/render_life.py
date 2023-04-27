@@ -4,18 +4,12 @@
 import pygame
 from package.settings import ALTO, ANCHO
 
-class RenderBackground():
+class RenderLife():
     '''Clase que se encarga de renderizar el fondo del juego'''
 
     def __init__(self, game):
 
         self.game = game # Instancia de la clase Game
-
-        # Fondo
-        self.background = pygame.image.load('Assets/Stars_background.jpg').convert_alpha()
-
-        # Scale del fondo
-        self.background = pygame.transform.scale(self.background, (ANCHO, ALTO))
 
         # Sprite de la vida del jugador
         self.player_life = self.create_sprites_player_life()
@@ -42,14 +36,8 @@ class RenderBackground():
         # Dibuja la vida del jugador
         self.game.screen.blit(self.player_life[self.game.player.life - 1], (0, 0))
 
-    def draw_background(self):
-        '''Dibujar fondo'''''
-
-        self.game.screen.blit(self.background, (0, 0))
-
 
     def update(self):
-        '''Actualizar renderizador de fondo'''
+        '''Metodo que se encarga de actualizar el fondo del juego'''
 
-        self.draw_background()
         self.draw_life_player()

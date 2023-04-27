@@ -3,22 +3,20 @@
 
 import random
 import pygame as pg
-from package.settings import ANCHO, ASTEROID_SPEED
+from package.settings import ANCHO, ASTEROID_SPEED, ASTEROID_LIFE
+from package.subpackage.clase_base import Esqueleto
 
-class Asteroid(pg.sprite.Sprite):
+class Asteroid(Esqueleto):
     ''' Clase que representa un asteroide'''
 
     def __init__(self, game):
 
-        super().__init__() #
-
-        self.game = game # Instancia de la clase Game
-
-        self.pos_x = random.randint(0, ANCHO - 90) # Posicion en x
-
-        self.pos_y = -138 # Posicion en y
-
-        self.sprite = self.create_sprites() # Sprite del asteroide
+        super().__init__( # Inicializar clase padre
+            game,
+            random.randint(0, ANCHO - 90),
+            -138,
+            self.create_sprites(),
+            ASTEROID_LIFE)
 
         self.rect = self.collition_rect() # Rectangulo para deteccion de colisiones
 
@@ -26,10 +24,10 @@ class Asteroid(pg.sprite.Sprite):
     def collition_rect(self):
         '''Metodo que se encarga de crear el rectangulo de colisiones'''
 
-        rect = self.sprite.get_rect() # Rectangulo para deteccion de colisiones
+        rect = self.sprites.get_rect() # Rectangulo para deteccion de colisiones
 
-        rect.x = self.pos_x # Actualizar la posicion en x del rectangulo de colisiones
-        rect.y = self.pos_y # Actualizar la posicion en y del rectangulo de colisiones
+        rect.x = self.pos[0] # Actualizar la posicion en x del rectangulo de colisiones
+        rect.y = self.pos[1] # Actualizar la posicion en y del rectangulo de colisiones
 
         return rect
 
@@ -46,7 +44,7 @@ class Asteroid(pg.sprite.Sprite):
     def movement(self):
         ''' Metodo que se encarga de mover el asteroide'''
 
-        self.pos_y += ASTEROID_SPEED * self.game.delta_time # Mover el asteroide en y
+        self._pos_y += ASTEROID_SPEED * self.game.delta_time # Mover el asteroide en y
 
         self.rect = self.collition_rect() # Actualizar el rectangulo de colisiones
 
@@ -54,7 +52,7 @@ class Asteroid(pg.sprite.Sprite):
     def draw(self):
         '''Dibujar el asteroide'''
 
-        self.game.screen.blit(self.sprite, (self.pos_x, self.pos_y)) # Dibujar el asteroide
+        self.game.screen.blit(self.sprites, (self.pos[0], self.pos[1])) # Dibujar el asteroide
 
         pg.draw.rect(self.game.screen, 'red', self.rect, 2) # Dibujar el rectangulo de colisiones
 

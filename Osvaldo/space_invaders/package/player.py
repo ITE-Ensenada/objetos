@@ -2,41 +2,33 @@
 
 import pygame as pg
 from package.settings import PLAYER_SPEED, PLAYER_LIFE, X, Y, ANCHO, ALTO
+from package.subpackage.clase_base import Esqueleto
 
-class Player(pg.sprite.Sprite):
+class Player(Esqueleto):
     '''Clase que representa al jugador'''
 
     def __init__(self, game):
 
-        super().__init__() # Inicializar clase padre
-
-        self.game = game # Instancia de la clase Game
-
-        self.pos_x, self.pos_y = X, Y # Posicion del jugador
-
-        self.sprites = self.create_sprites() # Sprites del jugador
+        super().__init__(
+            game,
+            X,
+            Y,
+            self.create_sprites(),
+            PLAYER_LIFE)
 
         self.current_sprite = self.sprites[0] # Sprite actual
 
         self.rect = self.collition_rect() # Rectangulo para deteccion de colisiones
-
-        self._life = PLAYER_LIFE # Vidas del jugador
 
     def collition_rect(self):
         '''Metodo que se encarga de crear el rectangulo de colisiones'''
 
         rect = self.current_sprite.get_rect() # Rectangulo para deteccion de colisiones
 
-        rect.x = self.pos_x # Actualizar la posicion en x del rectangulo de colisiones
-        rect.y = self.pos_y # Actualizar la posicion en y del rectangulo de colisiones
+        rect.x = self.pos[0] # Actualizar la posicion en x del rectangulo de colisiones
+        rect.y = self.pos[1] # Actualizar la posicion en y del rectangulo de colisiones
 
         return rect
-
-
-    def lost_life(self):
-        '''Metodo que se encarga de restar una vida al jugador'''
-
-        self._life -= 1 # Restar una vida al jugador
 
 
     def create_sprites(self):
@@ -90,21 +82,22 @@ class Player(pg.sprite.Sprite):
     def check_walls(self, increment_x, increment_y):
         '''Metodo que se encarga de verificar colisiones con las paredes'''
 
-        new_x = self.pos_x + increment_x # Nueva posicion en x
+        new_position = [ # Nueva posicion del jugador
+            self.pos[0] + increment_x,
+            self.pos[1] + increment_y
+            ]
 
-        new_y = self.pos_y + increment_y # Nueva posicion en y
+        if 0 <= new_position[0] <= ANCHO - 48:
 
-        if -5 < new_x < ANCHO - 40:
+            self.rect.x = new_position[0] # Actualizar posicion en x del rectangulo de colisiones
 
-            self.rect.x = new_x # Actualizar posicion en x del rectangulo de colisiones
+            self._pos_x = new_position[0] # Actualizar posicion en x
 
-            self.pos_x = new_x # Actualizar posicion en x
+        if 0 <= new_position[1] <= ALTO - 48:
 
-        if 0 < new_y < ALTO - 40:
+            self.rect.y = new_position[1] # Actualizar posicion en y del rectangulo de colisiones
 
-            self.rect.y = new_y # Actualizar posicion en y del rectangulo de colisiones
-
-            self.pos_y = new_y # Actualizar posicion en y
+            self._pos_y = new_position[1] # Actualizar posicion en y
 
 
     def update(self):
@@ -118,7 +111,7 @@ class Player(pg.sprite.Sprite):
     def draw_player(self):
         ''' Metodo que se encarga de dibujar al jugador'''
 
-        self.game.screen.blit(self.current_sprite, (self.pos_x, self.pos_y)) # Dibujar jugador
+        self.game.screen.blit(self.current_sprite, (self.pos)) # Dibujar jugador
 
         self.rect = self.collition_rect() # Actualizar rectangulo de colisiones
 
@@ -136,10 +129,3 @@ class Player(pg.sprite.Sprite):
         '''Metodo que se encarga de resetear el sprite del jugador'''
 
         self.current_sprite = self.sprites[0]
-
-
-    @property
-    def life(self):
-        '''getter de la vida del jugador'''
-
-        return self._life

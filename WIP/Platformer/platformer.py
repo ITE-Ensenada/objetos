@@ -6,7 +6,10 @@ pygame.init()
 fps = 10
 fpsClock = pygame.time.Clock()
 
-screen = pygame.display.set_mode((1000,600))
+w_height   = 1000
+w_width    = 600
+
+screen = pygame.display.set_mode((w_height,w_width))
 
 pygame.display.set_caption('Test')
 

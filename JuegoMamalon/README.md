@@ -20,7 +20,7 @@ Lo dividi en 5 archivos distintos para tener un codigo modular
     Contiene la clase del jugador la cual tiene los atributos como su forma, el movimiento del jugador como su velocidad, gravedad y salto. 
     Las teclas para poder moverlo A y D para moverse a los lados y W para saltar.
 
---Nivel--
+--Nivel.py--
 
     Este es la cabeza del juego.
     Donde se termina de formar el mapa, se aplican las colisiones del entorno con el jugador y el movimiento de la camara dependiendo de la cercania delo jugador con los bordes.

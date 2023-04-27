@@ -1,0 +1,7 @@
+Mécanica del juego:
+Hasbulla ha quedado en quiebra, recolecta todo el dinero que puedas antes de que el tiempo se agote.
+Puedes recolectar billetes, monedas y tesoros, recolectalos todos!
+
+Instrucciones:
+Mediante el movimiento de mouse, mueve el cursor el cual está conectado a Hasbulla y arrástralo hacia los billetes, monedas y tesoros.
+Obtén todo antes de que el tiempo se termine.

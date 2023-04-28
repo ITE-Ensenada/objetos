@@ -1,5 +1,4 @@
 class platform:
-    def __init__(self, height, width, colour):
+    def __init__(self, height, width):
         self.height = height
         self.width  = width
-        self.colour = colour 

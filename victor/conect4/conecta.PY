@@ -8,7 +8,7 @@ import pygame
 
 N_FILAS = 6
 N_COLUMNAS = 7
-BLUE, BLACK, YELLOW, GREEN= (0,0,255), (0,0,0), (255,255,0), (0,255,0)
+BLUE, BLACK, YELLOW, GREEN= (0,0,255), (0,0,0), (255,255,0), (255,0,0)
 
 def crear_tablero():
     """aqui creamos el tablero con ayuda de libreria numpy"""
@@ -62,7 +62,6 @@ def movida_ganadora(tablero, pieza):
                 and tablero[filas-2][columna+2] == pieza
                 and tablero[filas-3][columna+3] == pieza):
                 return True
-            
 def dibujar_tablero(tablerito):
     """dibuja el tablero""" 
     for columna  in range(N_COLUMNAS):
@@ -80,7 +79,6 @@ def dibujar_tablero(tablerito):
             elif tablerito [filas][columna] == 2:
                 pygame.draw.circle(screen, GREEN, (int(columna*squaresize+(squaresize/2)),
                 int(alto-(filas*squaresize+(squaresize/2)))), RADIO)
-    
     pygame.display.update()
 
 
@@ -89,6 +87,8 @@ imprimir_tablero(tablerito)
 JUEGOTERMINADO, turn = False, 0
 
 pygame.init()
+pygame.font.init()
+mi_fuente = pygame.font.SysFont("courier", 66, bold=1)
 
 squaresize = 90
 RADIO = int((squaresize/2) - 5)
@@ -102,7 +102,14 @@ while not JUEGOTERMINADO:
     for event in pygame.event.get():
         if event.type== pygame.QUIT:
             sys.exit()
-
+        if event.type == pygame.MOUSEMOTION:
+            pygame.draw.rect(screen, BLACK, (0,0, ancho, squaresize))
+            pos_x = event.pos[0]
+            if turn == 0:
+                pygame.draw.circle(screen, YELLOW, (pos_x, int(squaresize/2)), RADIO)
+            elif turn == 1:
+                pygame.draw.circle(screen, GREEN, (pos_x, int(squaresize/2)), RADIO)
+            pygame.display.update()
         if event.type == pygame.MOUSEBUTTONDOWN:
             pos_x = event.pos[0]
             # # solicitar el movimiento del jugador 1
@@ -113,7 +120,8 @@ while not JUEGOTERMINADO:
                     fila = sig_f_vacia(tablerito, colu)
                     soltar_pieza(tablerito, fila, colu, 1)
                     if movida_ganadora(tablerito, 1):
-                        print ("Ganador jugador 1 felicidades!!")
+                        label = mi_fuente.render("Jugador 1 ganó", 0, BLUE)
+                        screen.blit(label, (40,20))
                         JUEGOTERMINADO = True
             else:
                 pos_x = event.pos[0]
@@ -122,10 +130,14 @@ while not JUEGOTERMINADO:
                     fila = sig_f_vacia(tablerito, colu)
                     soltar_pieza(tablerito, fila, colu, 2)
                     if movida_ganadora(tablerito, 2):
-                        print ("Ganador jugador 2 felicidades!!")
+                        label = mi_fuente.render("Jugador 2 ganó", 0, BLUE)
+                        screen.blit(label, (40,20))
                         JUEGOTERMINADO = True
 
             imprimir_tablero(tablerito)
             dibujar_tablero(tablerito)
+            if JUEGOTERMINADO:
+                pygame.time.wait(3000)
+
             turn += 1
             turn = turn % 2

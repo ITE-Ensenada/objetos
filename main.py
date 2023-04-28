@@ -1,65 +1,120 @@
-import pygame, sys
+'''
+    El modulo main:
+
+    Aqui se importan los demas modulos
+    Se crean los objetos
+    Valida el funcionamiento del juego
+    Valida al usuario
+'''
+
+# pylint: disable=C0103
+# pylint: disable = E1101
+#pylint: disable=W0401
+#pylint: disable=W0631
+#pylint: disable=W0614
+
+# Librerias-Modulos:
+
+import sys
+import functools
+from time import sleep
+import pygame
 from pygame.locals import *
 from Personaje import *
-from Weapon import *
+from Weapon import Pistol
+from Suit import*
 
-# ***************************************
+name = input("Favor de escribir tu nombre: ")
+age = input("Favor de escribir tu edad: ")
+intAge = int(age)
 
-			# Objects
+def decorador_player(f):
+    '''
+    El siguiente decorador nos ayudara
+    a tomar en cuenta los datos proporcionados
+    anteriormente: nombre y edad
+    '''
+    @functools.wraps(f)
+    def function_f(args, kwargs):
+        print("\nHola, estamos validando la informacion proporcionada: ")
+        sleep(3)
+        f(args, kwargs)
+    return function_f
 
-p1 = Character("John Wick", "50", "1", "5", "2", "10", "7", "1.80", "Blanco")
-p1.showCharacter()
-glock34 = Pistol("\nPistola", "27", "Unico", "120m", "Fibra de carbono")
-glock34.ShowWeapon()
-p1.checkHealth()
+@decorador_player
+def func_validacion(name, intAge):
 
-# ***************************************
+    '''
+    Ya que el usuario/jugador haya ingresado sus datos
+    los validamos por medio del siguiente algoritmo:
+    '''
+    print("\nNombre: ", name, "\nEdad: ", intAge)
+    if intAge < 18:
+        print("\nNo puedes jugar")
+        sys.exit()
+    else:
+        print("\nBienvenido, disfruta del juego")
+
+func_validacion(name, intAge)
 
 pygame.init()
 
-FPS = 60  # frames per second setting
+# Objetos creados:
 
-fpsClock = pygame.time.Clock()
+# Jugador(s)
+
+player1 = Player(" ", " ")
+# el objeto player toma la informacion ingresada en la linea 23
+player1.name = name
+print("Jugador uno: ", player1.name)
+
+# Personaje(s)
+
+p1 = Character("John Wick", "50", "1", "5", "2", "10", "7", "1.80", "Blanco")
+p1.show()
+
+# Arma(s)
+glock34 = Pistol("\nPistola", "27", "Unico", "120m", "Fibra de carbono")
+
+
+# Traje(s)
+suit1 = Suit("Rojo", "Kevlar", "Corte Ingles", True, 2, "Negra")
+suit2 = Suit("Gris", "Kevlar", "Corte Frances", True, 2, "Negra")
+suit1.show_suit()
+# True = 1, False = 0 (Estos valores se imprimen)
+
+fps = 60  # frames per second setting
+
+fps_clock = pygame.time.Clock()
 
 # Ajustes de la ventana
 
 size = (1023, 616)
-SCREEN = pygame.display.set_mode(size)
+screen = pygame.display.set_mode(size)
 
 pygame.mouse.set_visible(0)
 pygame.display.set_caption("Juego")
 
-WHITE = (179, 113, 209)
 fondo = pygame.image.load("City.png").convert()
 
-# ****** Personaje *******
+personaje_img = pygame.image.load("JohnR.png")
+personaje_img = pygame.transform.scale(personaje_img, (200, 150))
 
-# Movement
+white = (255, 255, 255)
 
-
-personajeImg = pygame.image.load("JohnR.png")
-personajeImg = pygame.transform.scale(personajeImg, (200, 150))
-
-
-personajeX = 1
-
-personajeY = 400
-
-# ***********************
-
-# Obstaculo
-
+personaje_x = 1
+personaje_y = 400
 speed = 0
 
 # Codigo para las direcciones
-while True: 
-    
+
+while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()
 
-     #Evento teclado
-    if personajeX <= 858 and personajeY == 400:
+     # Evento teclado
+    if personaje_x <= 858 and personaje_y == 400:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RIGHT:
                 speed = 5
@@ -70,7 +125,6 @@ while True:
                 speed = 0
             if event.key == pygame.K_RIGHT:
                 speed = 0
-
 
     else:
         if event.type == pygame.KEYDOWN:
@@ -84,7 +138,7 @@ while True:
                 speed = 0
             if event.key == pygame.K_RIGHT:
                 speed = 0
-    if personajeY <= 0:
+    if personaje_y <= 0:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RIGHT:
                 speed = 5
@@ -97,10 +151,10 @@ while True:
             if event.key == pygame.K_RIGHT:
                 speed = 0
 
-    SCREEN.blit(fondo, [0, 0])
-    SCREEN.blit(personajeImg, (personajeX, personajeY))
-    personajeX += speed
+    screen.blit(fondo, [0, 0])
+    screen.blit(personaje_img, (personaje_x, personaje_y))
+    personaje_x += speed
 
-    pygame.draw.rect(SCREEN, WHITE, (personajeY, personajeY, 0, 0))
+    pygame.draw.rect(screen, white, (personaje_y, personaje_y, 0, 0))
     pygame.display.flip()
-    fpsClock.tick(60)
+    fps_clock.tick(60)

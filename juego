@@ -1,15 +1,16 @@
+"""Modulo principal el cual muestra y ejecuta el juegos"""
 #pylint: disable = C0103
 #pylint: disable = E1101
-#pylint: disable = W0401
-#pylint: disable = W0614
 
 import sys
 import pygame
-from pygame.locals import *
-from monito import *
+import pygame.locals
+from monito import Personaje
+from disparo import Arma
 
 # datos jugador
 def pregunta(func):
+    """Pregunta nombre y edad del jugador"""
     def nom_edad():
         nombre = input("Ingresa tu nombre: ")
         edad = int(input("Ingresa tu edad: "))
@@ -18,22 +19,27 @@ def pregunta(func):
     return nom_edad
 
 @pregunta
-def Verificador(nombre, edad):
+def verificador(nombre, edad):
+    """Verifica si se es mayor de edad"""  
     if edad >= 18:
         print(f"Puedes jugar {nombre}!, eres mayor")
     else:
         print(f"No puedes jugar {nombre}!, ya que tu edad es: {edad}")
         exit()
 
-Verificador()
+verificador()
 
 # Importa las clases
-jugador = Personaje("Salvador", "1", "10", "5", "100")
-print(jugador)
+Jugador = Personaje("Salvador", "1", "10", "5", "100")
+Personaje.presentacion(Jugador)
+
+disparo = Arma("10", "5")
+Arma.accion(disparo)
 
 pygame.init()
 
-FPS = 60  # frames per second setting
+#Cuadros por segundo
+FPS = 60
 
 fpsClock = pygame.time.Clock()
 
@@ -99,10 +105,11 @@ while True:
                 velocidad = 0
             if event.key == pygame.K_DOWN:
                 velocidad = 0
-    
+
     SCREEN.blit(fondo, [0, 0])
     SCREEN.blit(personajeImg, (personajeX, personajeY))
     personajeY += velocidad
     pygame.draw.rect(SCREEN, WHITE, (personajeY, personajeY, 0, 0))
     pygame.display.flip()
     fpsClock.tick(60)
+    

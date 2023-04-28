@@ -1,13 +1,13 @@
 import pygame, random
-
 class Personaje:
+	""" Caractersiticas """
 	especie = "Puca"
 	def __init__(self,name,age,vida,nivel,caminar):
+		"""Perosanje"""
 		self.nombre = name
 		self.edad = age
 		self.vida = 10
 		self.nivel = 0
-		self.caminar = 3
 
 class Personaje:
 	especie = "Puca"
@@ -17,6 +17,7 @@ class Personaje:
 		self.caminar = 3
 
 class Puca(pygame.sprite.Sprite):
+    """Personaje imagen """
 	def __init__(self):
 		super().__init__()
 		self.image = pygame.image.load('IMAGENES/puca.png').convert_alpha()

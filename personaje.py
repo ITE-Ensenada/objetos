@@ -22,7 +22,7 @@ fondo = pygame.image.load("fondo.png").convert()
 personajeImg = pygame.image.load("puca.png")
 personajeImg = pygame.transform.scale(personajeImg, (235, 200))
 
-personajeX = 10
+personajeX = 20
 
 personajeY = 200
 

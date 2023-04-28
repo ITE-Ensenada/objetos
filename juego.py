@@ -9,7 +9,7 @@ class Personaje:
 		self.fuerza = 10
 		self.nivel = 0
 		self.caminar = 3
-
+		
 	def __str__(self):
 		return f"{self.nombre} Hola {self.especie}"
 
@@ -22,8 +22,6 @@ class Personaje:
 if __name__ == '__main__':  
 	nombre = input('Puca dice que ingreses tu nombre: ')
 	edad = input('A Puca le interesa tu edad: ')
-	jugador1 = Personaje(nombre, edad)
-	print(jugador1)
 	commando = ""
 	while (commando!="exit"):
 		commando = input('-->')

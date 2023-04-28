@@ -1,7 +1,7 @@
 # pylint: disable=C0103
 # pylint: disable=E1101
 # pylint: disable=E0602
-''' Hacer mensajito XD'''
+'''Mi juego es de Dragon ball date:2023'''
 import sys
 import pygame
 from pygame.locals import *

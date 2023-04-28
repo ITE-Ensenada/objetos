@@ -1,74 +1,45 @@
+# pylint: disable=C0103
 
-# Clase Padre
+'''
+    El modulo Suit:
+
+    26/04/2023
+
+    En este modulo se agregaran
+    una gran variedad de clases
+    derivadas de la clase principal(padre)
+    Clothes
+'''
+
 class Clothes:
-	def __init__(self, color, texture, style):
-		self.color = color
-		self.texture = texture
-		self.style = style
-
-# ********* METHODS **************
-
-
-
-
-# ********************************		
-
+    '''
+    Esta es la clase principal (padre):
+    contiene todos los atributos GENERALES
+    que poseen las prendas de vestir como
+    color, textura o estilo
+    '''
+    def __init__(self, color, texture, style):
+        self.color = color
+        self.texture = texture
+        self.style = style
 class Suit(Clothes):
-
-	def __init__(self, color, texture, style, ab, botones, corbata): 
-		super().__init__(color, texture, style)
-
-		self.ab = ab # ab = anti-balas
-		self.botones = botones
-		self.corbata = corbata
-
-# ********* METHODS **************
-
-	def MostrarSuit(self):
-		print("\nColor de traje:", self.color, "\nTextura: ",self.texture, "\nEstilo del traje: ",self.style, "\nAnti-Balas:", + self.ab, 
+    '''
+    Siendo una clase hija, hereda los tres atributos
+    posteriores, pero, tratandose de un traje, este
+    incluye otros tres atributos que no cualquiera
+    prenda de vestir posee.
+    '''
+    def __init__(self, color, texture, style, ab, botones, corbata):
+        super().__init__(color,texture,style)
+        self.anti_balas = ab # ab = anti balas
+        self.botones = botones
+        self.corbata = corbata
+    def show_suit(self):
+        '''
+    		Otro metodo simple, solamente para
+            mostrarle al jugador los trajes que
+            estan disponibles
+    	'''
+        print("\nColor de traje:", self.color, "\nTextura: ",self.texture,
+            "\nEstilo del traje: ",self.style, "\nAnti-Balas:", + self.anti_balas,
 			"\nNumero de botones:", + self.botones, "\nCorbata:", self.corbata)
-
-
-
-
-
-
-# ********************************	
-
-traje1 = Suit("Rojo", "Kevlar", "Corte Ingles", True, 2, "Negra") # True = 1, False = 0 (Estos valores se imprimen)
-traje1.MostrarSuit() 
-
-
-class Shoes(Clothes):
-	def __init__(self, color, texture, style):
-		super().__init__(color, texture, style)
-
-# ********* METHODS **************
-
-
-
-
-
-
-
-# ********************************	
-
-class GLoves(Clothes):
-	def __init__(self, color, texture, style):
-		super().__init__(color, texture, style)
-
- 
-# ********* METHODS **************
-
-
-
-
-
-
-
-# ********************************	
-
-
-class Accesories(Clothes):
-	def __init__(self, color, texture, style):
-		super().__init__(color, texture, style)

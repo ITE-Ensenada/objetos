@@ -1,5 +1,5 @@
 import pygame, random
-
+#Tabs arreglados
 ANCHO = 650
 ALTO = 649
 

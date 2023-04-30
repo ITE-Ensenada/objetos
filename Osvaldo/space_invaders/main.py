@@ -102,4 +102,3 @@ class Game(Screen):
 if __name__ == '__main__':
     game = Game() # Crear juego
     game.run() # Correr juego
-    

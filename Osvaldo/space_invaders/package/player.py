@@ -3,6 +3,7 @@
 import pygame as pg
 from package.settings import PLAYER_SPEED, PLAYER_LIFE, X, Y, ANCHO, ALTO
 from package.subpackage.esqueleto import Esqueleto
+from package.bullet import Bullet
 
 class Player(Esqueleto):
     '''Clase que representa al jugador'''
@@ -20,6 +21,14 @@ class Player(Esqueleto):
         self.current_sprite = self.sprites[0] # Sprite actual
 
         self.rect = self.collition_rect() # Rectangulo para deteccion de colisiones
+
+        self.bullet = [] # Lista de balas
+
+
+    def shoot(self):
+
+        self.bullet = Bullet(self.game) # Crear una nueva bala
+
 
     def collition_rect(self):
         '''Metodo que se encarga de crear el rectangulo de colisiones'''

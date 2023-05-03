@@ -15,15 +15,15 @@ w_height   = 600    # Y mark
 screen = pygame.display.set_mode((w_width,w_height), 0, 32)
 pygame.display.set_caption('Test')
 
-floorDeco   = pygame.image.load('WIP\Platformer\Assets\Platforms\FloorOver.png')
+floorDeco   = pygame.image.load('WIP/Platformer/Assets/Platforms/floorOver.png')
 floorDecoX  = 0
 floorDecoY  = 0
 
-mc  = pygame.image.load('WIP\Platformer\Assets\Player\StandingHitbox.png')
+mc  = pygame.image.load('WIP/Platformer/Assets/Player/Idle/Idle 07.png')
 mcX = 50
-mcY = 519
+mcY = 514
 
-bg  = pygame.image.load('WIP\Platformer\Assets\Background\BG1.png')
+bg  = pygame.image.load('WIP/Platformer/Assets/Background/BG1.png')
 bgX = 0
 bgY = 0
 
@@ -64,7 +64,7 @@ while True:
                         overLimits = True
                 elif event.key == pygame.K_DOWN:
                     mcY += 10
-                    if mcY >= 529:
+                    if mcY >= 524:
                         print("No puedes salir del límite.")
                         mcY -= 10
                         overLimits = True

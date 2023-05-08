@@ -1,7 +1,7 @@
 # pylint: disable=C0103
 # pylint: disable=E1101
 # pylint: disable=E0602
-'''Mi juego es de Dragon ball date:2023'''
+''' Hacer mensajito XD'''
 import sys
 import pygame
 from pygame.locals import *
@@ -30,7 +30,7 @@ fondo = pygame.image.load('imagenes/fondo.jpg')
 fondo = pygame.transform.scale(fondo, (1200, 800))
 kamelista = pygame.sprite.Group()
 deslista = pygame.sprite.Group()
-ponch = False
+ponch = False 
 
 while True: # the main game loop
 

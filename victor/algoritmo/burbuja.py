@@ -32,18 +32,7 @@ O(log n ^ 2 )
     [n][n][n]
 
 """
-def verificador(arreglo):
-    """verificador 1"""
-    ncant = len(arreglo)
-    for i in range(ncant-1):
-        if arreglo[i] > arreglo[i+1]:
-            burbuja(arreglo)
-            break
-        else:
-            print("no se necesito burbuja estaba en orden", arreglo[i])
-
-#def intercambia(index_a, index_b, arreglo):
-
+elementos = [0,1,2,3,4,5,6,7,8,9]
 def burbuja(arreglo):
     """el mero mero de la burbuja para acomodar el desorden este si esta a la orden pal desorden"""
     ncant = len(arreglo)
@@ -56,22 +45,23 @@ def burbuja(arreglo):
                 arreglo[i] = arreglo[j]
                 arreglo[j] = temp
                 #arreglo[i], arreglo[j] = arreglo[j], arreglo[i]
-elementos = [0,1,2,3,4,5,6,7,8,9]
+
+def verificador1(arreglo):
+    """verificador 1"""
+    print(arreglo)
+    ncant = len(arreglo)
+    for i in range(ncant-1):
+        if arreglo[i] > arreglo[i+1]:
+            print("Ejecuta el metodo de la burbuja")
+            burbuja(arreglo)
+            break
+        else:
+            print("no se necesito burbuja estaba en orden", arreglo[i])
+
+    print(arreglo)
+#elementos = [0,1,2,3,4,5,6,7,8,9]
 #elementos = [3,2,1,6,0,8,-3]
 
-"""
-i=0 - > n-1
-j = i + 1 - > n
-[4,2,1,0]
-2,4,1,0
-1,4,2,0
-0,4,2,1
-i = 1
-0,2,4,1
-0,1,4,2
-i=2
-0,1,2,4
-"""
-print("Numero a ordenar => ", elementos)
+# print("Numero a ordenar => ", elementos)
 burbuja(elementos)
-print("Ya ordenados => ",elementos)
+# print("Ya ordenados => ",elementos)

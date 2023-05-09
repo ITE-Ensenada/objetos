@@ -39,7 +39,8 @@ class AsteroidGenerator():
 
         # Eliminar asteroides que hayan salido completamente por la parte de abajo de la pantalla
         for asteroid in self.asteroid_list:
-            if asteroid.rect.top > ALTO:
+            if (asteroid.rect.top > ALTO 
+                or asteroid.life <= 0):
                 asteroid.kill() # Eliminar asteroide
 
         self.asteroid_list.update() # Actualizar asteroides

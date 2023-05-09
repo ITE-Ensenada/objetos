@@ -22,12 +22,23 @@ class Player(Esqueleto):
 
         self.rect = self.collition_rect() # Rectangulo para deteccion de colisiones
 
-        self.bullet = [] # Lista de balas
+        self.bullet_list = pg.sprite.Group() # Grupo de balas
 
 
-    def shoot(self):
+    def shot(self):
+        '''Metodo que se encarga de disparar'''
 
-        self.bullet = Bullet(self.game) # Crear una nueva bala
+        bullet = Bullet(self.game) # Crear una bala
+
+        self.bullet_list.add(bullet) # Agregar una bala al grupo de balas
+
+        for index, bullet in enumerate(self.bullet_list):
+
+            print(index, bullet)
+            '''if bullet.rect.bottom <= 0:
+                self.bullets.kill() # Eliminar la bala'''
+
+        self.bullet_list.update() # Actualizar balas
 
 
     def collition_rect(self):

@@ -9,6 +9,17 @@ class Collision:
     def __init__(self, game):
         self.game = game
 
+
+    def bullet_collision(self):
+        '''Metodo que se encarga de manejar la colision entre las balas'''
+
+        group_bullets = self.game.player.bullets # Lista de balas
+        group_asteroid = self.game.asteroid_generator.asteroid_list # Lista de asteroides
+
+        if pg.sprite.spritecollide(group_bullets, group_asteroid, True):
+
+            self.game.asteroid_generator.asteroid_list.lost_life() # Perder vida
+
     def asteroid_player_collision(self):
         '''Metodo que se encarga de manejar la colision entre el jugador y los asteroides'''
 

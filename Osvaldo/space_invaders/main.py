@@ -4,6 +4,7 @@ import sys # Importar librería para salir del programa
 import pygame # Importar librería pygame
 from pygame.locals import ( # Importar constantes de pygame
     K_ESCAPE,
+    K_SPACE,
     KEYDOWN,
     KEYUP,
     K_a,
@@ -40,7 +41,7 @@ class Game(Screen):
     def update(self):
         '''Actualizar juego'''
 
-        self.screen.fill('black') # Limpiar pantalla
+        # self.screen.fill('black') # Limpiar pantalla
 
         self.draw_background() # Dibujar fondo
 
@@ -69,6 +70,8 @@ class Game(Screen):
         for self.event in pygame.event.get(): # Recorrer todos los eventos
             self.game_over() # Actualizar eventos de salida
             self.reset_player_sprite() # Resetear sprite del jugador
+            self.player_shot() # Actualizar eventos de disparo
+
 
     def close_game(self):
         '''Cerrar juego'''
@@ -79,7 +82,7 @@ class Game(Screen):
 
     def game_over(self):
         '''Actualizar eventos de salida'''
-        if self.player.life == 0: # Si el jugador se queda sin vida
+        if self.player.life <= 0: # Si el jugador se queda sin vida
             self.close_game() # Cerrar juego
 
         if (self.event.type == QUIT
@@ -97,6 +100,13 @@ class Game(Screen):
             self.player.reset_sprite() # Resetear sprite del jugador
 
 
+    def player_shot(self):
+        '''Actualizar eventos de disparo'''
+
+        if (self.event.type == KEYDOWN
+            and self.event.key == K_SPACE):
+
+            self.player.shot() # Disparar
 
 
 if __name__ == '__main__':

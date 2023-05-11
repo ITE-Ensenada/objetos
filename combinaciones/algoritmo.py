@@ -68,6 +68,7 @@ for i in range(tamaño):
     lista[i] = int(lista[i])
 print("introduce un numero mayor a 0, y menor o igual que",tamaño)
 eleccion=input()
+eleccion=int(eleccion)
 lista2=[]
 for i in range(eleccion):
     lista2.append("a")

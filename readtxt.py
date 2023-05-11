@@ -1,0 +1,59 @@
+def arreglo():
+    global arreglo
+    with open('numeros.txt','r') as f:
+        contenido = f.read().split(',')
+        #print('contenido: ', contenido)
+        arreglo=[int(x) for x in contenido]
+        print('arreglo resultante: ', arreglo)
+        #n = len(arreglo)
+        #print(n)
+
+#contar los elementos de arreglo 
+def contar_arreglo():
+    global n 
+    n = len(arreglo)
+    #print(n)
+def factorial_n():
+    global factorial_n
+    factorial_n = n 
+    for i in range(1,n):
+        factorial_n *= i
+    #print(factorial_n) #factorial de n 
+def elementos(): # elementos sera la cantidad de datos que trandra cada combinacion
+    global r 
+    r = int(input('Ingresa la cantidad de elementos por combinacion: '))
+    global factorial_r
+    factorial_r = r 
+    for i in range(1,r):
+        factorial_r *= i
+    #print(factorial_r) #factorial de r
+def factorial_m():
+    global factorial_m
+    global m 
+    m = n - r
+    factorial_m = m 
+    for i in range(1,m): 
+        factorial_m *= i
+    #print(factorial_m) #factorial de m
+def combinaciones():
+    com = (factorial_n/ (factorial_m * factorial_r))
+    print('total de combinaciones: ', com)
+def permutaciones():
+    per = factorial_n/factorial_m
+    print('total de permutaciones: ',per)
+
+
+#def per_repeticiones(arreglo):
+    #per_rep=
+
+archivo = input("nombre del archivo: ")
+arreglo()
+contar_arreglo()
+factorial_n()
+elementos()
+factorial_m()
+combinaciones()
+permutaciones()
+
+
+

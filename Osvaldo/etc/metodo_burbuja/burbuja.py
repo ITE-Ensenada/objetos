@@ -86,7 +86,9 @@ def add_int_number1(arreglo, numero):
 
                 break
 
-    print(arreglo_nuevo)
+    return arreglo_nuevo
+
+
 
 def add_int_number2(arreglo, numero):
     '''Agrega un numero al arreglo'''
@@ -130,10 +132,30 @@ def add_int_number2(arreglo, numero):
                 arreglo_nuevo[index + 1] = numero
                 verificador = True
                 print(verificador)
+    
+    return arreglo_nuevo
 
 
 
-    print(arreglo_nuevo)
+def add_int_number3(arreglo, numero):
+    arreglo_nuevo = [None] * (len(arreglo) + 1)
+    inserted = False
+    index_nuevo = 0
+
+    for num in arreglo:
+        if not inserted and num > numero:
+            arreglo_nuevo[index_nuevo] = numero
+            inserted = True
+            index_nuevo += 1
+        arreglo_nuevo[index_nuevo] = num
+        index_nuevo += 1
+
+    if not inserted:
+        arreglo_nuevo[index_nuevo] = numero
+
+    return arreglo_nuevo
+
+
 
 
 def generar_numeros(cantidad):
@@ -142,24 +164,7 @@ def generar_numeros(cantidad):
     arreglo = []
 
     for contador in range(cantidad):
-        arreglo.append(random.randint(0,12))
+        arreglo.append(random.randint(0,1000000))
 
     return arreglo
 
-
-
-if __name__ == '__main__':
-
-    #cantidad = random.randint(0,12)
-
-    #arreglo = generar_numeros( cantidad )
-
-    arreglo = [0,2,3,1,2,1,4]
-
-    verificador0(arreglo)
-
-    #verificador1(arreglo)
-    
-    #add_int_number1(arreglo, 4)
-    
-    #add_int_number2(arreglo, 4)

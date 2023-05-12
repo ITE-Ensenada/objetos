@@ -28,12 +28,12 @@ elif seleccion == 4:
     print("Arreglo original: ")
     print(arreglo)
     localizador = int(input("Qué número desea ubicar? "))
-if localizador in arreglo:
-    for i, posicion in enumerate(arreglo):
-        if posicion == localizador:
-            posiciones.append(i)
-    print("Número:", localizador, "se ubica en las siguientes posiciones: ")
-    for posicion in posiciones:
-        print(posicion)
-else:
-    print("El número no se encuentra en el arreglo")
+    if localizador in arreglo:
+        for i, posicion in enumerate(arreglo):
+            if posicion == localizador:
+                posiciones.append(i)
+        print("Número:", localizador, "se ubica en las siguientes posiciones:")
+        for posicion in posiciones:
+            print(posicion)
+    else:
+        print("El número no se encuentra en el arreglo")

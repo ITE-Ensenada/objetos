@@ -1,7 +1,7 @@
 "Programa que busca, ordena y borra posiciones en un arreglo"
 arreglo = [1,3,3,4,5,6,7,8]
 seleccion = int(input("Que es lo que desea hacer? "))
-if seleccion > 5:
+if seleccion > 4:
     print("Ingrese un numero valido")
 else:
     if seleccion == 1:

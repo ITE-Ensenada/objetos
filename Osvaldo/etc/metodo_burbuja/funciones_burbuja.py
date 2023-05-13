@@ -137,7 +137,9 @@ def add_int_number2(arreglo, numero):
 
 
 
-def add_int_number3(arreglo, numero): 
+def add_int_number3(arreglo, numero):
+    '''Agrega un numero al arreglo'''
+
     arreglo_nuevo = [None] * (len(arreglo) + 1)
     inserted = False
     index_nuevo = 0
@@ -180,12 +182,39 @@ def delete_int_number0(arreglo, numero):
     return arreglo_nuevo
 
 
-def find_int_number(arreglo, numero):
+
+def find_one_int_number(arreglo, numero):
     index = 0
+    verificador = False
     for num in arreglo:
         if num == numero:
             return index
         index += 1
+        
+    if not verificador:
+        print('El numero no se encuentra en el arreglo')
+
+def find_all_int_number(arreglo, numeros):
+    '''Busca todos los numeros de un arreglo en otro arreglo, y devuelve su indice y valor en un diccionario'''
+
+    index_position = {}
+    contador_min = 0
+    contador_max = len(numeros)
+
+    for index, valor in enumerate(arreglo):
+
+        if valor in numeros:
+            index_position['Numero: '+str(valor)] = index
+            contador_min += 1
+        if contador_min == contador_max:
+            break
+        
+        if index_position == {}:
+            print('No existe ningun numero dentro del arreglo')
+            return None
+    return index_position
+
+
 
 def generar_numeros(cantidad): # Funcion que genera numeros aleatorios para testeos
     '''Genera numeros pseudoaleatorios entre una cantidad dada, y los almacena en un arreglo'''
@@ -196,4 +225,3 @@ def generar_numeros(cantidad): # Funcion que genera numeros aleatorios para test
         arreglo.append(random.randint(0,1000000))
 
     return arreglo
-

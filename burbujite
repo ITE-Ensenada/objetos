@@ -1,0 +1,66 @@
+#HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+def agregar_elementos_matriz(filas, columnas):
+    matriz =[]
+        
+    for i in range(filas):
+        fila = []
+        for j in range(columnas):
+            elemento = int(input(f"Ingrese el elemento para la posición [{i}][{j}]: "))
+            fila.append(elemento)
+        matriz.append(fila)
+
+    return matriz
+
+filas = int(input("Ingrese el número de filas de la matriz: "))
+columnas = int(input("Ingrese el número de columnas de la matriz: "))
+
+matriz = agregar_elementos_matriz(filas, columnas)
+
+for fila in matriz:
+    print(fila)
+
+def eliminar_numero (matriz, numero):
+    for fila in matriz:
+        for i in range(len(fila)-1, -1, -1):
+            if fila[i] == numero:
+                fila.pop(i)
+
+matriz = matriz
+
+numero = int(input("ingrese el numero que desea eliminar"))
+
+eliminar_numero(matriz, numero)
+
+for fila in matriz:
+    print(fila)
+
+def buscar_numeros_matriz(matriz, numero):
+    coordenadas = []
+
+    for i in range(len(matriz)):
+        for j in range(len(matriz[i])):
+            if matriz[i][j] == numero:
+                coordenadas.append((i, j))
+
+    return coordenadas
+
+matriz = matriz
+
+numero = int(input("ingrese el numero que desea buscar: "))
+
+resultado = buscar_numeros_matriz(matriz, numero)
+
+if resultado:
+    print(f"El número {numero} se encuentra en las siguientes coordenadas:")
+    for coordenada in resultado:
+        print(coordenada)
+else:
+    print(f"El número {numero} no se encuentra en la matriz.")
+
+
+
+
+
+
+
+    

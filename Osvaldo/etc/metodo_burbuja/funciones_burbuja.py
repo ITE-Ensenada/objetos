@@ -1,5 +1,14 @@
-import random
+'''Este archivo contiene funciones que se utilizan para:
+    1) Ordenar un arreglo de menor a mayor ( Metodo de la burbuja )
+    2) Verificar si un arreglo esta ordenado de menor a mayor
+    3) Agregar un numero a un arreglo de menor a mayor
+    4) Buscar un numero en un arreglo de menor a mayor y eliminarlo
+    5) Buscar un numero en un arreglo de menor a mayor y devolver su indice
+    6) Buscar un numero en un arreglo de menor a mayor y devolver todos sus indices en un diccionario
+    7) Generar un arreglo de numeros aleatorios'''
 
+
+import random
 
 
 def burbuja(arreglo):
@@ -18,9 +27,7 @@ def burbuja(arreglo):
 
                 arreglo[j] = temp
 
-
     print(arreglo)
-
 
 
 def verificador1(arreglo):

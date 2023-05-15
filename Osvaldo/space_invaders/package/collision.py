@@ -20,6 +20,7 @@ class Collision:
 
             self.game.asteroid_generator.asteroid_list.lost_life() # Perder vida
 
+
     def asteroid_player_collision(self):
         '''Metodo que se encarga de manejar la colision entre el jugador y los asteroides'''
 
@@ -34,10 +35,14 @@ class Collision:
     def bullet_asteroid_collision(self):
         '''Metodo que se encarga de manejar la colision entre las balas y los asteroides'''
 
-        print('Esto no hace nada... Aun...')
-
+        colisiones = pg.sprite.groupcollide(self.game.asteroid_generator.asteroid_list, self.game.player.bullet_list, False, True)
+        
+        for asteroid, bullet in colisiones.items():
+            asteroid.lost_life()
 
     def update(self):
         '''Metodo que se encarga de actualizar las colisiones'''
 
         self.asteroid_player_collision()
+
+        self.bullet_asteroid_collision()

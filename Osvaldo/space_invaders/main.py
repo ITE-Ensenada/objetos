@@ -58,7 +58,7 @@ class Game(Screen):
         self.delta_time = self.clock.tick(FPS) # Actualizar tiempo
 
     def run(self):
-        '''Bucle principal delA juego'''
+        '''Bucle principal del juego'''
 
         while True: # Bucle principal
             self.events() # Actualizar eventos
@@ -66,6 +66,8 @@ class Game(Screen):
 
     def events(self):
         '''Actualizar eventos'''
+        if self.player.life <= 0: # Si el jugador se queda sin vida
+            self.close_game() # Cerrar juego
 
         for self.event in pygame.event.get(): # Recorrer todos los eventos
             self.game_over() # Actualizar eventos de salida
@@ -82,8 +84,6 @@ class Game(Screen):
 
     def game_over(self):
         '''Actualizar eventos de salida'''
-        if self.player.life <= 0: # Si el jugador se queda sin vida
-            self.close_game() # Cerrar juego
 
         if (self.event.type == QUIT
             or (self.event.type == KEYDOWN

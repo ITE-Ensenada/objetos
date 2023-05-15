@@ -29,6 +29,13 @@ class AsteroidGenerator():
 
             self.last_asteroid = current_time  # Actualizamos el tiempo del último asteroide
 
+    def eliminate_asteroid(self):
+        for asteroid in self.asteroid_list:
+            if (asteroid.life <= 0 
+                or asteroid.rect.top >= ALTO):
+                asteroid.kill()
+
+
     def update(self):
 
         '''Actualizar generador de asteroides'''
@@ -37,10 +44,6 @@ class AsteroidGenerator():
 
         self.generate_asteroid(current_time) # Generar asteroides
 
-        # Eliminar asteroides que hayan salido completamente por la parte de abajo de la pantalla
-        for asteroid in self.asteroid_list:
-            if (asteroid.rect.top > ALTO 
-                or asteroid.life <= 0):
-                asteroid.kill() # Eliminar asteroide
+        self.eliminate_asteroid()
 
         self.asteroid_list.update() # Actualizar asteroides

@@ -38,7 +38,6 @@ class Player(Esqueleto):
             '''if bullet.rect.bottom <= 0:
                 self.bullets.kill() # Eliminar la bala'''
 
-        self.bullet_list.update() # Actualizar balas
 
 
     def collition_rect(self):
@@ -127,6 +126,8 @@ class Player(Esqueleto):
         self.draw_player() # Dibujar jugador
 
         self.movement() # Mover jugador
+
+        self.bullet_list.update() # Actualizar balas
 
 
     def draw_player(self):

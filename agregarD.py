@@ -1,4 +1,4 @@
-def arreglo():
+def arreglo(archivo):
     with open( archivo, "a") as f:
         texto = input("datos a agregar: ")
         print(f"nuevos datos: ", texto)

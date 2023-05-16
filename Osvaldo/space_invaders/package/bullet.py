@@ -16,7 +16,7 @@ class Bullet( Esqueleto ):
             None,
             None)
 
-        self._pos_x = self.game.player.pos[0] # Actualizar posicion en x de la bala
+        self._pos_x = self.game.player.pos[0] + 20 # Actualizar posicion en x de la bala
 
         self._pos_y = self.game.player.pos[1] # Actualizar posicion en y de la bala
 
@@ -48,7 +48,7 @@ class Bullet( Esqueleto ):
         return rect
 
 
-    def movement(self):
+    def move_bullet(self):
         '''Metodo que se encarga de mover la bala'''
 
         self._pos_y -= BULLET_SPEED * self.game.delta_time # Velocidad de la bala
@@ -56,7 +56,7 @@ class Bullet( Esqueleto ):
         self.rect = self.collition_rect() # Actualizar el rectangulo de colisione
 
 
-    def draw(self):
+    def draw_bullet(self):
         '''Dibujar la bala'''
 
         self.game.screen.blit(self.sprite, (self.pos[0], self.pos[1])) # Dibujar la bala
@@ -67,6 +67,6 @@ class Bullet( Esqueleto ):
     def update(self):
         '''Actualizar la bala'''
 
-        self.movement()
+        self.move_bullet()
 
-        self.draw()
+        self.draw_bullet()

@@ -16,7 +16,7 @@ from package.settings import FPS # Importar variables de configuración
 from package import ( # Importar clases del juego
     Player,
     AsteroidGenerator,
-    RenderLife,
+    RenderItems,
     Collision,
     Screen)
 
@@ -29,23 +29,33 @@ class Game(Screen):
 
         self.event = None # Variable para controlar eventos
 
+        self.running = False # Variable para controlar el bucle principal
+
         self.player = Player(self) # Crear jugador
 
         self.asteroid_generator = AsteroidGenerator(self) # Crear generador de asteroides
 
-        self.render_life = RenderLife(self) # Crear renderizador de fondo
+        self.render_items = RenderItems(self) # Crear renderizador de fondo
 
         self.collision = Collision(self) # Crear colisiones
 
+    def update_menu_game(self):
+        '''Actualizar menú'''
+        self.draw_background() # Dibujar fondo
 
-    def update(self):
+        self.draw_menu() # Dibujar menú
+        
+        self.events() # Actualizar eventos
+        
+        pygame.display.update() # Actualizar pantalla
+
+
+    def update_running_game(self):
         '''Actualizar juego'''
-
-        # self.screen.fill('black') # Limpiar pantalla
 
         self.draw_background() # Dibujar fondo
 
-        self.render_life.update() # Actualizar fondo
+        self.render_items.update() # Actualizar fondo
 
         self.player.update() # Actualizar jugador
 
@@ -57,21 +67,33 @@ class Game(Screen):
 
         self.delta_time = self.clock.tick(FPS) # Actualizar tiempo
 
+
     def run(self):
-        '''Bucle principal delA juego'''
+        '''Bucle principal del juego'''
 
         while True: # Bucle principal
             self.events() # Actualizar eventos
-            self.update() # Actualizar juego
-
+            if not self.running: 
+                self.update_menu_game() # Actualizar menú
+            else: 
+                self.update_running_game() # Actualizar juego
+    
     def events(self):
         '''Actualizar eventos'''
+        if self.player.life <= 0: # Si el jugador se queda sin vida
+            self.close_game() # Cerrar juego
 
         for self.event in pygame.event.get(): # Recorrer todos los eventos
+            self.start_game()
             self.game_over() # Actualizar eventos de salida
             self.reset_player_sprite() # Resetear sprite del jugador
             self.player_shot() # Actualizar eventos de disparo
 
+    def start_game(self):
+        if (not self.running 
+            and self.event.type == KEYDOWN 
+            and self.event.key == K_SPACE):
+            self.running = True
 
     def close_game(self):
         '''Cerrar juego'''
@@ -82,8 +104,6 @@ class Game(Screen):
 
     def game_over(self):
         '''Actualizar eventos de salida'''
-        if self.player.life <= 0: # Si el jugador se queda sin vida
-            self.close_game() # Cerrar juego
 
         if (self.event.type == QUIT
             or (self.event.type == KEYDOWN

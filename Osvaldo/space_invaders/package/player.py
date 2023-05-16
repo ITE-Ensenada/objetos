@@ -32,13 +32,13 @@ class Player(Esqueleto):
 
         self.bullet_list.add(bullet) # Agregar una bala al grupo de balas
 
-        for index, bullet in enumerate(self.bullet_list):
 
-            print(index, bullet)
-            '''if bullet.rect.bottom <= 0:
-                self.bullets.kill() # Eliminar la bala'''
+    def destroy_bullet(self):
+        '''Metodo que se encarga de eliminar las balas'''
 
-        self.bullet_list.update() # Actualizar balas
+        for bullet in self.bullet_list:
+            if bullet.rect.bottom <= 0:
+                bullet.kill()
 
 
     def collition_rect(self):
@@ -121,14 +121,6 @@ class Player(Esqueleto):
             self._pos_y = new_position[1] # Actualizar posicion en y
 
 
-    def update(self):
-        '''Metodo que se encarga de actualizar al jugador'''
-
-        self.draw_player() # Dibujar jugador
-
-        self.movement() # Mover jugador
-
-
     def draw_player(self):
         ''' Metodo que se encarga de dibujar al jugador'''
 
@@ -150,3 +142,15 @@ class Player(Esqueleto):
         '''Metodo que se encarga de resetear el sprite del jugador'''
 
         self.current_sprite = self.sprites[0]
+
+
+    def update(self):
+        '''Metodo que se encarga de actualizar al jugador'''
+
+        self.draw_player() # Dibujar jugador
+
+        self.movement() # Mover jugador
+
+        self.bullet_list.update() # Actualizar balas
+        
+        self.destroy_bullet() # Eliminar balas

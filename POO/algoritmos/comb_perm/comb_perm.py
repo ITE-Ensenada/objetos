@@ -7,4 +7,4 @@ Tambien permite al usuario ingresar un arreglo
 from funciones.permutaciones import *
 arreglo=[1,2,3,4]
 n = len(arreglo)
-permutations(arreglo, n)
+permutations(n)

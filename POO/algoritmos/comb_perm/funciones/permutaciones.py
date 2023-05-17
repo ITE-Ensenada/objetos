@@ -36,8 +36,8 @@ def recursive_permutations(p, i, n, res):
                 p[i] = 0
 
 
-def permutations(array, n):
-    p = copy.deepcopy(array)
+def permutations(n):
+    p = [0] * n
     res = []
     recursive_permutations(p, 0, n, res)
     print(res)

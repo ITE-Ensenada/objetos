@@ -2,6 +2,8 @@
 from buscar import localizar
 from eliminar import verificar
 from agregar import agregar_elementos
+from burbuja import verificador
+#from extras import eliminar_espacios
 class principal:
     '''clase principal'''
     def __init__(self):
@@ -17,7 +19,7 @@ class principal:
     def inicio(self):
         '''despliega el menu de opciones'''
         global elementos 
-        elementos = [1,2,3,4,5,6]
+        elementos = [1,2,8,4,7,6,3]
         while True:
             print("Lista de Elementos:\n",elementos,"\nQue operacion desea realizar??:\n")
             print("-Buscar\n-Eliminar\n-Agregar\n-Ordenar\n-Salir\n")
@@ -57,14 +59,19 @@ class principal:
     def agregar_numero(self):
         '''agrega elementos al arreglo'''
         numero_acomodar =float(input(" introduce un numero: "))
-        agregar = agregar_elementos(numero_acomodar,elementos)
-        print(agregar)
+        elementos = agregar_elementos(numero_acomodar,elementos)
+        print(elementos)
         input("precione enter para continuar...")
 
     def ordenar_arreglo(self):
-        '''proximamente ordenara el arreglo'''
-        print("hola")
-        input("precione enter para continuar...")
+        '''ordena el arreglo'''
+        verifica = verificador(elementos)
+        if verifica:
+            print("Numeros ordenados: ",elementos)
+        else:
+            print(" los numeros ya estan ordenados ")
+
+            input("precione enter para continuar...")
 
     def salir_menu(self):
         '''cierra el programa'''

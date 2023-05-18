@@ -1,7 +1,8 @@
 '''Este programa agrega un elemento a el arreglo y acomoda los numero de menos a mayor'''
-
+from burbuja import verificador
 def agregar_elementos(numero,arreglo):
     '''si el ultimo elemento es menor al numero, agrega el numero al final'''
+    verificador(arreglo)
     posicion = arreglo[-1]
     if numero > posicion:
         arreglo.append(numero)
@@ -17,7 +18,7 @@ def ordenar(arreglo,numero_agregar):
     for i in range(numero):
         if arreglo[i] >= numero_agregar:
             j = i
-            break   
+            break
     arreglo.insert(j,numero_agregar)
     return arreglo
 
@@ -35,4 +36,3 @@ def partir_arreglo(arreglo,numero):
         ordenado = ordenar(mitad2,numero)
         arreglo = mitad1 + ordenado
     return arreglo
-

@@ -9,6 +9,7 @@ __pycache__/
 # Distribution / packaging
 .Python
 DOOM-style-Game/
+highscore.txt
 build/
 develop-eggs/
 dist/

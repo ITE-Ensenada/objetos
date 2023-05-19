@@ -31,9 +31,13 @@ class AsteroidGenerator():
 
     def eliminate_asteroid(self):
         for asteroid in self.asteroid_list:
+            if asteroid.life <= 0:
+                self.game.score_manager.add_points_asteroid()
+
             if (asteroid.life <= 0 
                 or asteroid.rect.top >= ALTO):
                 asteroid.kill()
+
 
 
     def update(self):

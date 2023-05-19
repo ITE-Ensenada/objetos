@@ -36,11 +36,11 @@ class Game(Screen):
 
         self.asteroid_generator = AsteroidGenerator(self) # Crear generador de asteroides
 
-        self.render_items = RenderItems(self) # Crear renderizador de fondo
+        self.score_manager = ScoresManager(self)
 
         self.collision = Collision(self) # Crear colisiones
 
-        self.score_manager = ScoresManager(self)
+        self.render_items = RenderItems(self) # Crear renderizador de fondo
 
 
     def update_menu_game(self):

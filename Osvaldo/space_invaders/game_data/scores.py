@@ -8,28 +8,34 @@ class ScoresManager:
     def __init__(self, game):
         self.game = game
         self.__file_path = 'game_data/highscore.txt'
-        self.score = self.search_highscore_file()
+        self.score = 0
+        self.search_high_score_file()
         self.temp_score = 0
 
         
-    def search_highscore_file(self):
+    def search_high_score_file(self):
         '''Metodo que busca el archivo highscore.txt'''
 
         if os.path.exists(self.get_path):
-            with open(self.get_path, "r") as file:
-                for line in file:
-                    score = int(line.strip())
-                    return score
+            self.score = self.get_score_from_txt()
         else:
-            self.generate_highscore_file()
-            self.search_highscore_file()
+            self.generate_high_score_file()
+            self.score = self.get_score_from_txt()
 
+    
+    def get_score_from_txt(self):
+        with open(self.get_path, "r") as file:
+            for line in file:
+                score = int(line.strip())
+            file.close()
+            return score
             
-    def generate_highscore_file(self):
+    def generate_high_score_file(self):
         '''Metodo que genera un archivo con extension .txt para guardar los highscores del juego'''
 
         with open(self.get_path, 'w') as file:
             file.write('0')
+            file.close()
 
     def add_points_asteroid(self):
         self.temp_score += 9
@@ -41,6 +47,7 @@ class ScoresManager:
         if self.temp_score > self.score:
             with open(self.get_path, 'w') as file:
                 file.write(str(self.temp_score))
+                file.close()
 
     @property
     def load_high_score(self):

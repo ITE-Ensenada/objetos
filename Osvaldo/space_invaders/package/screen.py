@@ -15,6 +15,8 @@ class Screen:
 
         self.delta_time = 1 # Variable para el delta time
 
+        self.running = False # Variable para controlar el bucle principal
+
         self.background = self.create_background_game() # Crear fondo
 
 
@@ -40,4 +42,3 @@ class Screen:
         self.screen.blit(title_text, (300, 200))
         self.screen.blit(start_text, (250, 300))
         
-        pygame.display.update()

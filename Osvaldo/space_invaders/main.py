@@ -13,6 +13,7 @@ from pygame.locals import ( # Importar constantes de pygame
     K_s,
     QUIT)
 from package.settings import FPS # Importar variables de configuración
+from game_data.scores import ScoresManager
 from package import ( # Importar clases del juego
     Player,
     AsteroidGenerator,
@@ -20,16 +21,16 @@ from package import ( # Importar clases del juego
     Collision,
     Screen)
 
+
 class Game(Screen):
     '''Clase principal del juego'''
+
     def __init__(self):
         pygame.init() # Inicializar pygame
 
         super().__init__() # Inicializar clase padre
 
         self.event = None # Variable para controlar eventos
-
-        self.running = False # Variable para controlar el bucle principal
 
         self.player = Player(self) # Crear jugador
 
@@ -38,6 +39,9 @@ class Game(Screen):
         self.render_items = RenderItems(self) # Crear renderizador de fondo
 
         self.collision = Collision(self) # Crear colisiones
+
+        self.score_manager = ScoresManager(self)
+
 
     def update_menu_game(self):
         '''Actualizar menú'''
@@ -55,13 +59,14 @@ class Game(Screen):
 
         self.draw_background() # Dibujar fondo
 
-        self.render_items.update() # Actualizar fondo
 
         self.player.update() # Actualizar jugador
 
         self.asteroid_generator.update() # Actualizar generador de asteroides
 
         self.collision.update() # Actualizar colisiones
+
+        self.render_items.update() # Actualizar fondo
 
         pygame.display.update() # Actualizar pantalla
 
@@ -77,7 +82,8 @@ class Game(Screen):
                 self.update_menu_game() # Actualizar menú
             else: 
                 self.update_running_game() # Actualizar juego
-    
+
+
     def events(self):
         '''Actualizar eventos'''
         if self.player.life <= 0: # Si el jugador se queda sin vida
@@ -89,15 +95,20 @@ class Game(Screen):
             self.reset_player_sprite() # Resetear sprite del jugador
             self.player_shot() # Actualizar eventos de disparo
 
+
     def start_game(self):
+        ''''''
+        
         if (not self.running 
             and self.event.type == KEYDOWN 
             and self.event.key == K_SPACE):
             self.running = True
 
+
     def close_game(self):
         '''Cerrar juego'''
 
+        self.score_manager.save_high_scores()
         pygame.quit()
         sys.exit()
 
@@ -110,6 +121,7 @@ class Game(Screen):
                 and self.event.key == K_ESCAPE)): # Salir del juego
 
             self.close_game() # Cerrar juego
+
 
     def reset_player_sprite(self):
         '''Resetear sprite del jugador'''
@@ -130,5 +142,6 @@ class Game(Screen):
 
 
 if __name__ == '__main__':
+
     game = Game() # Crear juego
     game.run() # Correr juego

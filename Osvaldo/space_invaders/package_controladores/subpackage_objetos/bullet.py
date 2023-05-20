@@ -2,8 +2,8 @@
                 La cual se encarga de representar una bala'''
 
 import pygame
-from package.settings import BULLET_DAMAGE, BULLET_SPEED
-from package.subpackage.esqueleto import Esqueleto
+from game_data.general_settings.settings import BULLET_DAMAGE, BULLET_SPEED
+from package_controladores.subpackage_objetos.estructuras_basicas.esqueleto import Esqueleto
 
 class Bullet( Esqueleto ):
     '''Clase que representa una bala'''

@@ -2,7 +2,7 @@
                 La cual se encarga de renderizar el fondo del juego'''
 
 import pygame
-from package.settings import ALTO, ANCHO
+from game_data.general_settings.settings import ALTO, ANCHO
 
 class RenderItems():
     '''Clase que se encarga de renderizar el fondo del juego'''

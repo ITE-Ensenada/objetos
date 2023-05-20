@@ -2,10 +2,10 @@
                 la cual se encarga de generar asteroides'''
 
 import pygame as pg
-from package.settings import ALTO, ASTEROID_INTERVAL
-from package.asteroid import Asteroid
+from game_data.general_settings.settings import ALTO, ASTEROID_INTERVAL
+from package_controladores.subpackage_objetos.asteroid import Asteroid
 
-class AsteroidGenerator():
+class AsteroidGenerator:
     '''Clase que se encarga de generar asteroides'''
 
     def __init__(self, game):
@@ -16,8 +16,8 @@ class AsteroidGenerator():
 
         self.last_asteroid = 0 # Tiempo del último asteroide generado
 
-    def generate_asteroid(self, current_time):
 
+    def generate_asteroid(self, current_time):
         '''Generar asteroides.
         Si el tiempo actual es mayor al tiempo del último asteroide generado'''
 
@@ -29,7 +29,9 @@ class AsteroidGenerator():
 
             self.last_asteroid = current_time  # Actualizamos el tiempo del último asteroide
 
+
     def eliminate_asteroid(self):
+        '''Metodo para eliminar los asteroides'''
         for asteroid in self.asteroid_list:
             if asteroid.life <= 0:
                 self.game.score_manager.add_points_asteroid()
@@ -39,8 +41,7 @@ class AsteroidGenerator():
                 asteroid.kill()
 
 
-
-    def update(self):
+    def update_asteroids(self):
 
         '''Actualizar generador de asteroides'''
 

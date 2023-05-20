@@ -1,9 +1,10 @@
 '''Descripcion: Este archivo contiene la clase Game, la cual se encarga de manejar el juego'''
 
 import pygame as pg
-from package.settings import PLAYER_SPEED, PLAYER_LIFE, X, Y, ANCHO, ALTO
-from package.subpackage.esqueleto import Esqueleto
-from package.bullet import Bullet
+from game_data.general_settings.settings import PLAYER_SPEED, PLAYER_LIFE, X, Y, ANCHO, ALTO
+from package_controladores.subpackage_objetos.bullet import Bullet
+from package_controladores.subpackage_objetos.estructuras_basicas.esqueleto import Esqueleto
+
 
 class Player(Esqueleto):
     '''Clase que representa al jugador'''

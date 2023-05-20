@@ -12,9 +12,9 @@ from pygame.locals import ( # Importar constantes de pygame
     K_w,
     K_s,
     QUIT)
-from package.settings import FPS # Importar variables de configuración
-from game_data.scores import ScoresManager
-from package import ( # Importar clases del juego
+from game_data.general_settings.settings import FPS # Importar variables de configuración
+from game_data.save_data.scores import ScoresManager
+from package_controladores import ( # Importar clases del juego
     Player,
     AsteroidGenerator,
     RenderItems,
@@ -59,10 +59,9 @@ class Game(Screen):
 
         self.draw_background() # Dibujar fondo
 
-
         self.player.update() # Actualizar jugador
 
-        self.asteroid_generator.update() # Actualizar generador de asteroides
+        self.asteroid_generator.update_asteroids() # Actualizar generador de asteroides
 
         self.collision.update() # Actualizar colisiones
 

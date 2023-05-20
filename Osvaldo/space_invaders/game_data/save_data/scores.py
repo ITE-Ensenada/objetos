@@ -7,7 +7,7 @@ class ScoresManager:
 
     def __init__(self, game):
         self.game = game
-        self.__file_path = 'game_data/highscore.txt'
+        self.__file_path = 'game_data/save_data/high_score.txt'
         self.score = 0
         self.search_high_score_file()
         self.temp_score = 0
@@ -56,10 +56,3 @@ class ScoresManager:
     @property
     def get_path(self):
         return self.__file_path
-
-
-#-------------------------------------------------------------------------------------------------------------------------------
-
-
-    def test(self):
-        '''Funcion de prueba'''

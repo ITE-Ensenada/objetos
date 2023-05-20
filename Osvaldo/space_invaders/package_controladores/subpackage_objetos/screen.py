@@ -1,7 +1,7 @@
 '''Descripcion: Este archivo es utilizado crear la ventana del juego y el reloj del juego'''
 
 import pygame
-from package.settings import RESOLUTION, FLAGS, FPS # Importar variables de configuración
+from game_data.general_settings.settings import RESOLUTION, FLAGS, FPS # Importar variables de configuración
 
 class Screen:
     '''Clase que representa la pantalla del juego, 

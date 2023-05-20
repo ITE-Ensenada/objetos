@@ -4,7 +4,7 @@
 import pygame
 from game_data.general_settings.settings import ALTO, ANCHO
 
-class RenderItems():
+class RenderItemsManager:
     '''Clase que se encarga de renderizar el fondo del juego'''
 
     def __init__(self, game):

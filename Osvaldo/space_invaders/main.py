@@ -17,8 +17,8 @@ from game_data.save_data.scores import ScoresManager
 from package_controladores import ( # Importar clases del juego
     Player,
     AsteroidGenerator,
-    RenderItems,
-    Collision,
+    RenderItemsManager,
+    CollisionManager,
     Screen)
 
 
@@ -38,9 +38,9 @@ class Game(Screen):
 
         self.score_manager = ScoresManager(self)
 
-        self.collision = Collision(self) # Crear colisiones
+        self.collision_manager = CollisionManager(self) # Crear colisiones
 
-        self.render_items = RenderItems(self) # Crear renderizador de fondo
+        self.render_items_manager = RenderItemsManager(self) # Crear renderizador de fondo
 
 
     def update_menu_game(self):
@@ -63,9 +63,9 @@ class Game(Screen):
 
         self.asteroid_generator.update_asteroids() # Actualizar generador de asteroides
 
-        self.collision.update() # Actualizar colisiones
+        self.collision_manager.update() # Actualizar colisiones
 
-        self.render_items.update() # Actualizar fondo
+        self.render_items_manager.update() # Actualizar fondo
 
         pygame.display.update() # Actualizar pantalla
 

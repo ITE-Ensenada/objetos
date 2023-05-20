@@ -3,7 +3,7 @@
 
 import pygame as pg
 
-class Collision:
+class CollisionManager:
     '''Clase que se encarga de manejar las colisiones'''
 
     def __init__(self, game):

@@ -14,5 +14,5 @@ def posiciones(arreglo):
 
 
 elementos = [1,2,3,4,16]
-posicion=posiciones(elementos)
+posiciones(elementos)
 

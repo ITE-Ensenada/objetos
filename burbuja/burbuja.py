@@ -10,8 +10,8 @@ def verificador(arreglo):
 def burbuja(arreglo):
     '''ordena los numeros del arreglo'''
     n = len(arreglo)
-    for i in range(n-1):       # <-- bucle padre
-        for j in range(i+1,n): # <-- bucle hijo
+    for i in range(n-1):
+        for j in range(i+1,n):
             if arreglo[i] > arreglo[j]:
                 temp = arreglo[i]
                 arreglo[i] = arreglo[j]

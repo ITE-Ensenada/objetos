@@ -1,9 +1,9 @@
-"main menu"
+"menu principal"
 from buscar import localizar
 from eliminar import verificar
 from agregar import agregar_elementos
 from burbuja import verificador
-#from extras import eliminar_espacios
+
 class principal:
     '''clase principal'''
     elementos = [1,2,8,4,7,6,3]
@@ -23,13 +23,12 @@ class principal:
         while True:
             print("Lista de Elementos:\n",elementos,"\nQue operacion desea realizar??:\n")
             print("-Buscar\n-Eliminar\n-Agregar\n-Ordenar\n-Salir\n")
-            respuesta = input("Respuesta:   ")
+            respuesta = input("Respuesta: ")
             if respuesta in self.opciones:
                 self.opciones[respuesta]()
             else:
                 print("escoge una opcion valida")
                 input("precione enter para continuar...")
-
 
     def buscar_numero(self):
         '''busca la direccion de un elemento del arreglo'''
@@ -44,8 +43,6 @@ class principal:
             print("El numero se encuentra en las posiciones: \n",resultado)
             input("precione enter para continuar...")
 
-    
-        
     def eliminar_numero(self):
         '''elimina un numero del arreglo'''
         elementos = principal.elementos
@@ -81,7 +78,6 @@ class principal:
         '''cierra el programa'''
         print(" Salir ")
         exit()
-
 
 menu = principal()
 menu.inicio()

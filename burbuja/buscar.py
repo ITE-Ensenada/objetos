@@ -7,4 +7,3 @@ def localizar(arreglo,numero):
         if arreglo[i] == numero:
             localizador.append(i)
     return localizador
-

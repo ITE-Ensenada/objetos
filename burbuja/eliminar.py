@@ -9,7 +9,7 @@ def recorrer(arreglo):
             j = i + 1
             arreglo[i] = arreglo[j]
             arreglo[j] = ''
-    nuevoarreglo =  arreglo[:vacios]
+        nuevoarreglo =  arreglo[:vacios]
     return nuevoarreglo
 
 def eliminar(arreglo, numero):

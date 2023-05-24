@@ -6,6 +6,7 @@ from burbuja import verificador
 #from extras import eliminar_espacios
 class principal:
     '''clase principal'''
+    elementos = [1,2,8,4,7,6,3]
     def __init__(self):
         '''operaciones que se pueden realizar con el arreglo'''
         self.opciones = {
@@ -18,8 +19,7 @@ class principal:
 
     def inicio(self):
         '''despliega el menu de opciones'''
-        global elementos 
-        elementos = [1,2,8,4,7,6,3]
+        elementos = principal.elementos
         while True:
             print("Lista de Elementos:\n",elementos,"\nQue operacion desea realizar??:\n")
             print("-Buscar\n-Eliminar\n-Agregar\n-Ordenar\n-Salir\n")
@@ -33,6 +33,7 @@ class principal:
 
     def buscar_numero(self):
         '''busca la direccion de un elemento del arreglo'''
+        elementos = principal.elementos
         print("lista de elementos:\n",elementos)
         buscar = float(input(" ingrese el numero que desea buscar: "))
         resultado = localizar(elementos,buscar)
@@ -47,17 +48,19 @@ class principal:
         
     def eliminar_numero(self):
         '''elimina un numero del arreglo'''
+        elementos = principal.elementos
         numero_eliminar = float(input("ingrese el numero que desee eliminar: "))
-        revisar = verificar(elementos,numero_eliminar)
-        if not revisar:
-            print("el numero ingresado no se encuentra en el arreglo")
+        elementos = verificar(elementos,numero_eliminar)
+        if elementos:
+            print("El elemento se ha eliminado\n",elementos)
             input("precione enter para continuar...")
         else:
-            print("El elemento se ha eliminado\n",revisar)
+            print("El elemento no se encuentra en el arreglo\n")
             input("precione enter para continuar...")
 
     def agregar_numero(self):
         '''agrega elementos al arreglo'''
+        elementos = principal.elementos
         numero_acomodar =float(input(" introduce un numero: "))
         elementos = agregar_elementos(numero_acomodar,elementos)
         print(elementos)
@@ -65,6 +68,7 @@ class principal:
 
     def ordenar_arreglo(self):
         '''ordena el arreglo'''
+        elementos = principal.elementos
         verifica = verificador(elementos)
         if verifica:
             print("Numeros ordenados: ",elementos)

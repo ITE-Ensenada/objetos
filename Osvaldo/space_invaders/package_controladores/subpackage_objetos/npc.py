@@ -1,14 +1,18 @@
+'''Descripcion: '''
+
 import pygame
 from game_data.general_settings.settings import (
     NPC_LIFE,
     NPC_SPEED
-    
+
 )
 from package_controladores.subpackage_objetos.estructuras_basicas.esqueleto import Esqueleto
 from package_controladores.subpackage_objetos.bullet import Bullet
 from package_controladores.subpackage_objetos.player import Player
 
 class Npc(Player):
+    '''Clase'''
+
     def __init__(self, game, pos_x, pos_y):
 
         super().__init__(
@@ -32,7 +36,7 @@ class Npc(Player):
         rect = self.current_sprite.get_rect()
         rect.x = self.pos[0]
         rect.y = self.pos[1]
-        
+
         return rect
 
 

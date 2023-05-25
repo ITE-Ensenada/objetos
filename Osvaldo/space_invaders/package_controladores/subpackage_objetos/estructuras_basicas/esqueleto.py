@@ -1,5 +1,5 @@
 '''Descripcion: 
-    Este archivo contienen una clase base para la clase player del juego, asteroid y npc'''
+    Este archivo contienen una clase base para una variedad de clases'''
 
 import pygame as pg
 

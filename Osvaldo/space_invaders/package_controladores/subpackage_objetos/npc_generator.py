@@ -19,4 +19,4 @@ class NpcGenerator:
         self.wave_form = []
 
     def generate_wave(self,):
-        
+        pass

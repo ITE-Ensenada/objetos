@@ -26,7 +26,7 @@ class ScoresManager:
     def get_score_from_txt(self):
         '''Metodo que obtiene el puntaje del archivo highscore.txt'''
 
-        with open(self.get_path, "r") as file:
+        with open(self.get_path, "r", encoding='utf-8') as file:
             for line in file:
                 score = int(line.strip())
             file.close()
@@ -35,11 +35,13 @@ class ScoresManager:
     def generate_high_score_file(self):
         '''Metodo que genera un archivo con extension .txt para guardar los highscores del juego'''
 
-        with open(self.get_path, 'w') as file:
+        with open(self.get_path, 'w', encoding='utf-8') as file:
             file.write('0')
             file.close()
 
     def add_points_asteroid(self):
+        '''Metodo que agrega puntos al atributo temp_score'''
+
         self.temp_score += 9
 
 
@@ -47,7 +49,7 @@ class ScoresManager:
         '''Metodo que guarda el puntaje del juego si este mismo supera el record'''
 
         if self.temp_score > self.score:
-            with open(self.get_path, 'w') as file:
+            with open(self.get_path, 'w', encoding='utf-8') as file:
                 file.write(str(self.temp_score))
                 file.close()
 

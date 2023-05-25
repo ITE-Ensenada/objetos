@@ -2,7 +2,7 @@
                 La cual se encarga de renderizar el fondo del juego'''
 
 import pygame
-from game_data.general_settings.settings import ALTO, ANCHO
+from game_data.general_settings.settings import ALTO
 
 class RenderItemsManager:
     '''Clase que se encarga de renderizar el fondo del juego'''
@@ -36,11 +36,13 @@ class RenderItemsManager:
         # Dibuja la vida del jugador
         self.game.screen.blit(self.player_life[self.game.player.life - 1], (0, 0))
 
+
     def score_record(self):
-        
+        '''Dibuja el score, y el score maximo'''
+
         high_score = self.game.score_manager.load_high_score
         actual_score = self.game.score_manager.temp_score
-        
+
         font = pygame.font.Font(None, 36)
         text = font.render(("Puntaje: "
                             + str(actual_score))
@@ -53,9 +55,8 @@ class RenderItemsManager:
         self.game.screen.blit(text, text_rect)
 
 
-
     def update(self):
         '''Metodo que se encarga de actualizar el fondo del juego'''
-        
+
         self.score_record()
         self.draw_life_player()

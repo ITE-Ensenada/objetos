@@ -150,5 +150,5 @@ class Player(Esqueleto):
         self.movement() # Mover jugador
 
         self.bullet_list.update() # Actualizar balas
-        
+
         self.destroy_bullet() # Eliminar balas

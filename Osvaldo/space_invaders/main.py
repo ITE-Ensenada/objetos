@@ -105,8 +105,8 @@ class Game(Screen):
     def start_game(self):
         '''Método para iniciar el juego'''
 
-        if (not self.running 
-            and self.event.type == KEYDOWN 
+        if (not self.running
+            and self.event.type == KEYDOWN
             and self.event.key == K_SPACE
             and self.player.life > 0):
 
@@ -129,8 +129,8 @@ class Game(Screen):
 
             self.close_game() # Cerrar juego
 
-        if (not self.running 
-            and self.event.type == KEYDOWN 
+        if (not self.running
+            and self.event.type == KEYDOWN
             and self.event.key == K_SPACE
             and self.player.life <= 0):
 

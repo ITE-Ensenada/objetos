@@ -46,10 +46,9 @@ class Game(Screen):
 
     def update_menu_game(self):
         '''Actualizar menú'''
-        self.draw_background() # Dibujar fondo
 
         self.draw_menu() # Dibujar menú
-        
+
         pygame.display.update() # Actualizar pantalla
 
 
@@ -68,6 +67,12 @@ class Game(Screen):
 
         pygame.display.update() # Actualizar pantalla
 
+    def update_game_over_menu(self):
+        '''Actualizar pantalla de game over'''
+
+        self.draw_game_over()
+
+        pygame.display.update() # Actualizar pantalla
 
 
     def run(self):
@@ -75,10 +80,12 @@ class Game(Screen):
 
         while True: # Bucle principal
             self.events() # Actualizar eventos
-            if not self.running: 
+            if not self.running and self.player.life > 0:
                 self.update_menu_game() # Actualizar menú
-            else: 
+            elif self.running and self.player.life > 0:
                 self.update_running_game() # Actualizar juego
+            elif not self.running and self.player.life <= 0:
+                self.update_game_over_menu() # Actualizar pantalla de game over
 
             self.delta_time = self.clock.tick(FPS) # Actualizar tiempo
 
@@ -86,7 +93,7 @@ class Game(Screen):
     def events(self):
         '''Actualizar eventos'''
         if self.player.life <= 0: # Si el jugador se queda sin vida
-            self.close_game() # Cerrar juego
+            self.running = False # Dejar de correr el juego
 
         for self.event in pygame.event.get(): # Recorrer todos los eventos
             self.start_game()
@@ -97,11 +104,17 @@ class Game(Screen):
 
     def start_game(self):
         '''Método para iniciar el juego'''
-        
+
         if (not self.running 
             and self.event.type == KEYDOWN 
-            and self.event.key == K_SPACE):
+            and self.event.key == K_SPACE
+            and self.player.life > 0):
             self.running = True
+        elif (not self.running 
+            and self.event.type == KEYDOWN 
+            and self.event.key == K_SPACE
+            and self.player.life <= 0):
+            self.close_game()
 
 
     def close_game(self):
@@ -114,7 +127,6 @@ class Game(Screen):
 
     def game_over(self):
         '''Actualizar eventos de salida'''
-
         if (self.event.type == QUIT
             or (self.event.type == KEYDOWN
                 and self.event.key == K_ESCAPE)): # Salir del juego

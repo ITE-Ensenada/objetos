@@ -3,13 +3,14 @@ import pygame
 # Inicializar Pygame
 pygame.init()
 
-# Crear una superficie de 800x600 píxeles
-width = 800
+# Crear una superficie de 800x600 píxeles, no debe cambiar esta superficie
+width = 800 
 height = 600
 surface = pygame.display.set_mode((width, height))
-
+background_color = (255,23,100)
+surface.fill(background_color)
 # Establecer el color de un píxel en la posición (100, 200) a rojo (255, 0, 0)
-color = (255, 0, 0)
+color = (255,120, 10)
 def linea_h():
     for i in range(0,100):
         surface.set_at((100 + i, 200), color)
@@ -30,9 +31,3 @@ while True:
         linea_h()
     if cmd == "linea -v":
         linea_v()
-
-
-#    for event in pygame.event.get():
-    #    if event.type == pygame.QUIT:
-#        pygame.quit()
-

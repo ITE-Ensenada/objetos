@@ -16,7 +16,7 @@ from game_data.general_settings.settings import FPS # Importar variables de conf
 from game_data.save_data.scores import ScoresManager
 from package_controladores import ( # Importar clases del juego
     Player,
-    Npc,    
+    Npc,
     AsteroidGenerator,
     RenderItemsManager,
     CollisionManager,
@@ -109,12 +109,8 @@ class Game(Screen):
             and self.event.type == KEYDOWN 
             and self.event.key == K_SPACE
             and self.player.life > 0):
+
             self.running = True
-        elif (not self.running 
-            and self.event.type == KEYDOWN 
-            and self.event.key == K_SPACE
-            and self.player.life <= 0):
-            self.close_game()
 
 
     def close_game(self):
@@ -126,13 +122,19 @@ class Game(Screen):
 
 
     def game_over(self):
-        '''Actualizar eventos de salida'''
+        '''Metodo para salir del juego'''
         if (self.event.type == QUIT
             or (self.event.type == KEYDOWN
                 and self.event.key == K_ESCAPE)): # Salir del juego
 
             self.close_game() # Cerrar juego
 
+        if (not self.running 
+            and self.event.type == KEYDOWN 
+            and self.event.key == K_SPACE
+            and self.player.life <= 0):
+
+            self.close_game()
 
     def reset_player_sprite(self):
         '''Resetear sprite del jugador'''

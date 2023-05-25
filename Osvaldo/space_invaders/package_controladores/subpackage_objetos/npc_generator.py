@@ -16,6 +16,7 @@ class NpcGenerator:
 
         self.last_wave = 0 # TIempo de la ultima wave de enemigos
 
+        self.wave_form = []
 
     def generate_wave(self,):
-        pass
+        

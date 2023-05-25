@@ -2,16 +2,20 @@ import pygame
 from game_data.general_settings.settings import (
     NPC_LIFE,
     NPC_SPEED
+    
 )
 from package_controladores.subpackage_objetos.estructuras_basicas.esqueleto import Esqueleto
+from package_controladores.subpackage_objetos.bullet import Bullet
+from package_controladores.subpackage_objetos.player import Player
 
+class Npc(Player):
+    def __init__(self, game, pos_x, pos_y):
 
-class Npc(Esqueleto):
-    def __init__(self, game, pos_x, pos_y, life):
-
-        super().__init__(game, pos_x, pos_y, life)
-        self.current_sprite = self.create_sprites()
-        self.rect = self.collide_rect()
+        super().__init__(
+            game,
+            pos_x,
+            pos_y,
+            NPC_LIFE)
 
 
     def create_sprites(self):
@@ -30,3 +34,11 @@ class Npc(Esqueleto):
         rect.y = self.pos[1]
         
         return rect
+
+
+    def shot(self):
+        '''Metodo que se encarga de disparar'''
+
+        bullet = Bullet(self.game) # Crear una bala
+
+        self.bullet_list.add(bullet) # Agregar una bala al grupo de balas

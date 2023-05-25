@@ -9,11 +9,8 @@ class Esqueleto(pg.sprite.Sprite):
     def __init__(self, game, pos_x, pos_y, life):
 
         super().__init__() # Inicializar clase padre
-
         self.game = game # Instancia de la clase Game
-
         self._pos_x, self._pos_y = pos_x, pos_y # Posicion en x, y
-
         self._life = life # Vidas del esqueleto
 
 

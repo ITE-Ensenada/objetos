@@ -16,6 +16,7 @@ from game_data.general_settings.settings import FPS # Importar variables de conf
 from game_data.save_data.scores import ScoresManager
 from package_controladores import ( # Importar clases del juego
     Player,
+    Npc,    
     AsteroidGenerator,
     RenderItemsManager,
     CollisionManager,
@@ -49,8 +50,6 @@ class Game(Screen):
 
         self.draw_menu() # Dibujar menú
         
-        self.events() # Actualizar eventos
-        
         pygame.display.update() # Actualizar pantalla
 
 
@@ -69,7 +68,6 @@ class Game(Screen):
 
         pygame.display.update() # Actualizar pantalla
 
-        self.delta_time = self.clock.tick(FPS) # Actualizar tiempo
 
 
     def run(self):
@@ -81,6 +79,8 @@ class Game(Screen):
                 self.update_menu_game() # Actualizar menú
             else: 
                 self.update_running_game() # Actualizar juego
+
+            self.delta_time = self.clock.tick(FPS) # Actualizar tiempo
 
 
     def events(self):
@@ -96,7 +96,7 @@ class Game(Screen):
 
 
     def start_game(self):
-        ''''''
+        '''Método para iniciar el juego'''
         
         if (not self.running 
             and self.event.type == KEYDOWN 

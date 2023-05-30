@@ -41,7 +41,7 @@ class AsteroidGenerator:
                 asteroid.kill()
 
 
-    def update_asteroids(self):
+    def update(self):
 
         '''Actualizar generador de asteroides'''
 

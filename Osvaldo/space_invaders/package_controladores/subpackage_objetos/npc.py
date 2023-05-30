@@ -42,13 +42,13 @@ class Npc(Esqueleto):
 
         return rect
 
+    def movement(self):
+        '''Metodo que se encarga de mover al npc'''
+        
+        self._pos_y += NPC_SPEED * self.game.delta_time # Mover el npc
+        
+        self.rect = self.collide_rect()
 
-    def shot(self):
-        '''Metodo que se encarga de disparar'''
-
-        bullet = Bullet(self.game) # Crear una bala
-
-        self.bullet_list.add(bullet) # Agregar una bala al grupo de balas
 
     def draw(self):
         '''Metodo que se encarga de dibujar'''
@@ -57,10 +57,11 @@ class Npc(Esqueleto):
 
         pygame.draw.rect(self.game.screen, 'red', self.collide_rect(), 2)
 
+
     def update(self):
         '''Metodo que se encarga de actualizar'''
 
-        self._pos_y += NPC_SPEED * self.game.delta_time
+        self.movement()
 
         self.current_sprite = self.sprites
 

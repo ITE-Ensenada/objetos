@@ -126,7 +126,7 @@ class Player(Esqueleto):
 
         self.rect = self.collition_rect() # Actualizar rectangulo de colisiones
 
-        pg.draw.rect(self.game.screen, 'red', self.rect, 2) # Dibujar rectangulo de colisiones
+        # pg.draw.rect(self.game.screen, 'red', self.rect, 2) # Dibujar rectangulo de colisiones
 
 
     def change_sprite(self):

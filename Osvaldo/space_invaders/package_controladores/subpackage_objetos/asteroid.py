@@ -56,7 +56,7 @@ class Asteroid(Esqueleto):
 
         self.game.screen.blit(self.sprites, (self.pos[0], self.pos[1])) # Dibujar el asteroide
 
-        pg.draw.rect(self.game.screen, 'red', self.rect, 2) # Dibujar el rectangulo de colisiones
+        # pg.draw.rect(self.game.screen, 'red', self.rect, 2) # Dibujar el rectangulo de colisiones
 
     def update(self):
         '''Actualizar asteroide'''

@@ -55,7 +55,7 @@ class Npc(Esqueleto):
 
         self.game.screen.blit(self.sprites, self.pos)
 
-        pygame.draw.rect(self.game.screen, 'red', self.collide_rect(), 2)
+        # pygame.draw.rect(self.game.screen, 'red', self.collide_rect(), 2)
 
 
     def update(self):

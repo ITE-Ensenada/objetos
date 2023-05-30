@@ -34,7 +34,7 @@ class Game(Screen):
 
         self.player = Player(self) # Crear jugador
 
-        self.score_manager = ScoresManager(self)
+        self.score_manager = ScoresManager(self)  # Crear cargador de puntajes
 
         self.collision_manager = CollisionManager(self) # Crear colisiones
 

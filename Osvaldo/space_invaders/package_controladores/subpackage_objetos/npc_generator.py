@@ -38,7 +38,7 @@ class NpcGenerator:
         '''Generar oleada de enemigos'''
         spacing_vertical = 2
         spacing_horizontal = 4
-        
+
 
         for i in range(int(WAVE_ROWS_SIZE)):
             for j in range(int(WAVE_COLUMN_SIZE)):

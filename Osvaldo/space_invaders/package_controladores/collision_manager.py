@@ -35,23 +35,23 @@ class CollisionManager:
     def npc_player_collision(self):
         '''Metodo que se encarga de manejar la colision entre el jugador y los npc'''
         groups = self.game.hostile_manager.npc_generator.npc_list # Lista de npc
-        
+
         #Si el jugador colisiona con un asteroide
         if pg.sprite.spritecollide(self.game.player, groups, True):
 
             self.game.player.lost_life()
 
-        
+
     def bullet_npc_collision(self):
         '''Metodo que se encarga de manejar la colision entre las balas y los npc'''
-        
+
         colisiones = pg.sprite.groupcollide(
             self.game.hostile_manager.npc_generator.npc_list,
             self.game.player.bullet_list,
             False,
             True
         )
-        
+
         for npc, bullet in colisiones.items():
             if npc.rect.top > 0:
                 npc.lost_life()
@@ -73,9 +73,9 @@ class CollisionManager:
         '''Metodo que se encarga de actualizar las colisiones'''
 
         self.asteroid_player_collision()
-        
+
         self.npc_player_collision()
 
         self.bullet_asteroid_collision()
-        
+
         self.bullet_npc_collision()

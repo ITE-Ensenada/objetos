@@ -48,3 +48,4 @@ El jugador puede controlar la nave espacial utilizando las siguientes teclas del
     S: mover la nave hacia abajo
     D: mover la nave hacia la derecha
     Barra espaciadora: disparar un proyectil
+    Escape: Abandonar el juego

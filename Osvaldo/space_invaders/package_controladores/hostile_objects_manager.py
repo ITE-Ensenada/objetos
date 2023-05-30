@@ -6,16 +6,19 @@ from package_controladores.subpackage_objetos.npc_generator import NpcGenerator
 
 class HostileObjectsManager:
     '''Clase que se encarga de manejar los objetos hostiles contra el jugador'''''
-    
+
     def __init__(self, game):
-        
+
         self.game = game # Instancia de la clase Game
 
-        self.asteroid_generator = AsteroidGenerator(self.game) # Instancia de la clase AsteroidGenerator
-        self.npc_generator = NpcGenerator(self.game) # Instancia de la clase NPCGenerator
-    
+        # Instancia de la clase AsteroidGenerator
+        self.asteroid_generator = AsteroidGenerator(self.game)
+
+        # Instancia de la clase NPCGenerator
+        self.npc_generator = NpcGenerator(self.game) 
+
     def update(self):
         '''Metodo que se encarga de actualizar los objetos hostiles'''
-        
+
         self.asteroid_generator.update()
         self.npc_generator.update()

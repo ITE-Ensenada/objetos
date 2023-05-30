@@ -23,11 +23,18 @@ def linea_v():
     pygame.display.flip()
 
 # Esperar a que el usuario cierre la ventana
-while True:
-    cmd = input("cmd> ")
-    if cmd == "exit":
-        pygame.quit()
+myfile = open("comandos.cmd", "r")
+for cmd in myfile:
+    cmd = cmd.strip()
     if cmd == "linea -h":
         linea_h()
     if cmd == "linea -v":
         linea_v()
+    print(f"-{cmd}-")
+myfile.close()
+
+while True:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+

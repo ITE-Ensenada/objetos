@@ -16,7 +16,7 @@ from game_data.general_settings.settings import FPS # Importar variables de conf
 from game_data.save_data.scores import ScoresManager
 from package_controladores import ( # Importar clases del juego
     Player,
-    Npc,
+    NpcGenerator,
     AsteroidGenerator,
     RenderItemsManager,
     CollisionManager,
@@ -43,6 +43,9 @@ class Game(Screen):
 
         self.render_items_manager = RenderItemsManager(self) # Crear renderizador de fondo
 
+        #---------
+        self.npc_generator = NpcGenerator(self) # Crear generador de enemigos
+
 
     def update_menu_game(self):
         '''Actualizar menú'''
@@ -60,6 +63,8 @@ class Game(Screen):
         self.player.update() # Actualizar jugador
 
         self.asteroid_generator.update_asteroids() # Actualizar generador de asteroides
+
+        self.npc_generator.update() # Actualizar generador de enemigos
 
         self.collision_manager.update() # Actualizar colisiones
 

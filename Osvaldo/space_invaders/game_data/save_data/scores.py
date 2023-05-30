@@ -44,6 +44,10 @@ class ScoresManager:
 
         self.temp_score += 9
 
+    def add_points_npc(self):
+        '''Metodo que agrega puntos al atributo temp_score'''
+
+        self.temp_score += 5
 
     def save_high_scores(self):
         '''Metodo que guarda el puntaje del juego si este mismo supera el record'''

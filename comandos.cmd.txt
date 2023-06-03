@@ -1,0 +1,9 @@
+linea -h
+linea -v
+help
+line = 100 200 100 500
+triangle = 100 100 200 200 150 300
+circle 100 200 50
+rectangle 100 200 100 300
+bg_color GREEN
+pixel_size 20 
